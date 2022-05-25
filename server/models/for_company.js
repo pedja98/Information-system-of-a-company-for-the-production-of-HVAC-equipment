@@ -18,33 +18,33 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     orderId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
     },
     companyId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
     },
     cost: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     address: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     city: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     country: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

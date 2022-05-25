@@ -1,5 +1,18 @@
 'use strict';
 
+const User = require('./user')
+const Company = require('./company')
+const Device = require('./device')
+const For_Company = require('./for_company')
+const Material_For_Device = require('./material_for_device')
+const Material_In_Stock = require('./material_in_stock')
+const Material = require('./material')
+const Order = require('./order')
+const Purchase_Order = require('./purchase_order')
+const User_Activity = require('./user_activity')
+const Work_Order = require('./work_order')
+
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -33,5 +46,20 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.User = User(db.sequelize, db.Sequelize)
+db.Company = Company(db.sequelize, db.Sequelize)
+db.Device = Device(db.sequelize, db.Sequelize)
+db.For_Company = For_Company(db.sequelize, db.Sequelize)
+db.Material_For_Device = Material_For_Device(db.sequelize, db.Sequelize)
+db.Material_In_Stock = Material_In_Stock(db.sequelize, db.Sequelize)
+db.Material = Material(db.sequelize, db.Sequelize)
+db.Order = Order(db.sequelize, db.Sequelize)
+db.Purchase_Order = Purchase_Order(db.sequelize, db.Sequelize)
+db.User_Activity = User_Activity(db.sequelize, db.Sequelize)
+db.Work_Order = Work_Order(db.sequelize, db.Sequelize)
+
+db.User.hasMany(db.User_Activity, {as: 'activities', foreignKey: 'id'});
+db.User_Activity.belongsTo(db.User, {as: 'user', foreignKey: 'userId'});
 
 module.exports = db;

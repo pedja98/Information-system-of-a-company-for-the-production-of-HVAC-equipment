@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     },
     logedOut: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DATE
     },
     userId: {
