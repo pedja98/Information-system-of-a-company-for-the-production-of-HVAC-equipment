@@ -9,6 +9,8 @@ module.exports = {
       type: 'admin',
       password: 'Aa@445566',
       email: 'dragan@eagle.ing',
+      date_of_birth: new Date('1985-12-17'),
+      pic:null,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

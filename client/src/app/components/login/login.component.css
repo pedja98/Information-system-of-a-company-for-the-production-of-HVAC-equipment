@@ -1,0 +1,48 @@
+.card {
+  max-width: 500px;
+}
+
+.center-content {
+  margin-top: 20px;
+  text-align: -webkit-center;
+}
+
+.full-width {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: black !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: black !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: black !important;
+  ;
+}
+
+.login-btn {
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 100%;
+}
+
+.login-btn:hover {
+  cursor: pointer;
+}
+
+.err-msg {
+  padding-left: 2%;
+}

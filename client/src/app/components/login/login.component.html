@@ -1,0 +1,28 @@
+<div class="err-msg">
+    <h2>{{errMsg}}</h2>
+</div>
+<div class="content">
+    <div class="center-content">
+        <mat-card class="card">
+            <mat-card-header>
+                <img src="../assets/img/banner.png" alt="banner png">
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input autocomplete="off" type="email" name="email" matInput value="" [(ngModel)] = "email">
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Lozinka</mat-label>
+                    <input name="password" type="password" matInput [(ngModel)] = "password">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                <button class="login-btn" (click)="login()">Prijavite se</button>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -9,36 +9,56 @@ const {
 
 const login = (req, res) => {
     User.findOne({
-            where: {
-                email: req.body.email,
-                password: req.body.password
-            }
-        })
-        .then((result) => {
-            if (result) {
-
-                User_Activity.create({
-                        logedIn: Date.now(),
-                        logedOut: null,
-                        userId: result.id
-                    })
-                    .then(() => {
-                        res.status(200).json(result)
-                    })
-                    .catch(err => {
-                        res.status(err.status).json({
-                            "err": err
+        where: {
+            email: req.body.email,
+        }
+    })
+    .then((result) => {
+        if (result) {
+            User.findOne({
+                    where: {
+                        email: req.body.email,
+                        password: req.body.password
+                    }
+                })
+                .then((result) => {
+                    if (result) {
+                        User_Activity.create({
+                                logedIn: Date.now(),
+                                logedOut: null,
+                                userId: result.id
+                            })
+                            .then(() => {
+                                res.json(result)
+                            })
+                            .catch(err => {
+                                res.json({
+                                    "err": err
+                                })
+                            })
+                    } else {
+                        res.json({
+                            msg: 'password'
                         })
+                    }
+                })
+                .catch(err => {
+                    res.json({
+                        "err": err
                     })
-            } else {
-                res.status(404).json(result)
-            }
-        })
-        .catch(err => {
-            res.status(err.status).json({
-                "err": err
+                })
+
+        } else {
+            res.json({
+                msg: 'mail'
             })
+        }
+    })
+    .catch(err => {
+        res.json({
+            "err": err
         })
+    })
 }
 
 const getById = (req, res) => {
@@ -46,10 +66,10 @@ const getById = (req, res) => {
             include: ['activities'],
         })
         .then((result) => {
-            res.status(200).json(result)
+            res.json(result)
         })
         .catch(err => {
-            res.status(err.status).json({
+            res.json({
                 "err": err
             })
         })
@@ -71,6 +91,8 @@ const createUser = (req, res) => {
                 type: req.body.type,
                 password: req.body.password,
                 email: req.body.email,
+                date_of_birth: req.body.date_of_birth,
+                pic: null,
             }
         })
         .then((result) => {
@@ -80,7 +102,7 @@ const createUser = (req, res) => {
             })
         })
         .catch(err => {
-            res.status(err.status).json({
+            res.json({
                 "err": err
             })
         })
@@ -95,10 +117,10 @@ const getUsers = (req, res) => {
             }
         })
         .then((result) => {
-            res.status(200).json(result)
+            res.json(result)
         })
         .catch(err => {
-            res.status(err.status).json({
+            res.json({
                 "err": err
             })
         })
@@ -112,10 +134,10 @@ const deleteById = (req, res) => {
             }
         })
         .then((result) => {
-            res.status(200).json(result)
+            res.json(result)
         })
         .catch(err => {
-            res.status(err.status).json({
+            res.json({
                 "err": err
             })
         })
