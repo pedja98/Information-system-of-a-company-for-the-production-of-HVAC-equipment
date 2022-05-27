@@ -10,6 +10,6 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
   login(user: any) {
-    return this._http.post<any>(`${environment.apiUrl}/api/user/login`, user)
+    return this._http.post<any>(`${environment.apiUrl}/api/users/login`, user)
   }
 }

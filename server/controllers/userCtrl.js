@@ -6,6 +6,7 @@ const {
     Op
 } = require('sequelize')
 
+const jwt = require('jsonwebtoken');
 
 const login = (req, res) => {
     User.findOne({
@@ -29,7 +30,11 @@ const login = (req, res) => {
                                 userId: result.id
                             })
                             .then(() => {
-                                res.json(result)
+                                const token = jwt.sign(result.email, process.env.ACCESS_TOKEN_SECRET)
+                                res.json({
+                                    "token": token,
+                                    "type": result.type
+                                })
                             })
                             .catch(err => {
                                 res.json({
@@ -143,11 +148,16 @@ const deleteById = (req, res) => {
         })
 }
 
+const getUser = (req, res) => {
+
+}
+
 module.exports = {
     login,
     getById,
     updateById,
     createUser,
     getUsers,
-    deleteById
+    deleteById,
+    getUser
 }

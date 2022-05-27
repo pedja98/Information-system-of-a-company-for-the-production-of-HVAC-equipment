@@ -2,22 +2,33 @@
     <h2>{{errMsg}}</h2>
 </div>
 <div class="content">
-    <div class="center-content">
+    <div class="center-content" [formGroup]="form">
         <mat-card class="card">
             <mat-card-header>
                 <img src="../assets/img/banner.png" alt="banner png">
             </mat-card-header>
             <mat-card-content>
                 <mat-form-field class="full-width">
-                    <mat-label>Email</mat-label>
-                    <input autocomplete="off" type="email" name="email" matInput value="" [(ngModel)] = "email">
+                    <mat-label [ngClass]="{error: resMsg == 'mail'}">Email</mat-label>
+                    <input autocomplete="off" type="email" (input)="onChange()" name="email" matInput value="" formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
+                    <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['required']">
+                        Email je obavezan
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['email']">
+                        Format koji ste uneli ne odgovara email-u
+                    </mat-error>
+                    <mat-hint class="error" *ngIf="resMsg == 'mail'">Trazeni korisnik nije registrovan</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <mat-label>Lozinka</mat-label>
-                    <input name="password" type="password" matInput [(ngModel)] = "password">
+                    <mat-label [ngClass]="{error: resMsg == 'password'}">Lozinka</mat-label>
+                    <input name="password" (input)="onChange()" type="password" matInput formControlName="password">
                     <mat-icon matSuffix>vpn_key</mat-icon>
+                    <mat-error *ngIf="form.controls['password'].errors && form.controls['password'].errors['required']">
+                        Lozinka je obavezna
+                    </mat-error>
+                    <mat-hint class="error" *ngIf="resMsg == 'password'">Uneli ste neispravnu lozinku</mat-hint>
                 </mat-form-field>
                 <button class="login-btn" (click)="login()">Prijavite se</button>
 

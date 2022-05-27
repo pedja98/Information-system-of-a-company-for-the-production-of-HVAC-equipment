@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,36 +10,45 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  email: string = "";
-  password: string = "";
-
   errMsg: string = "";
   resMsg: string = "";
 
-  constructor(private _user: UserService) { }
+  form: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+  })
+
+  constructor(private _user: UserService, private _router: Router,) {
+  }
 
   ngOnInit(): void {
   }
 
+  onChange() : void {
+    if(this.resMsg != '') {
+      this.resMsg = ''
+    }
+  }
+
   login(): void {
-    if(this.email == "" || this.email == null || this.email == undefined) {
-      this.resMsg = "email empty"
-      return
-    }
+    this.errMsg = "";
+    this.resMsg = "";
 
-    if(this.password == "" || this.password == null || this.password == undefined) {
-      this.resMsg = "password empty"
-      return
+    if (this.form.valid) {
+      this._user.login(this.form.value).subscribe((res) => {
+        this.errMsg = res.err
+        this.resMsg = res.msg
+        if(res.token) {
+          localStorage.setItem('user', JSON.stringify({
+            token: res.token,
+            type: res.type
+          }))
+          if(res.type === 'admin') {
+            this._router.navigate(['/admin'])
+          }
+          /* TODO: */
+        }
+      })
     }
-
-    const user = {
-      email: this.email,
-      password: this.password
-    }
-    this._user.login(user).subscribe((res) => {
-      this.errMsg = res.err
-      this.resMsg = res.msg
-      alert(this.resMsg)
-    })
   }
 }

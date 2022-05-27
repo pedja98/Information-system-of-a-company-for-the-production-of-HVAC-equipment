@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AdminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
-  {path: "", component:LoginComponent}
+  { path: "", component: LoginComponent },
+  { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
