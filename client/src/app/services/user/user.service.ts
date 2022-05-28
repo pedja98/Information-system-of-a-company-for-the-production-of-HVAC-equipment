@@ -17,6 +17,10 @@ export class UserService {
     return this._http.post<any>(`${environment.apiUrl}/api/users/logout`, null)
   }
 
+  changePassword(data: any) {
+    return this._http.put<any>(`${environment.apiUrl}/api/users/change-password`, data)
+  }
+
   getUser() {
     return this._http.get<any>(`${environment.apiUrl}/api/users/user`)
   }

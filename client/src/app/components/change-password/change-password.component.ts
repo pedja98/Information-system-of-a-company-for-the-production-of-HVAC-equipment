@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-change-password',
@@ -13,10 +14,10 @@ export class ChangePasswordComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     password: new FormControl('', Validators.required),
-    confirm: new FormControl('', Validators.required),
+    new_password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$")]),
   })
 
-  constructor() { }
+  constructor(private _user: UserService) { }
 
   onChange(): void {
     if (this.resMsg != '') {
@@ -25,7 +26,11 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   update() {
-    alert(this.form.value)
+    if (this.form.valid) { 
+      this._user.changePassword(this.form.value).subscribe(res => {
+        
+      })
+    }
   }
 
   ngOnInit(): void {

@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
     try {
         const user = await User.findOne({
+            attributes: ['email', 'password', 'type'],
             where: {
                 email: req.body.email
             }
@@ -20,12 +21,14 @@ const login = async (req, res) => {
             res.json({
                 msg: 'mail'
             })
+            return
         }
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (!validPassword) {
             res.json({
                 msg: 'password'
             })
+            return;
         }
 
         const token = jwt.sign(user.email, process.env.ACCESS_TOKEN_SECRET)
@@ -33,7 +36,6 @@ const login = async (req, res) => {
             "token": token,
             "type": user.type
         })
-
     } catch (err) {
         res.json({
             err: err.message
@@ -166,6 +168,47 @@ const logout = async (req, res) => {
     }
 }
 
+const changePassword = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            attributes: ['id', 'password'],
+            where: {
+                email: req.email,
+            }
+        })
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) {
+            res.json({
+                msg: 'old-password'
+            })
+            return
+        }
+        if (req.body.password == req.body.new_password) {
+            res.json({
+                msg: 'same-password'
+            })
+            return
+        }
+        const hash = await bcrypt.hash(req.body.new_password, parseInt(process.env.SALT))
+        User.update({
+            password: hash
+        }, {
+            where: {
+                id: user.id,
+            }
+        })
+
+        res.json({
+            success: true,
+        })
+
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
+}
+
 module.exports = {
     login,
     getById,
@@ -174,5 +217,6 @@ module.exports = {
     getUsers,
     deleteById,
     getUser,
-    logout
+    logout,
+    changePassword
 }
