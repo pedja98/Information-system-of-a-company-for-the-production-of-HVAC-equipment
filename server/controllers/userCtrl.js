@@ -6,64 +6,39 @@ const {
     Op
 } = require('sequelize')
 
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const login = (req, res) => {
-    User.findOne({
-        where: {
-            email: req.body.email,
-        }
-    })
-    .then((result) => {
-        if (result) {
-            User.findOne({
-                    where: {
-                        email: req.body.email,
-                        password: req.body.password
-                    }
-                })
-                .then((result) => {
-                    if (result) {
-                        User_Activity.create({
-                                logedIn: Date.now(),
-                                logedOut: null,
-                                userId: result.id
-                            })
-                            .then(() => {
-                                const token = jwt.sign(result.email, process.env.ACCESS_TOKEN_SECRET)
-                                res.json({
-                                    "token": token,
-                                    "type": result.type
-                                })
-                            })
-                            .catch(err => {
-                                res.json({
-                                    "err": err
-                                })
-                            })
-                    } else {
-                        res.json({
-                            msg: 'password'
-                        })
-                    }
-                })
-                .catch(err => {
-                    res.json({
-                        "err": err
-                    })
-                })
-
-        } else {
+const login = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        if (!user) {
             res.json({
                 msg: 'mail'
             })
         }
-    })
-    .catch(err => {
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) {
+            res.json({
+                msg: 'password'
+            })
+        }
+
+        const token = jwt.sign(user.email, process.env.ACCESS_TOKEN_SECRET)
         res.json({
-            "err": err
+            "token": token,
+            "type": user.type
         })
-    })
+
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
 }
 
 const getById = (req, res) => {
@@ -149,7 +124,46 @@ const deleteById = (req, res) => {
 }
 
 const getUser = (req, res) => {
+    User.findOne({
+            where: {
+                email: req.email
+            }
+        })
+        .then((result) => {
+            res.json(result)
+        })
+        .catch(err => {
+            res.json({
+                "err": err
+            })
+        })
 
+}
+
+const logout = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            attributes: ['id'],
+            where: {
+                email: req.email
+            }
+        })
+        await User_Activity.update({
+            logedOut: Date.now()
+        }, {
+            where: {
+                userId: user.id,
+                logedOut: null
+            }
+        })
+        res.json({
+            success: true
+        })
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
 }
 
 module.exports = {
@@ -159,5 +173,6 @@ module.exports = {
     createUser,
     getUsers,
     deleteById,
-    getUser
+    getUser,
+    logout
 }

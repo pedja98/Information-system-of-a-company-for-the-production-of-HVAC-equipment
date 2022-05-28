@@ -12,7 +12,7 @@ const MaterialComponents = [
   MatTabsModule,
   MatInputModule,
   MatIconModule,
-  MatSnackBarModule
+  MatSnackBarModule,
 ]
 
 @NgModule({

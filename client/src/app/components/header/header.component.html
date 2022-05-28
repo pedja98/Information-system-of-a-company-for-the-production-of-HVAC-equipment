@@ -1,3 +1,9 @@
 <header>
-    <img src="../assets/img/banner.png" alt="banner png">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/admin/']">
+    <div class="btn-group">
+        <button mat-button [routerLink]="['/admin/']">Svi korisnici</button>
+        <button mat-button [routerLink]="['/admin/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/admin/change-password']">Promeni lozinku</button>
+        <button mat-button (click)="logOut()">Izlogujte se</button>
+    </div>
 </header>

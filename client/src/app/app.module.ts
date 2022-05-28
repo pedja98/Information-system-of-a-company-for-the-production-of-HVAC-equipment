@@ -13,6 +13,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FooterComponent,
     LoginComponent,
     AdminComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ChangePasswordComponent,
+    MyProfileComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

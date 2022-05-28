@@ -1,4 +1,4 @@
-<div class="err-msg">
+<div class="err-msg" *ngIf="errMsg!= ''">
     <h2>{{errMsg}}</h2>
 </div>
 <div class="content">
@@ -13,7 +13,7 @@
                     <input autocomplete="off" type="email" (input)="onChange()" name="email" matInput value="" formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
                     <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['required']">
-                        Email je obavezan
+                        Polje je obavezno
                     </mat-error>
                     <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['email']">
                         Format koji ste uneli ne odgovara email-u
@@ -26,7 +26,7 @@
                     <input name="password" (input)="onChange()" type="password" matInput formControlName="password">
                     <mat-icon matSuffix>vpn_key</mat-icon>
                     <mat-error *ngIf="form.controls['password'].errors && form.controls['password'].errors['required']">
-                        Lozinka je obavezna
+                        Polje je obavezno
                     </mat-error>
                     <mat-hint class="error" *ngIf="resMsg == 'password'">Uneli ste neispravnu lozinku</mat-hint>
                 </mat-form-field>
