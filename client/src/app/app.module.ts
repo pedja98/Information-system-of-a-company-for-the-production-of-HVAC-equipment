@@ -17,6 +17,7 @@ import { TokenInterceptorService } from './services/token-interceptor/token-inte
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { DialogMsgComponent } from './components/dialog-msg/dialog-msg.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     PageNotFoundComponent,
     ChangePasswordComponent,
     MyProfileComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    DialogMsgComponent
   ],
   imports: [
     BrowserModule,
