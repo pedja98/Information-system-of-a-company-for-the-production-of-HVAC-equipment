@@ -11,7 +11,7 @@ module.exports = {
       type: 'admin',
       password: hashPassword,
       email: 'dragan@eagle.ing',
-      date_of_birth: new Date('1985-12-17'),
+      dateOfBirth: new Date('1985-12-17'),
       pic: null,
       createdAt: new Date(),
       updatedAt: new Date()

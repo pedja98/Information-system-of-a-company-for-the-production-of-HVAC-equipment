@@ -1,1 +1,19 @@
-<p>my-profile works!</p>
+<div class="err-msg" *ngIf="errMsg!= '' && errMsg != null">
+    <h2>{{errMsg}}</h2>
+</div>
+
+<div class = 'content'>
+    <mat-card class="card">
+        <div class="left">
+            <img src="../assets/img/picture.jpg" alt="profile pic">
+            <button class="change-btn">Promeni sliku</button>
+        </div>
+        <div class="right">
+            <h3><b>Ima:</b> {{user?.firstName}}</h3>
+            <h3><b>Prezime:</b> {{user?.lastName}}</h3>
+            <h3><b>Email:</b> {{user?.email}}</h3>
+            <h3><b>Datum rodjenja:</b> {{user?.dateOfBirth | date: 'dd/MM/yyyy'}}</h3>
+            <button class="change-btn" (click)="openEditDialog()">Izmeni informacije</button>
+        </div>
+    </mat-card>
+</div>

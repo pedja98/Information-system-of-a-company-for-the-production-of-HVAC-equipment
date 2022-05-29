@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true
     },
-    date_of_birth: {
+    dateOfBirth: {
       allowNull: false,
       type: DataTypes.DATE
     },

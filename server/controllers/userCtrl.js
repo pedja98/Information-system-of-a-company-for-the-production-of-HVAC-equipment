@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
     try {
         const user = await User.findOne({
-            attributes: ['email', 'password', 'type'],
+            attributes: ['id', 'email', 'password', 'type'],
             where: {
                 email: req.body.email
             }
@@ -30,6 +30,12 @@ const login = async (req, res) => {
             })
             return;
         }
+
+        await User_Activity.create({
+            logedIn: Date.now(),
+            logedOut: null,
+            userId: user.id
+        })
 
         const token = jwt.sign(user.email, process.env.ACCESS_TOKEN_SECRET)
         res.json({
@@ -73,7 +79,7 @@ const createUser = (req, res) => {
                 type: req.body.type,
                 password: req.body.password,
                 email: req.body.email,
-                date_of_birth: req.body.date_of_birth,
+                dateOfBirth: req.body.dateOfBirth,
                 pic: null,
             }
         })
@@ -127,6 +133,7 @@ const deleteById = (req, res) => {
 
 const getUser = (req, res) => {
     User.findOne({
+            attributes: ['firstName', 'lastName', 'email', 'dateOfBirth', 'pic'],
             where: {
                 email: req.email
             }

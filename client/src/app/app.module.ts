@@ -18,6 +18,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { DialogMsgComponent } from './components/dialog-msg/dialog-msg.component';
+import { EditMyProfileDialogComponent } from './components/edit-my-profile-dialog/edit-my-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DialogMsgComponent } from './components/dialog-msg/dialog-msg.component
     ChangePasswordComponent,
     MyProfileComponent,
     AllUsersComponent,
-    DialogMsgComponent
+    DialogMsgComponent,
+    EditMyProfileDialogComponent
   ],
   imports: [
     BrowserModule,

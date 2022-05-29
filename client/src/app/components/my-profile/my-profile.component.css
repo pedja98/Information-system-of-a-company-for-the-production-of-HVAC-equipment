@@ -1,0 +1,50 @@
+.err-msg {
+  padding-left: 2%;
+}
+
+img {
+  height: 180px;
+  width: 180px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 83.6vh;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  max-width: 550px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  border-left: 1.5px solid rgb(173, 173, 173);
+  padding-left: 2vw;
+  margin-left: 3vw;
+}
+
+.change-btn {
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 180px;
+  margin-top: 15px;
+}
+
+.change-btn:hover {
+  cursor: pointer;
+}
+
+.right button {
+  margin-top: 19px;
+}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user/user.service';
+import { EditMyProfileDialogComponent } from '../edit-my-profile-dialog/edit-my-profile-dialog.component';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  errMsg: string = ""
+  user: any = null
+
+  constructor(private _user: UserService, private _dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this._user.getUser().subscribe(res => {
+      this.errMsg = res.err
+      this.user = res
+    })
+  }
+
+  openEditDialog(): void {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '320px'
+    dialogConfig.height = '150px'
+    this._dialog.open(EditMyProfileDialogComponent, dialogConfig)
   }
 
 }
