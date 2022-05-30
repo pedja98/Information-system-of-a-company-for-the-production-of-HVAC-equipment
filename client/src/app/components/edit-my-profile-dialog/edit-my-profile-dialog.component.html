@@ -1,1 +1,31 @@
-<p>edit-my-profile-dialog works!</p>
+<div class="update-dialog">
+    <div class="header">
+        <button mat-dialog-close class="close-btn">X</button>
+    </div>
+    <div class='content' [formGroup]="form">
+        <mat-form-field class="full-width">
+            <mat-label>Ime</mat-label>
+            <input autocomplete="off" type="text" name="firstName" matInput formControlName="firstName" value="">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Prezime</mat-label>
+            <input autocomplete="off" type="text" name="lastName" formControlName="lastName" matInput value="">
+            <mat-icon matSuffix>people</mat-icon>
+            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Datum rodjenja</mat-label>
+            <input autocomplete="off" type="date" formControlName="dateOfBirth" name="dateOfBirth" matInput value="">
+            <mat-error *ngIf="form.controls['dateOfBirth'].errors && form.controls['dateOfBirth'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <button class="change-btn" (click)="change()">Sačuvaj izmene</button>
+    </div>
+</div>

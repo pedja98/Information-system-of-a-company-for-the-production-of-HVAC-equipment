@@ -8,6 +8,8 @@ const {
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs').promises;
+const path = require('path');
 
 const login = async (req, res) => {
     try {
@@ -51,8 +53,8 @@ const login = async (req, res) => {
 
 const getById = (req, res) => {
     User.findByPk(req.params.id, {
-            include: ['activities'],
-        })
+        include: ['activities'],
+    })
         .then((result) => {
             res.json(result)
         })
@@ -70,19 +72,19 @@ const updateById = (req, res) => {
 
 const createUser = (req, res) => {
     User.findOrCreate({
-            where: {
-                email: req.body.email
-            },
-            defaults: {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                type: req.body.type,
-                password: req.body.password,
-                email: req.body.email,
-                dateOfBirth: req.body.dateOfBirth,
-                pic: null,
-            }
-        })
+        where: {
+            email: req.body.email
+        },
+        defaults: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            type: req.body.type,
+            password: req.body.password,
+            email: req.body.email,
+            dateOfBirth: req.body.dateOfBirth,
+            pic: null,
+        }
+    })
         .then((result) => {
             let [user, created] = result
             res.json({
@@ -98,12 +100,12 @@ const createUser = (req, res) => {
 
 const getUsers = (req, res) => {
     User.findAll({
-            where: {
-                type: {
-                    [Op.ne]: 'admin'
-                }
+        where: {
+            type: {
+                [Op.ne]: 'admin'
             }
-        })
+        }
+    })
         .then((result) => {
             res.json(result)
         })
@@ -117,10 +119,10 @@ const getUsers = (req, res) => {
 
 const deleteById = (req, res) => {
     User.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
+        where: {
+            id: req.params.id
+        }
+    })
         .then((result) => {
             res.json(result)
         })
@@ -133,11 +135,11 @@ const deleteById = (req, res) => {
 
 const getUser = (req, res) => {
     User.findOne({
-            attributes: ['firstName', 'lastName', 'email', 'dateOfBirth', 'pic'],
-            where: {
-                email: req.email
-            }
-        })
+        attributes: ['firstName', 'lastName', 'email', 'dateOfBirth', 'pic'],
+        where: {
+            email: req.email
+        }
+    })
         .then((result) => {
             res.json(result)
         })
@@ -216,6 +218,58 @@ const changePassword = async (req, res) => {
     }
 }
 
+const updateMyProfile = async (req, res) => {
+    try {
+        const user = await User.update({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            dateOfBirth: req.body.dateOfBirth,
+        }, {
+            where: {
+                email: req.email
+            }
+        })
+        res.json({
+            success: user[0],
+        })
+    } catch (err) {
+        res.json({ err: err.message })
+    }
+}
+
+const changePicture = async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            attributes: ['pic'],
+            where: {
+                email: req.email
+            }
+        })
+        if(userData.pic) {
+            let position = userData.pic.lastIndexOf('/')
+            let file = userData.pic.slice(position + 1)
+            console.log(file)
+            await fs.unlink(path.join('images', file));
+        }
+        let filename = 'http://localhost:3000/images/' + req.file.filename
+        const user = await User.update({
+            pic: filename,
+        }, {
+            where: {
+                email: req.email
+            }
+        })
+        res.json({
+            success: user[0],
+        })
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
+
+}
+
 module.exports = {
     login,
     getById,
@@ -225,5 +279,7 @@ module.exports = {
     deleteById,
     getUser,
     logout,
-    changePassword
+    changePassword,
+    updateMyProfile,
+    changePicture
 }

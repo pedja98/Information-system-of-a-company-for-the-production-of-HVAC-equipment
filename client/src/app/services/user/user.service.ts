@@ -21,12 +21,20 @@ export class UserService {
     return this._http.put<any>(`${environment.apiUrl}/api/users/change-password`, data)
   }
 
+  updateMyProfile(data: any) {
+    return this._http.put<any>(`${environment.apiUrl}/api/users/`, data)
+  }
+
   getUser() {
     return this._http.get<any>(`${environment.apiUrl}/api/users/user`)
   }
 
   signedIn(): boolean {
     return !!localStorage.getItem('user')
+  }
+
+  changePicture(data: any) {
+    return this._http.put<any>(`${environment.apiUrl}/api/users/change-pic`, data)
   }
 
   getToken() {

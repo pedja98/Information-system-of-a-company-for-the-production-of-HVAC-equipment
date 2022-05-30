@@ -2,12 +2,14 @@
     <h2>{{errMsg}}</h2>
 </div>
 
-<div class = 'content'>
+<div class='content'>
     <mat-card class="card">
-        <div class="left">
-            <img src="../assets/img/picture.jpg" alt="profile pic">
-            <button class="change-btn">Promeni sliku</button>
-        </div>
+        <form class="left">
+            <img *ngIf = 'user?.pic == null' src="../assets/img/picture.png" alt="profile pic">
+            <img *ngIf = 'user?.pic != null' [src]="user?.pic" alt="profile pic">
+            <input type='file' id="getFile" style="display:none" accept="image/png, image/gif, image/jpeg" (change)="setImg($event)" #fileInput>
+            <button class="change-btn" (click)="fileInput.click()">Promeni sliku</button>
+        </form>
         <div class="right">
             <h3><b>Ima:</b> {{user?.firstName}}</h3>
             <h3><b>Prezime:</b> {{user?.lastName}}</h3>

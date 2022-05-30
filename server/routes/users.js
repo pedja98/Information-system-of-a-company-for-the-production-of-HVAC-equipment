@@ -1,9 +1,9 @@
 const users = require('express').Router();
 const userCtrl = require('../controllers/userCtrl')
+const upload = require('../multer/multer')
 const {
     tokenVerify
 } = require("../middleware/tokenVerify");
-const user = require('../models/user');
 
 users.post("/login", userCtrl.login)
 
@@ -16,6 +16,10 @@ users.get("/user", tokenVerify, userCtrl.getUser)
 users.post("/logout", tokenVerify, userCtrl.logout)
 
 users.put("/change-password", tokenVerify, userCtrl.changePassword)
+
+users.put("/", tokenVerify, userCtrl.updateMyProfile)
+
+users.put("/change-pic", upload.single('file'), tokenVerify, userCtrl.changePicture)
 
 users.get("/:id", userCtrl.getById)
 
