@@ -37,6 +37,9 @@ export class MyProfileComponent implements OnInit {
         const dialogConfigMsg = new MatDialogConfig()
         dialogConfigMsg.width = '320px'
         dialogConfigMsg.height = '150px'
+        dialogConfigMsg.data = {
+          msg: 'Vaše informacije su izmenjene'
+        }
 
         let dialogRefMsg = this._dialog.open(DialogMsgComponent, dialogConfigMsg)
 
@@ -59,6 +62,9 @@ export class MyProfileComponent implements OnInit {
           const dialogConfigMsg = new MatDialogConfig()
           dialogConfigMsg.width = '320px'
           dialogConfigMsg.height = '150px'
+          dialogConfigMsg.data = {
+            msg: 'Vaša slika je izmenjena'
+          }
 
           let dialogRefMsg = this._dialog.open(DialogMsgComponent, dialogConfigMsg)
 

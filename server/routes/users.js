@@ -7,7 +7,7 @@ const {
 
 users.post("/login", userCtrl.login)
 
-users.post("/", userCtrl.createUser)
+users.post("/", tokenVerify, userCtrl.createUser)
 
 users.get("/", userCtrl.getUsers)
 

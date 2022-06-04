@@ -1,0 +1,17 @@
+.change-btn {
+    background-color: black;
+    color: white;
+    height: 35px;
+    width: 100px;
+    margin-top: 15px;
+}
+
+.change-btn:hover {
+    cursor: pointer;
+}
+
+.add-user {
+    width: 100%;
+    padding-left: 2vw;
+    margin-bottom: 10px;
+}

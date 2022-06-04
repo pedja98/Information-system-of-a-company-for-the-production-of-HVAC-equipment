@@ -10,6 +10,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs').promises;
 const path = require('path');
+const passwordGenerator = require('secure-random-password');
+const nodemailer = require('nodemailer');
 
 const login = async (req, res) => {
     try {
@@ -70,8 +72,11 @@ const updateById = (req, res) => {
     res.json("update")
 }
 
-const createUser = (req, res) => {
-    User.findOrCreate({
+const createUser = async (req, res) => {
+    const password = passwordGenerator.randomPassword({ length: 10, characters: [passwordGenerator.lower, passwordGenerator.upper, passwordGenerator.digits, passwordGenerator.symbols] })
+    console.log(password)
+    const hashPassword = await bcrypt.hash(password, parseInt(process.env.SALT));
+    const [row, created] = await User.findOrCreate({
         where: {
             email: req.body.email
         },
@@ -79,23 +84,35 @@ const createUser = (req, res) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             type: req.body.type,
-            password: req.body.password,
+            password: hashPassword,
             email: req.body.email,
             dateOfBirth: req.body.dateOfBirth,
             pic: null,
         }
     })
-        .then((result) => {
-            let [user, created] = result
-            res.json({
-                created
-            })
-        })
-        .catch(err => {
-            res.json({
-                "err": err
-            })
-        })
+
+    if (created) {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
+            }
+        });
+
+        var mailOptions = {
+            from: process.env.EMAIL,
+            to: req.body.email,
+            subject: 'Vasa Lozinka',
+            text: `Vasa lozinka za pristup je ${password}`
+        };
+        await transporter.sendMail(mailOptions)
+    }
+
+    res.json({
+        created: created
+    })
+
 }
 
 const getUsers = (req, res) => {
@@ -245,7 +262,7 @@ const changePicture = async (req, res) => {
                 email: req.email
             }
         })
-        if(userData.pic) {
+        if (userData.pic) {
             let position = userData.pic.lastIndexOf('/')
             let file = userData.pic.slice(position + 1)
             console.log(file)

@@ -37,6 +37,10 @@ export class UserService {
     return this._http.put<any>(`${environment.apiUrl}/api/users/change-pic`, data)
   }
 
+  addUser(data: any) {
+    return this._http.post<any>(`${environment.apiUrl}/api/users/`, data)
+  }
+
   getToken() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.token
