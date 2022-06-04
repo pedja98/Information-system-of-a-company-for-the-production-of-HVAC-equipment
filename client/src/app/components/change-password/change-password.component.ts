@@ -42,6 +42,9 @@ export class ChangePasswordComponent implements OnInit {
           const dialogConfig = new MatDialogConfig()
           dialogConfig.width = '320px'
           dialogConfig.height = '150px'
+          dialogConfig.data = {
+            msg: 'Vaša lozinka je promenjena'
+          }
           this._dialog.open(DialogMsgComponent, dialogConfig)
         }
       })

@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AdminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
+  { path: "", component: LoginComponent},
   {
     path: "admin", component: AdminComponent, canActivate: [AdminGuard],
     children: [

@@ -21,12 +21,28 @@ export class UserService {
     return this._http.put<any>(`${environment.apiUrl}/api/users/change-password`, data)
   }
 
+  resetPassword(data: any) {
+    return this._http.put<any>(`${environment.apiUrl}/api/users/reset-password`, data)
+  }
+
+  deleteUser(data: any) {
+    return this._http.delete<any>(`${environment.apiUrl}/api/users/${data.id}`)
+  }
+
   updateMyProfile(data: any) {
     return this._http.put<any>(`${environment.apiUrl}/api/users/`, data)
   }
 
   getUser() {
     return this._http.get<any>(`${environment.apiUrl}/api/users/user`)
+  }
+
+  getUserForEdit(id: number) {
+    return this._http.get<any>(`${environment.apiUrl}/api/users/user/${id}`)
+  }
+
+  getUsers() {
+    return this._http.get<any[]>(`${environment.apiUrl}/api/users/`)
   }
 
   signedIn(): boolean {
@@ -44,5 +60,9 @@ export class UserService {
   getToken() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.token
+  }
+
+  editUser(data: any, id: string) {
+    return this._http.put<any>(`${environment.apiUrl}/api/users/${id}`, data)
   }
 }

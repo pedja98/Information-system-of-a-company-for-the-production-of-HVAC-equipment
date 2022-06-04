@@ -68,13 +68,44 @@ const getById = (req, res) => {
 
 }
 
-const updateById = (req, res) => {
-    res.json("update")
+const updateById = async (req, res) => {
+    try {
+        const emailOwner = await User.findOne({
+            where: {
+                email: req.body.email,
+                id: {
+                    [Op.ne]: req.params.id
+                }
+            }
+        })
+        
+        if(emailOwner) {
+           res.json({faild: 'mail'})
+           return
+        }
+        
+        User.update({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            dateOfBirth: req.body.dateOfBirth
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        })
+        res.json({
+            success: true,
+        })
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
 }
 
 const createUser = async (req, res) => {
     const password = passwordGenerator.randomPassword({ length: 10, characters: [passwordGenerator.lower, passwordGenerator.upper, passwordGenerator.digits, passwordGenerator.symbols] })
-    console.log(password)
     const hashPassword = await bcrypt.hash(password, parseInt(process.env.SALT));
     const [row, created] = await User.findOrCreate({
         where: {
@@ -117,9 +148,10 @@ const createUser = async (req, res) => {
 
 const getUsers = (req, res) => {
     User.findAll({
+        attributes: ['id', 'firstName', 'lastName', 'pic'],
         where: {
-            type: {
-                [Op.ne]: 'admin'
+            email: {
+                [Op.ne]: req.email
             }
         }
     })
@@ -134,20 +166,30 @@ const getUsers = (req, res) => {
 
 }
 
-const deleteById = (req, res) => {
-    User.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then((result) => {
-            res.json(result)
+const deleteById = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id)
+        user.destroy()
+
+        const result = await User.findAll({
+            attributes: ['id', 'firstName', 'lastName', 'pic'],
+            where: {
+                email: {
+                    [Op.ne]: req.email
+                }
+            }
         })
-        .catch(err => {
-            res.json({
-                "err": err
-            })
+
+        res.json({
+            success: true,
+            users: result
         })
+
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
 }
 
 const getUser = (req, res) => {
@@ -265,7 +307,6 @@ const changePicture = async (req, res) => {
         if (userData.pic) {
             let position = userData.pic.lastIndexOf('/')
             let file = userData.pic.slice(position + 1)
-            console.log(file)
             await fs.unlink(path.join('images', file));
         }
         let filename = 'http://localhost:3000/images/' + req.file.filename
@@ -287,6 +328,65 @@ const changePicture = async (req, res) => {
 
 }
 
+const resetPassword = async (req, res) => {
+    try {
+        const password = passwordGenerator.randomPassword({
+            length: 10, characters: [
+                passwordGenerator.lower,
+                passwordGenerator.upper,
+                passwordGenerator.digits,
+                passwordGenerator.symbols]
+        })
+        const hashPassword = await bcrypt.hash(password, parseInt(process.env.SALT));
+
+        User.update({
+            password: hashPassword
+        }, {
+            where: {
+                id: req.body.id,
+            }
+        })
+
+        const user = await User.findByPk(req.body.id)
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
+            }
+        });
+
+        var mailOptions = {
+            from: process.env.EMAIL,
+            to: user.email,
+            subject: 'Resetovana lozinka',
+            text: `Vaša nova lozinka za pristup je ${password}`
+        };
+        await transporter.sendMail(mailOptions)
+
+        res.json({
+            success: true,
+        })
+
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
+}
+
+const getUserInfoForEdit = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id)
+        res.json(user)
+    } catch (err) {
+        res.json({
+            err: err.message
+        })
+    }
+}
+
 module.exports = {
     login,
     getById,
@@ -298,5 +398,7 @@ module.exports = {
     logout,
     changePassword,
     updateMyProfile,
-    changePicture
+    changePicture,
+    resetPassword,
+    getUserInfoForEdit
 }

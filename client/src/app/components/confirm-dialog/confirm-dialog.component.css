@@ -1,0 +1,43 @@
+.header {
+  height: 20%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.msg {
+  height: 100%;
+  padding: 0;
+}
+
+.close-btn {
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  color: #939ea8;
+  height: 5px;
+  margin-top: -17px;
+  margin-right: -12px;
+}
+
+.close-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.content {
+  height: 80%;
+}
+
+.confirm-btn {
+    background-color: #000;
+    color: #fff;
+    height: 35px;
+    width: 120px;
+    float: right;
+}
+
+.confirm-btn:hover {
+    cursor: pointer;
+}

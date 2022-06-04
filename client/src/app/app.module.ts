@@ -20,6 +20,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
 import { DialogMsgComponent } from './components/dialog-msg/dialog-msg.component';
 import { EditMyProfileDialogComponent } from './components/edit-my-profile-dialog/edit-my-profile-dialog.component';
 import { AddUserDialogComponent } from './components/add-user-dialog/add-user-dialog.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AddUserDialogComponent } from './components/add-user-dialog/add-user-di
     AllUsersComponent,
     DialogMsgComponent,
     EditMyProfileDialogComponent,
-    AddUserDialogComponent
+    AddUserDialogComponent,
+    ConfirmDialogComponent,
+    EditUserDialogComponent
   ],
   imports: [
     BrowserModule,

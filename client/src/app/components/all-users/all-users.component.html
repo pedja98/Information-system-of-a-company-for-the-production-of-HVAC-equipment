@@ -2,7 +2,19 @@
     <div class="add-user">
         <button (click)="addUser()" class="change-btn">Dodaj korisnika</button>
     </div>
-    <div class="users-gallery">
-
-    </div>
+    <mat-grid-list cols="3" class="users-gallery">
+        <mat-grid-tile *ngFor="let user of users; let id = index">
+            <mat-card class="card">
+                <img mat-card-image *ngIf='user?.pic == null' src="../assets/img/picture.png" alt="profile pic">
+                <img mat-card-image *ngIf='user?.pic != null' [src]="user?.pic" alt="profile pic">
+                <h2 class="users-name"><b>{{user?.firstName}} {{user?.lastName}}</b></h2>
+                <div class="btn-group">
+                    <button>Detalji</button>
+                    <button (click)="deleteUser(id)">Obriši</button>
+                    <button (click)="editUser(id)">Izmeni</button>
+                    <button (click)="resetPassword(id)">Resetuj lozinku</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
