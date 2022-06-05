@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -15,7 +16,8 @@ export class AllUsersComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
-    private _user: UserService
+    private _user: UserService,
+    private _router: Router
   ) { }
 
   users: any[] = [];
@@ -102,26 +104,32 @@ export class AllUsersComponent implements OnInit {
 
     this._user.getUserForEdit(this.users[i].id).subscribe(res => {
       const dialogConfig = new MatDialogConfig()
-      dialogConfig.width = '400px'
-      dialogConfig.height = '400px'
+      dialogConfig.width = '450px'
+      dialogConfig.height = '480px'
       dialogConfig.data = {
         user: res,
       }
       let dialogRef = this._dialog.open(EditUserDialogComponent, dialogConfig)
 
       dialogRef.afterClosed().subscribe(res => {
-        this._user.getUsers().subscribe(res => {
-          this.users = res;
-          const dialogConfig = new MatDialogConfig()
+        if (res.msg == 'updated') {
+          this._user.getUsers().subscribe(res => {
+            this.users = res;
+            const dialogConfig = new MatDialogConfig()
             dialogConfig.width = '320px'
             dialogConfig.height = '150px'
             dialogConfig.data = {
               msg: `Korisničke informacije su ažurirane`
             }
             this._dialog.open(DialogMsgComponent, dialogConfig)
-        })
+          })
+        }
       })
     })
+  }
+
+  userDetails(i: number) {
+    this._router.navigate(["/admin/users/" + this.users[i].id])
   }
 
   ngOnInit(): void {

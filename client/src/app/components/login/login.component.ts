@@ -46,7 +46,23 @@ export class LoginComponent implements OnInit {
           if(res.type === 'admin') {
             this._router.navigate(['/admin'])
           }
-          /* TODO: */
+
+          if(res.type === 'production-manager') {
+            this._router.navigate(['/production-manager'])
+          }
+
+          if(res.type === 'production-worker') {
+            this._router.navigate(['/production-worker'])
+          }
+
+          if(res.type === 'storekeeper') {
+            this._router.navigate(['/storekeeper'])
+          }
+
+          if(res.type === 'head-of-procurement') {
+            this._router.navigate(['/head-of-procurement'])
+          }
+         
         }
       })
     }

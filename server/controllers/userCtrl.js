@@ -88,7 +88,8 @@ const updateById = async (req, res) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            dateOfBirth: req.body.dateOfBirth
+            dateOfBirth: req.body.dateOfBirth,
+            type: req.body.type,
         }, {
             where: {
                 id: req.params.id,

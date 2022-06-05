@@ -1,0 +1,81 @@
+.err-msg {
+    padding-left: 2%;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+.content {
+    height: 83.6vh;
+    width: 100%;
+}
+
+.card {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    max-width: 550px;
+
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    border-left: 1.5px solid rgb(173, 173, 173);
+    padding-left: 2vw;
+    margin-left: 3vw;
+}
+
+.change-btn {
+    background-color: black;
+    color: white;
+    height: 35px;
+    width: 180px;
+    margin-top: 15px;
+}
+
+.change-btn:hover {
+    cursor: pointer;
+}
+
+.right button {
+    margin-top: 19px;
+}
+
+table, td, th {
+    border: 1px solid;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.table-div {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+td {
+    padding-left: 2.5vw;
+}
+
+th {
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+}
+
+.title {
+    margin-top: 15px;
+    font-size: 40px;
+}

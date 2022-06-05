@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,8 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private _user: UserService) { }
-  errMsg: string ="";
+  constructor() { }
 
   ngOnInit(): void {
     

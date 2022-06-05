@@ -22,6 +22,13 @@ import { EditMyProfileDialogComponent } from './components/edit-my-profile-dialo
 import { AddUserDialogComponent } from './components/add-user-dialog/add-user-dialog.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
+import { HeadOfProcurementComponent } from './components/head-of-procurement/head-of-procurement.component';
+import { ProductionManagerComponent } from './components/production-manager/production-manager.component';
+import { StorekeeperComponent } from './components/storekeeper/storekeeper.component';
+import { ProductionWorkerComponent } from './components/production-worker/production-worker.component';
+import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
+import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,14 @@ import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user
     EditMyProfileDialogComponent,
     AddUserDialogComponent,
     ConfirmDialogComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    HeadOfProcurementComponent,
+    ProductionManagerComponent,
+    StorekeeperComponent,
+    ProductionWorkerComponent,
+    WorkOrdersComponent,
+    PurchaseOrdersComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

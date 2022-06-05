@@ -25,7 +25,7 @@ users.put("/", tokenVerify, userCtrl.updateMyProfile)
 
 users.put("/change-pic", upload.single('file'), tokenVerify, userCtrl.changePicture)
 
-users.get("/:id", userCtrl.getById)
+users.get("/:id", tokenVerify, userCtrl.getById)
 
 users.put("/:id", tokenVerify, userCtrl.updateById)
 

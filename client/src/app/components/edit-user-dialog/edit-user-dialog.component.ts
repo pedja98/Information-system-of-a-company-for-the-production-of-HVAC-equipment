@@ -13,6 +13,14 @@ export class EditUserDialogComponent implements OnInit {
   form: FormGroup;
   resMsg = ""
 
+  types: any[] = [
+    { value: 'admin', viewValue: 'Admin' },
+    { value: 'production-manager', viewValue: 'Šef proizvodnje' },
+    { value: 'head-of-procurement', viewValue: 'Šef nabavke' },
+    { value: 'storekeeper', viewValue: 'Magacinski radnik' },
+    { value: 'production-worker', viewValue: 'Proizvodni radnik' },
+  ];
+
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,
     private FormBuilder: FormBuilder,
     private _user: UserService,
@@ -24,6 +32,7 @@ export class EditUserDialogComponent implements OnInit {
       'firstName': [data.user.firstName, Validators.required],
       'lastName': [data.user.lastName, Validators.required],
       'email': [data.user.email, [Validators.required, Validators.email]],
+      'type': [data.user.type, Validators.required],
       'dateOfBirth': [dateStr, Validators.required],
     })
 
@@ -37,11 +46,11 @@ export class EditUserDialogComponent implements OnInit {
 
   change() {
     this.resMsg = ""
-    if(this.form.valid) {
+    if (this.form.valid) {
       this._user.editUser(this.form.value, this.data.user.id).subscribe(res => {
         this.resMsg = res.faild
-        if(res.success) {
-          this.dialogRef.close({ data: 'updated' })
+        if (res.success) {
+          this.dialogRef.close({ msg: 'updated' })
         }
       })
     }

@@ -59,7 +59,7 @@ db.Purchase_Order = Purchase_Order(db.sequelize, db.Sequelize)
 db.User_Activity = User_Activity(db.sequelize, db.Sequelize)
 db.Work_Order = Work_Order(db.sequelize, db.Sequelize)
 
-db.User.hasMany(db.User_Activity, {as: 'activities', foreignKey: 'id'});
-db.User_Activity.belongsTo(db.User, {as: 'user', foreignKey: 'userId'});
+db.User.hasMany(db.User_Activity, {as: 'activities', foreignKey: 'userId'});
+db.User_Activity.belongsTo(db.User, {as: 'user', foreignKey: 'id'});
 
 module.exports = db;

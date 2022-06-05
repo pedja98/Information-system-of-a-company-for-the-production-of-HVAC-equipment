@@ -28,7 +28,7 @@
                     <mat-error *ngIf="form.controls['password'].errors && form.controls['password'].errors['required']">
                         Polje je obavezno
                     </mat-error>
-                    <mat-hint class="error" *ngIf="resMsg == 'password'">Lozinka je ista kao i stara</mat-hint>
+                    <mat-hint class="error" *ngIf="resMsg == 'password'">Lozinka je neispravna</mat-hint>
                 </mat-form-field>
                 <button class="login-btn" (click)="login()">Prijavite se</button>
 

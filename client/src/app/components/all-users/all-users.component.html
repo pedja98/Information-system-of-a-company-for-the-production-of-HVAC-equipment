@@ -9,7 +9,7 @@
                 <img mat-card-image *ngIf='user?.pic != null' [src]="user?.pic" alt="profile pic">
                 <h2 class="users-name"><b>{{user?.firstName}} {{user?.lastName}}</b></h2>
                 <div class="btn-group">
-                    <button>Detalji</button>
+                    <button (click)="userDetails(id)">Detalji</button>
                     <button (click)="deleteUser(id)">Obriši</button>
                     <button (click)="editUser(id)">Izmeni</button>
                     <button (click)="resetPassword(id)">Resetuj lozinku</button>

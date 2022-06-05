@@ -15,10 +15,10 @@ export class AddUserDialogComponent implements OnInit {
 
   types: any[] = [
     {value: 'admin', viewValue: 'Admin'},
-    {value: 'sef-prodaje', viewValue: 'Sef prodaje'},
-    {value: 'sef-nabavke', viewValue: 'Sef nabavke'},
-    {value: 'magacioner', viewValue: 'Magacinski radnik'},
-    {value: 'radnik', viewValue: 'Proizvodni radnik'},
+    {value: 'production-manager', viewValue: 'Šef proizvodnje'},
+    {value: 'head-of-procurement', viewValue: 'Šef nabavke'},
+    {value: 'storekeeper', viewValue: 'Magacinski radnik'},
+    {value: 'production-worker', viewValue: 'Proizvodni radnik'},
   ];
 
   constructor( private formBuilder: FormBuilder,

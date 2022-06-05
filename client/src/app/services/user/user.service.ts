@@ -37,6 +37,10 @@ export class UserService {
     return this._http.get<any>(`${environment.apiUrl}/api/users/user`)
   }
 
+  getUserById(id: string) {
+    return this._http.get<any>(`${environment.apiUrl}/api/users/${id}`)
+  }
+
   getUserForEdit(id: number) {
     return this._http.get<any>(`${environment.apiUrl}/api/users/user/${id}`)
   }
