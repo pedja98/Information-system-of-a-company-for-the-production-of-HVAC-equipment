@@ -23,8 +23,9 @@
 }
 
 .card {
-    max-width: 350px;
-    margin-bottom: 8vh;
+    width: 400px;
+    margin-bottom: 10vh;
+    height: 430px;
 }
 
 .users-gallery {
@@ -49,4 +50,17 @@
 
 button:hover {
     cursor: pointer;
+}
+
+.card-img {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.card-img img {
+    height: 90%;
+    width: 80%;
 }

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  }
+  };
   Material.init({
     id: {
       allowNull: false,
@@ -21,27 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
+      allowNull: false,
       type: DataTypes.STRING
     },
-    price: {
-      type: DataTypes.INTEGER
-    },
-    supplierId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Companies',
-        key: 'id'
-      },
-      onUpdate: 'cascade',
-      onDelete: 'cascade'
-    },
-    createdAt: {
+    supplierCode: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.STRING
     },
-    updatedAt: {
+    supplierItemNumber: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.STRING
     }
   }, {
     sequelize,

@@ -1,17 +1,13 @@
 'use strict';
 
 const User = require('./user')
-const Company = require('./company')
-const Device = require('./device')
-const For_Company = require('./for_company')
-const Material_For_Device = require('./material_for_device')
-const Material_In_Stock = require('./material_in_stock')
-const Material = require('./material')
-const Order = require('./order')
-const Purchase_Order = require('./purchase_order')
 const User_Activity = require('./user_activity')
-const Work_Order = require('./work_order')
-
+const Device = require('./device')
+const Order = require('./order')
+const Ordered_Device = require('./ordered_device')
+const Material = require('./material')
+const Stock = require('./stock')
+const Material_For_Ordered_Device = require('./materialForOrderedDevice')
 
 const fs = require('fs');
 const path = require('path');
@@ -48,18 +44,34 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = User(db.sequelize, db.Sequelize)
-db.Company = Company(db.sequelize, db.Sequelize)
-db.Device = Device(db.sequelize, db.Sequelize)
-db.For_Company = For_Company(db.sequelize, db.Sequelize)
-db.Material_For_Device = Material_For_Device(db.sequelize, db.Sequelize)
-db.Material_In_Stock = Material_In_Stock(db.sequelize, db.Sequelize)
-db.Material = Material(db.sequelize, db.Sequelize)
-db.Order = Order(db.sequelize, db.Sequelize)
-db.Purchase_Order = Purchase_Order(db.sequelize, db.Sequelize)
 db.User_Activity = User_Activity(db.sequelize, db.Sequelize)
-db.Work_Order = Work_Order(db.sequelize, db.Sequelize)
+db.Device = Device(db.sequelize, db.Sequelize)
+db.Order = Order(db.sequelize, db.Sequelize)
+db.Device = Device(db.sequelize, db.Sequelize)
+db.Ordered_Device = Ordered_Device(db.sequelize, db.Sequelize)
+db.Material = Material(db.sequelize, db.Sequelize)
+db.Stock = Stock(db.sequelize, db.Sequelize)
 
-db.User.hasMany(db.User_Activity, {as: 'activities', foreignKey: 'userId'});
-db.User_Activity.belongsTo(db.User, {as: 'user', foreignKey: 'id'});
+
+db.User.hasMany(db.User_Activity, { as: 'activities', foreignKey: 'userId' });
+db.User_Activity.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
+
+db.User.hasMany(db.Order, { as: 'orders', foreignKey: 'userId' });
+db.Order.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
+
+db.Device.hasMany(db.Ordered_Device, { as: 'ordered', foreignKey: 'deviceId' });
+db.Ordered_Device.belongsTo(db.Device, { as: 'device', foreignKey: 'id' });
+
+db.Order.hasMany(db.Ordered_Device, { as: 'devices', foreignKey: 'orderId' });
+db.Ordered_Device.belongsTo(db.Order, { as: 'order', foreignKey: 'id' });
+
+db.Material.hasOne(db.Stock, { as: 'stock', foreignKey: 'id' })
+db.Stock.belongsTo(db.Material, { as: 'material', foreignKey: 'id' })
+
+db.Device.hasMany(db.Material_For_Ordered_Device, { as: 'material', foreignKey: 'deviceId' })
+db.Material_For_Ordered_Device.belongsTo(db.Device, { as: 'device', foreignKey: 'id' })
+
+db.Material.hasMany(db.Material_For_Ordered_Device, { as: 'device', foreignKey: 'materialId' })
+db.Material_For_Ordered_Device.belongsTo(db.Material, { as: 'material', foreignKey: 'id' })
 
 module.exports = db;

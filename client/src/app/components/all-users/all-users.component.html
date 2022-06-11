@@ -5,8 +5,10 @@
     <mat-grid-list cols="3" class="users-gallery">
         <mat-grid-tile *ngFor="let user of users; let id = index">
             <mat-card class="card">
-                <img mat-card-image *ngIf='user?.pic == null' src="../assets/img/picture.png" alt="profile pic">
-                <img mat-card-image *ngIf='user?.pic != null' [src]="user?.pic" alt="profile pic">
+                <div class="card-img">
+                    <img *ngIf='user?.pic == null' src="../assets/img/picture.png" alt="profile pic">
+                    <img *ngIf='user?.pic != null' [src]="user?.pic" alt="profile pic">
+                </div>
                 <h2 class="users-name"><b>{{user?.firstName}} {{user?.lastName}}</b></h2>
                 <div class="btn-group">
                     <button (click)="userDetails(id)">Detalji</button>

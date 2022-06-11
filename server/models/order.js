@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  }
+  };
   Order.init({
     id: {
       allowNull: false,
@@ -21,32 +21,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING
     },
     status: {
-      type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.STRING
     },
     type: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    dateOfCreation: {
-      type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.STRING
     },
     dateOfRealisation: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    createdAt: {
       allowNull: false,
       type: DataTypes.DATE
     },
-    updatedAt: {
+    companyName: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.STRING
+    },
+    companyAddress: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    companyCity: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    companyCountry: {
+      allowNull: false,
+      type: DataTypes.STRING
     }
   }, {
     sequelize,

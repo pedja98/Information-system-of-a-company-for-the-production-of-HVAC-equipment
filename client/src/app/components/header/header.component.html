@@ -1,9 +1,49 @@
-<header>
+<header *ngIf="user?.type == 'admin'">
     <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/admin/']">
     <div class="btn-group">
         <button mat-button [routerLink]="['/admin/']">Svi korisnici</button>
         <button mat-button [routerLink]="['/admin/my-profile']">Moj Profil</button>
         <button mat-button [routerLink]="['/admin/change-password']">Promeni lozinku</button>
+        <button mat-button (click)="logOut()">Izlogujte se</button>
+    </div>
+</header>
+
+<header *ngIf="user?.type == 'production-manager'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/production-manager/']">
+    <div class="btn-group">
+        <button mat-button [routerLink]="['/production-manager/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/production-manager/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/production-manager/change-password']">Promeni lozinku</button>
+        <button mat-button (click)="logOut()">Izlogujte se</button>
+    </div>
+</header>
+
+<header *ngIf="user?.type == 'head-of-procureme'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/head-of-procureme/']">
+    <div class="btn-group">
+        <button mat-button [routerLink]="['/head-of-procureme/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/head-of-procureme/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/head-of-procureme/change-password']">Promeni lozinku</button>
+        <button mat-button (click)="logOut()">Izlogujte se</button>
+    </div>
+</header>
+
+<header *ngIf="user?.type == 'storekeeper'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/storekeeper/']">
+    <div class="btn-group">
+        <button mat-button [routerLink]="['/storekeeper/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/storekeeper/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/storekeeper/change-password']">Promeni lozinku</button>
+        <button mat-button (click)="logOut()">Izlogujte se</button>
+    </div>
+</header>
+
+<header *ngIf="user?.type == 'production-worker'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/production-worker/']">
+    <div class="btn-group">
+        <button mat-button [routerLink]="['/production-worker/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/production-worker/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/production-worker/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>
     </div>
 </header>

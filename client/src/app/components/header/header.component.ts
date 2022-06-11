@@ -9,7 +9,10 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _user: UserService, private _router: Router) { }
+  user: any
+  constructor(private _user: UserService, private _router: Router) {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}')
+  }
 
   logOut(): void {
     this._user.logout().subscribe((res) => {
@@ -18,7 +21,7 @@ export class HeaderComponent implements OnInit {
         return
       }
       else if (res.success) {
-        localStorage.clear()
+        localStorage.removeItem('user')
         this._router.navigate([""])
       }
     })

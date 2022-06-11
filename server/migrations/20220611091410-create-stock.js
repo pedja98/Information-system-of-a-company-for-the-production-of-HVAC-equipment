@@ -1,8 +1,10 @@
 'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Material_In_Stocks', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Stocks', {
       id: {
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
@@ -12,13 +14,13 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      number: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       unit: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      count: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -30,7 +32,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Material_In_Stocks');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Stocks');
   }
 };

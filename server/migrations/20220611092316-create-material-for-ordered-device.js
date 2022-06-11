@@ -1,23 +1,15 @@
 'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Work_Orders', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Material_For_Ordered_Devices', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      workOrderId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Orders',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
       deviceId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Devices',
@@ -26,7 +18,22 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      number: {
+      materialId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Materials',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      unit: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      count: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -39,7 +46,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Work_Orders');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Material_For_Ordered_Devices');
   }
 };
