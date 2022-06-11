@@ -14,8 +14,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Stock.init({
-    unit: DataTypes.STRING,
-    count: DataTypes.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    unit: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    count: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    }
   }, {
     sequelize,
     modelName: 'Stock',

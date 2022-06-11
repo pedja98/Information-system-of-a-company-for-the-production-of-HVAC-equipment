@@ -7,7 +7,7 @@ const Order = require('./order')
 const Ordered_Device = require('./ordered_device')
 const Material = require('./material')
 const Stock = require('./stock')
-const Material_For_Ordered_Device = require('./materialForOrderedDevice')
+const Material_For_Ordered_Device = require('./material_for_ordered_device')
 
 const fs = require('fs');
 const path = require('path');
@@ -51,7 +51,7 @@ db.Device = Device(db.sequelize, db.Sequelize)
 db.Ordered_Device = Ordered_Device(db.sequelize, db.Sequelize)
 db.Material = Material(db.sequelize, db.Sequelize)
 db.Stock = Stock(db.sequelize, db.Sequelize)
-
+db.Material_For_Ordered_Device = Material_For_Ordered_Device(db.sequelize, db.Sequelize)
 
 db.User.hasMany(db.User_Activity, { as: 'activities', foreignKey: 'userId' });
 db.User_Activity.belongsTo(db.User, { as: 'user', foreignKey: 'id' });

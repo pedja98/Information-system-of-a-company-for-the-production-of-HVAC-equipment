@@ -32,9 +32,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    dimensions: {
+    type: {
       allowNull: false,
       type: DataTypes.STRING
+    },
+    priority: {
+      allowNull: false,
+      type: Sequelize.STRING
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

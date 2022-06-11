@@ -32,7 +32,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      dimensions: {
+      type: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      priority: {
         allowNull: false,
         type: Sequelize.STRING
       },
