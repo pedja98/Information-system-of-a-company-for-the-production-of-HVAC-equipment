@@ -29,6 +29,7 @@ import { ProductionWorkerComponent } from './components/production-worker/produc
 import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
 import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { CreateWorkOrderDialogComponent } from './components/create-work-order-dialog/create-work-order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     ProductionWorkerComponent,
     WorkOrdersComponent,
     PurchaseOrdersComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CreateWorkOrderDialogComponent
   ],
   imports: [
     BrowserModule,

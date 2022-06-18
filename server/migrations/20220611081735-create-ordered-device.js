@@ -6,10 +6,6 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      orderId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Orders',
@@ -18,15 +14,9 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      deviceId: {
+      deviceName: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Devices',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        type: Sequelize.STRING,
       },
       status: {
         allowNull: false,

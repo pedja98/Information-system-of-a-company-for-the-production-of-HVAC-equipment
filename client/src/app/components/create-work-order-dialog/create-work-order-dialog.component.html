@@ -1,0 +1,47 @@
+<div class="create-order-dialog">
+    <div class="header">
+        <button mat-dialog-close class="close-btn">X</button>
+    </div>
+    <div class='content' [formGroup]="form">
+        <mat-form-field class="full-width">
+            <mat-label>Ime kompanije</mat-label>
+            <input autocomplete="off" type="text" name="companyName" matInput formControlName="companyName" value="">
+            <mat-error *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Drzava</mat-label>
+            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyName" value="">
+            <mat-error *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Grad</mat-label>
+            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyCity" value="">
+            <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Adresa</mat-label>
+            <input autocomplete="off" type="text" name="companyAddress" matInput formControlName="companyAddress" value="">
+            <mat-error *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email kompanije</mat-label>
+            <input autocomplete="off" type="email" name="companyEmail" matInput value=""
+                formControlName="companyEmail">
+            <mat-error *ngIf="form.controls['companyEmail'].errors && form.controls['companyEmail'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+            <mat-error *ngIf="form.controls['companyEmail'].errors && form.controls['companyEmail'].errors['email']">
+                Format koji ste uneli ne odgovara email-u
+            </mat-error>
+        </mat-form-field>
+        <button class="add-btn" (click)="createOrder()">Kreiraj radni nalog</button>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateWorkOrderDialogComponent } from '../create-work-order-dialog/create-work-order-dialog.component';
 
 @Component({
   selector: 'app-work-orders',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _dialog: MatDialog,) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig()
+      dialogConfig.width = '450px'
+      dialogConfig.height = '480px'
+      let dialogRef = this._dialog.open(CreateWorkOrderDialogComponent, dialogConfig)
   }
 
 }

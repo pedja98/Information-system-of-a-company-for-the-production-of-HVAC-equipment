@@ -20,13 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    orderId: {
+    deviceName: {
       allowNull: false,
-      type: DataTypes.INTEGER
-    },
-    deviceId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     status: {
       allowNull: false,
@@ -38,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     priority: {
       allowNull: false,
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,

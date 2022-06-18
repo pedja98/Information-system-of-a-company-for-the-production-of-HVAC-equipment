@@ -1,13 +1,9 @@
-.change-btn {
+.add-btn {
     background-color: black;
     color: white;
     height: 35px;
     width: 100px;
     margin-top: 15px;
-}
-
-.change-btn:hover {
-    cursor: pointer;
 }
 
 .add-user {

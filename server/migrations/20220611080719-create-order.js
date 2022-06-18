@@ -17,10 +17,6 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'SET NULL'
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       status: {
         allowNull: false,
         type: Sequelize.STRING
@@ -46,6 +42,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       companyCountry: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      companyEmail: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      companyPhone: {
         allowNull: false,
         type: Sequelize.STRING
       },

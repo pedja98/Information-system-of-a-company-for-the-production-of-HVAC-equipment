@@ -11,19 +11,19 @@
 <header *ngIf="user?.type == 'production-manager'">
     <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/production-manager/']">
     <div class="btn-group">
-        <button mat-button [routerLink]="['/production-manager/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/production-manager/']">Svi radni nalozi</button>
         <button mat-button [routerLink]="['/production-manager/my-profile']">Moj Profil</button>
         <button mat-button [routerLink]="['/production-manager/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>
     </div>
 </header>
 
-<header *ngIf="user?.type == 'head-of-procureme'">
-    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/head-of-procureme/']">
+<header *ngIf="user?.type == 'head-of-procurement'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/head-of-procurement/']">
     <div class="btn-group">
-        <button mat-button [routerLink]="['/head-of-procureme/']">Svi nalozi</button>
-        <button mat-button [routerLink]="['/head-of-procureme/my-profile']">Moj Profil</button>
-        <button mat-button [routerLink]="['/head-of-procureme/change-password']">Promeni lozinku</button>
+        <button mat-button [routerLink]="['/head-of-procurement/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/head-of-procurement/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/head-of-procurement/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>
     </div>
 </header>
