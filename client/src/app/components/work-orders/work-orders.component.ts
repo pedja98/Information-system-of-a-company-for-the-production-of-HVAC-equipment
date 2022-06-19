@@ -16,8 +16,8 @@ export class WorkOrdersComponent implements OnInit {
 
   openDialog() {
     const dialogConfig = new MatDialogConfig()
-      dialogConfig.width = '450px'
-      dialogConfig.height = '480px'
+      dialogConfig.width = '700px'
+      dialogConfig.height = '595px'
       let dialogRef = this._dialog.open(CreateWorkOrderDialogComponent, dialogConfig)
   }
 

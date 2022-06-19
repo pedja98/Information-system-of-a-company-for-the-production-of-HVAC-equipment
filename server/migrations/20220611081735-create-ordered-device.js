@@ -4,7 +4,6 @@ module.exports = {
     await queryInterface.createTable('Ordered_Devices', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
@@ -14,7 +13,7 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      deviceName: {
+      device: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -22,13 +21,37 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      type: {
+      model: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      priority: {
-        allowNull: false,
+      width: {
+        allowNull: true,
         type: Sequelize.STRING
+      },
+      height: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      length: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      fans: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      filters: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      coolerHeater: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      moisturizer: {
+        allowNull: true,
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

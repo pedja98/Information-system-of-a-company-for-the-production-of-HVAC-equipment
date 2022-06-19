@@ -44,7 +44,7 @@
             <mat-label>Tip korisnika</mat-label>
             <mat-select formControlName="type" name="type">
                 <mat-option *ngFor="let type of types" [value]="type.value">
-                    {{type.viewValue}}
+                    {{type.label}}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="form.controls['type'].errors && form.controls['type'].errors['required']">

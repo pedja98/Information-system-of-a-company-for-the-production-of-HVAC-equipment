@@ -14,14 +14,14 @@ export class AddUserDialogComponent implements OnInit {
   resMsg: string = "";
 
   types: any[] = [
-    {value: 'admin', viewValue: 'Admin'},
-    {value: 'production-manager', viewValue: 'Šef proizvodnje'},
-    {value: 'head-of-procurement', viewValue: 'Šef nabavke'},
-    {value: 'storekeeper', viewValue: 'Magacinski radnik'},
-    {value: 'production-worker', viewValue: 'Proizvodni radnik'},
+    { value: 'admin', label: 'Admin' },
+    { value: 'storekeeper', label: 'Magacinski radnik' },
+    { value: 'production-worker', label: 'Proizvodni radnik' },
+    { value: 'production-manager', label: 'Šef proizvodnje' },
+    { value: 'head-of-procurement', label: 'Šef nabavke' },
   ];
 
-  constructor( private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
     private _user: UserService,
     private dialogRef: MatDialogRef<AddUserDialogComponent>
   ) {
@@ -34,17 +34,17 @@ export class AddUserDialogComponent implements OnInit {
     })
   }
 
-  onChange() : void {
-    if(this.resMsg != '') {
+  onChange(): void {
+    if (this.resMsg != '') {
       this.resMsg = ''
     }
   }
 
   addUser() {
     this.resMsg = "";
-    if(this.form.valid) {
+    if (this.form.valid) {
       this._user.addUser(this.form.value).subscribe((res) => {
-        if(!res.created) {
+        if (!res.created) {
           this.resMsg = 'mail'
           return;
         }

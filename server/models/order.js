@@ -24,16 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
-    status: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
     type: {
       allowNull: false,
       type: DataTypes.STRING
     },
     dateOfRealisation: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DATE
     },
     companyName: {

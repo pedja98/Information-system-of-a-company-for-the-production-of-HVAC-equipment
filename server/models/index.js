@@ -54,7 +54,7 @@ db.User_Activity.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
 db.User.hasMany(db.Order, { as: 'orders', foreignKey: 'userId' });
 db.Order.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
 
-db.Order.hasOne(db.Ordered_Device, { as: 'devices', foreignKey: 'id' });
+db.Order.hasOne(db.Ordered_Device, { as: 'device', foreignKey: 'id' });
 db.Ordered_Device.belongsTo(db.Order, { as: 'order', foreignKey: 'id' });
 
 db.Material.hasOne(db.Stock, { as: 'stock', foreignKey: 'id' })

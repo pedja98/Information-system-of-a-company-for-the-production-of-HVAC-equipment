@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    deviceName: {
+    device: {
       allowNull: false,
       type: DataTypes.STRING
     },
@@ -28,13 +28,37 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    type: {
+    model: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    priority: {
-      allowNull: false,
+    width: {
+      allowNull: true,
       type: DataTypes.STRING
+    },
+    height: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    length: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    fans: {
+      allowNull: true,
+      type: DataTypes.INTEGER
+    },
+    filters: {
+      allowNull: true,
+      type: DataTypes.INTEGER
+    },
+    coolerHeater: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    moisturizer: {
+      allowNull: true,
+      type: DataTypes.BOOLEAN
     },
     createdAt: {
       allowNull: false,

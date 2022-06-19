@@ -12,29 +12,31 @@
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Drzava</mat-label>
-            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyName" value="">
-            <mat-error *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['required']">
+            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyCountry" value="">
+            <mat-error
+                *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['required']">
                 Polje je obavezno
             </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Grad</mat-label>
-            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyCity" value="">
+            <input autocomplete="off" type="text" name="companyCity" matInput formControlName="companyCity" value="">
             <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['required']">
                 Polje je obavezno
             </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Adresa</mat-label>
-            <input autocomplete="off" type="text" name="companyAddress" matInput formControlName="companyAddress" value="">
-            <mat-error *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['required']">
+            <input autocomplete="off" type="text" name="companyAddress" matInput formControlName="companyAddress"
+                value="">
+            <mat-error
+                *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['required']">
                 Polje je obavezno
             </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Email kompanije</mat-label>
-            <input autocomplete="off" type="email" name="companyEmail" matInput value=""
-                formControlName="companyEmail">
+            <input autocomplete="off" type="email" name="companyEmail" matInput value="" formControlName="companyEmail">
             <mat-error *ngIf="form.controls['companyEmail'].errors && form.controls['companyEmail'].errors['required']">
                 Polje je obavezno
             </mat-error>
@@ -42,6 +44,104 @@
                 Format koji ste uneli ne odgovara email-u
             </mat-error>
         </mat-form-field>
-        <button class="add-btn" (click)="createOrder()">Kreiraj radni nalog</button>
+        <mat-form-field class="full-width">
+            <mat-label>Kontakt telefon</mat-label>
+            <input autocomplete="off" type="text" name="companyPhone" matInput formControlName="companyPhone" value="">
+            <mat-error *ngIf="form.controls['companyPhone'].errors && form.controls['companyPhone'].errors['required']">
+                Polje je obavezno
+            </mat-error>
+        </mat-form-field>
+        <div class="device-select">
+            <mat-form-field>
+                <mat-label>Uređaj</mat-label>
+                <mat-select formControlName="device" name="device">
+                    <mat-option *ngFor="let device of devices" [value]="device.value">
+                        {{device.label}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['device'].errors && form.controls['device'].errors['required']">
+                    Polje je obavezno
+                </mat-error>
+            </mat-form-field>
+
+            <div class="cooling-chamber-model" *ngIf="form.controls['device'].value=='cooling-chamber'">
+                <mat-form-field class="cooling-chamber-model-element">
+                    <mat-label>Model</mat-label>
+                    <mat-select formControlName="model" name="model">
+                        <mat-option *ngFor="let model of models" [value]="model.value">
+                            {{model.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="cooling-chamber-model-element">
+                    <mat-label>Duzina</mat-label>
+                    <mat-select formControlName="length" name="length">
+                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                            {{size.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="cooling-chamber-model-element">
+                    <mat-label>Sirina</mat-label>
+                    <mat-select formControlName="width" name="width">
+                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                            {{size.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="cooling-chamber-model-element">
+                    <mat-label>Visina</mat-label>
+                    <mat-select formControlName="height" name="height">
+                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                            {{size.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <div class="air-chamber-model" *ngIf="form.controls['device'].value=='air-chamber'">
+                <mat-form-field class="air-chamber-model-element">
+                    <mat-label>Model</mat-label>
+                    <mat-select formControlName="type" name="type">
+                        <mat-option *ngFor="let type of types" [value]="type.value">
+                            {{type.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="air-chamber-model-element">
+                    <mat-label>Br. Ventilatora</mat-label>
+                    <input autocomplete="off" type="number" name="fans" min="1" max="2" matInput formControlName="fans"
+                        value="">
+                </mat-form-field>
+
+                <mat-form-field class="air-chamber-model-element">
+                    <mat-label>Br. Filtera</mat-label>
+                    <input autocomplete="off" type="number" name="filters" min="0" max="3" matInput
+                        formControlName="filters" value="">
+                </mat-form-field>
+
+                <mat-form-field class="air-chamber-model-element">
+                    <mat-label>Grejac/Hladnjak</mat-label>
+                    <mat-select formControlName="coolerHeater" name="coolerHeater">
+                        <mat-option *ngFor="let elem of coolerHeater" [value]="elem.value">
+                            {{elem.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-checkbox class="air-chamber-model-element" formControlName="moisturizer">
+                    Ovlaživač
+                </mat-checkbox>
+
+            </div>
+        </div>
+        <div class="btn-div">
+            <button class="add-btn" (click)="createOrder()">Kreiraj radni nalog</button>
+        </div>
     </div>
 </div>

@@ -17,16 +17,12 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'SET NULL'
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       type: {
         allowNull: false,
         type: Sequelize.STRING
       },
       dateOfRealisation: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       companyName: {
