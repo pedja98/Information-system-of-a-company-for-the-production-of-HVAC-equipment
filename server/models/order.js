@@ -48,14 +48,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    companyEmail: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    companyPhone: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE

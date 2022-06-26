@@ -43,7 +43,7 @@
         <mat-form-field class="full-width">
             <mat-label>Tip korisnika</mat-label>
             <mat-select formControlName="type" name="type">
-                <mat-option *ngFor="let type of types" [value]="type.value">
+                <mat-option *ngFor="let type of userTypes" [value]="type.value">
                     {{type.label}}
                 </mat-option>
             </mat-select>

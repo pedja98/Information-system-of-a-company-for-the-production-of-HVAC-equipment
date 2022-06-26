@@ -11,6 +11,7 @@ import { ProductionWorkerComponent } from './components/production-worker/produc
 import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
 import { StorekeeperComponent } from './components/storekeeper/storekeeper.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { WorkOrderDetailsComponent } from './components/work-order-details/work-order-details.component';
 import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
 import { AdminGuard } from './guards/admin/admin.guard';
 import { HeadOfProcurementGuard } from './guards/head-of-procurement/head-of-procurement.guard';
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: "", component: WorkOrdersComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
+      { path: "order/:id", component: WorkOrderDetailsComponent }
     ]
   },
 

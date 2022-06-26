@@ -45,7 +45,19 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER
       },
-      coolerHeater: {
+      mufflers: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      coolers: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      heaters: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      recuperator: {
         allowNull: true,
         type: Sequelize.STRING
       },

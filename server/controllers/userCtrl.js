@@ -55,7 +55,11 @@ const login = async (req, res) => {
 
 const getById = (req, res) => {
     User.findByPk(req.params.id, {
-        include: ['activities'],
+        include: [{
+            model: User_Activity,
+            as: 'activities',
+            required: true
+        }],
     })
         .then((result) => {
             res.json(result)

@@ -4,6 +4,7 @@
     height: 35px;
     width: 100px;
     margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .add-order {
@@ -12,6 +13,45 @@
     margin-bottom: 10px;
 }
 
+.users-gallery {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+}
+
+.card {
+    width: 380px;
+    margin-bottom: 10vh;
+    height: 320px;
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-group button {
+    color: #fff;
+    height: 40px;
+    background-color: #000;
+    width: 23%;
+}
+
 button:hover {
     cursor: pointer;
+}
+
+.card-img {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.card-img img {
+    height: 90%;
+    width: 80%;
 }

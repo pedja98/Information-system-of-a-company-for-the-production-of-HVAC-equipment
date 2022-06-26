@@ -102,6 +102,12 @@
     width: 120px;
 }
 
+.air-chamber-model-num {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    width: 80px;
+}
+
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
     opacity: 0.03 !important;
     background-color: #000 !important;

@@ -12,4 +12,12 @@ export class OrderService {
   createOrder(data: any) {
     return this._http.post<any>(`${environment.apiUrl}/api/orders/`, data)
   }
+
+  getWorkOrders() {
+    return this._http.get<any>(`${environment.apiUrl}/api/orders/work-order`)
+  }
+
+  getWorkOrder(id: string) {
+    return this._http.get<any>(`${environment.apiUrl}/api/orders/work-order/${id}`)
+  }
 }

@@ -1,5 +1,21 @@
-<div>
+<div class="content">
     <div class="add-order">
         <button class="add-btn" (click)="openDialog()">Napravi radni nalog</button>
     </div>
+    <mat-grid-list cols="3" class="users-gallery">
+        <mat-grid-tile *ngFor="let order of orders; let id = index">
+            <mat-card class="card">
+                <h2><b>Ime kompanije:</b> {{order?.companyName}}</h2>
+                <h2><b>Datum kreiranja:</b> {{order?.createdAt | date: 'dd/MM/yyyy'}}</h2>
+                <h2><b>Status:</b> {{order?.device.status}}</h2>
+                <h2 *ngIf='order?.device.device == "air-chamber"'><b>Uredjaj:</b> Klima komora</h2>
+                <h2 *ngIf='order?.device.device == "cooling-chamber"'><b>Uredjaj:</b> Rashladna komora</h2>
+                <h2 *ngIf='order?.user != null'><b>Kreirao:</b> {{order?.user.firstName}} {{order?.user.lastName}}</h2>
+                <h2 *ngIf='order?.user == null'>Korisnik je obrisan</h2>
+                <div class="btn-group">
+                    <button (click)="orderDetails(id)">Detalji</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

@@ -34,23 +34,6 @@
                 Polje je obavezno
             </mat-error>
         </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Email kompanije</mat-label>
-            <input autocomplete="off" type="email" name="companyEmail" matInput value="" formControlName="companyEmail">
-            <mat-error *ngIf="form.controls['companyEmail'].errors && form.controls['companyEmail'].errors['required']">
-                Polje je obavezno
-            </mat-error>
-            <mat-error *ngIf="form.controls['companyEmail'].errors && form.controls['companyEmail'].errors['email']">
-                Format koji ste uneli ne odgovara email-u
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Kontakt telefon</mat-label>
-            <input autocomplete="off" type="text" name="companyPhone" matInput formControlName="companyPhone" value="">
-            <mat-error *ngIf="form.controls['companyPhone'].errors && form.controls['companyPhone'].errors['required']">
-                Polje je obavezno
-            </mat-error>
-        </mat-form-field>
         <div class="device-select">
             <mat-form-field>
                 <mat-label>Uređaj</mat-label>
@@ -68,7 +51,7 @@
                 <mat-form-field class="cooling-chamber-model-element">
                     <mat-label>Model</mat-label>
                     <mat-select formControlName="model" name="model">
-                        <mat-option *ngFor="let model of models" [value]="model.value">
+                        <mat-option *ngFor="let model of coolingChamberModels" [value]="model.value">
                             {{model.label}}
                         </mat-option>
                     </mat-select>
@@ -77,7 +60,7 @@
                 <mat-form-field class="cooling-chamber-model-element">
                     <mat-label>Duzina</mat-label>
                     <mat-select formControlName="length" name="length">
-                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                        <mat-option *ngFor="let size of deviceLength" [value]="size.value">
                             {{size.label}}
                         </mat-option>
                     </mat-select>
@@ -86,7 +69,7 @@
                 <mat-form-field class="cooling-chamber-model-element">
                     <mat-label>Sirina</mat-label>
                     <mat-select formControlName="width" name="width">
-                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                        <mat-option *ngFor="let size of deviceWidth" [value]="size.value">
                             {{size.label}}
                         </mat-option>
                     </mat-select>
@@ -95,7 +78,7 @@
                 <mat-form-field class="cooling-chamber-model-element">
                     <mat-label>Visina</mat-label>
                     <mat-select formControlName="height" name="height">
-                        <mat-option *ngFor="let size of sizes" [value]="size.value">
+                        <mat-option *ngFor="let size of deviceHeight" [value]="size.value">
                             {{size.label}}
                         </mat-option>
                     </mat-select>
@@ -107,28 +90,46 @@
                 <mat-form-field class="air-chamber-model-element">
                     <mat-label>Model</mat-label>
                     <mat-select formControlName="type" name="type">
-                        <mat-option *ngFor="let type of types" [value]="type.value">
-                            {{type.label}}
+                        <mat-option *ngFor="let model of airChamberModels" [value]="model.value">
+                            {{model.label}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="air-chamber-model-element">
+                <mat-form-field class="air-chamber-model-num">
                     <mat-label>Br. Ventilatora</mat-label>
                     <input autocomplete="off" type="number" name="fans" min="1" max="2" matInput formControlName="fans"
                         value="">
                 </mat-form-field>
 
-                <mat-form-field class="air-chamber-model-element">
+                <mat-form-field class="air-chamber-model-num">
                     <mat-label>Br. Filtera</mat-label>
                     <input autocomplete="off" type="number" name="filters" min="0" max="3" matInput
                         formControlName="filters" value="">
                 </mat-form-field>
 
+                <mat-form-field class="air-chamber-model-num">
+                    <mat-label>Br. Prigušivača</mat-label>
+                    <input autocomplete="off" type="number" name="mufflers" min="0" max="2" matInput
+                        formControlName="mufflers" value="">
+                </mat-form-field>
+
+                <mat-form-field class="air-chamber-model-num">
+                    <mat-label>Br. Hladnjaka</mat-label>
+                    <input autocomplete="off" type="number" name="coolers" min="0" max="2" matInput
+                        formControlName="coolers" value="">
+                </mat-form-field>
+
+                <mat-form-field class="air-chamber-model-num">
+                    <mat-label>Br. Grejača</mat-label>
+                    <input autocomplete="off" type="number" name="heaters" min="0" max="2" matInput
+                        formControlName="heaters" value="">
+                </mat-form-field>
+
                 <mat-form-field class="air-chamber-model-element">
-                    <mat-label>Grejac/Hladnjak</mat-label>
-                    <mat-select formControlName="coolerHeater" name="coolerHeater">
-                        <mat-option *ngFor="let elem of coolerHeater" [value]="elem.value">
+                    <mat-label>Rekuperator</mat-label>
+                    <mat-select formControlName="recuperator" name="recuperator">
+                        <mat-option *ngFor="let elem of recuperators" [value]="elem.value">
                             {{elem.label}}
                         </mat-option>
                     </mat-select>

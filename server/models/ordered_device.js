@@ -48,11 +48,23 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.INTEGER
     },
+    mufflers: {
+      allowNull: true,
+      type: DataTypes.INTEGER
+    },
     filters: {
       allowNull: true,
       type: DataTypes.INTEGER
     },
-    coolerHeater: {
+    coolers: {
+      allowNull: true,
+      type: DataTypes.INTEGER
+    },
+    heaters: {
+      allowNull: true,
+      type: DataTypes.INTEGER
+    },
+    recuperator: {
       allowNull: true,
       type: DataTypes.STRING
     },

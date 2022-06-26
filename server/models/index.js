@@ -51,8 +51,8 @@ db.Stock = Stock(db.sequelize, db.Sequelize)
 db.User.hasMany(db.User_Activity, { as: 'activities', foreignKey: 'userId' });
 db.User_Activity.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
 
-db.User.hasMany(db.Order, { as: 'orders', foreignKey: 'userId' });
-db.Order.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
+db.User.hasMany(db.Order, { as: 'orders', foreignKey: 'id' });
+db.Order.belongsTo(db.User, { as: 'user', foreignKey: 'userid' });
 
 db.Order.hasOne(db.Ordered_Device, { as: 'device', foreignKey: 'id' });
 db.Ordered_Device.belongsTo(db.Order, { as: 'order', foreignKey: 'id' });

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { userTypes } from 'src/app/metadata/metadata';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -13,13 +14,7 @@ export class EditUserDialogComponent implements OnInit {
   form: FormGroup;
   resMsg = ""
 
-  types: any[] = [
-    { value: 'admin', viewValue: 'Admin' },
-    { value: 'production-manager', viewValue: 'Šef proizvodnje' },
-    { value: 'head-of-procurement', viewValue: 'Šef nabavke' },
-    { value: 'storekeeper', viewValue: 'Magacinski radnik' },
-    { value: 'production-worker', viewValue: 'Proizvodni radnik' },
-  ];
+  readonly userTypes = userTypes
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,
     private FormBuilder: FormBuilder,

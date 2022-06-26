@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
+import { userTypes } from '../../metadata/metadata'
 
 @Component({
   selector: 'app-add-user-dialog',
@@ -11,15 +12,8 @@ import { UserService } from 'src/app/services/user/user.service';
 export class AddUserDialogComponent implements OnInit {
 
   form: FormGroup;
-  resMsg: string = "";
-
-  types: any[] = [
-    { value: 'admin', label: 'Admin' },
-    { value: 'storekeeper', label: 'Magacinski radnik' },
-    { value: 'production-worker', label: 'Proizvodni radnik' },
-    { value: 'production-manager', label: 'Šef proizvodnje' },
-    { value: 'head-of-procurement', label: 'Šef nabavke' },
-  ];
+  resMsg: string = ""
+  readonly userTypes = userTypes
 
   constructor(private formBuilder: FormBuilder,
     private _user: UserService,
