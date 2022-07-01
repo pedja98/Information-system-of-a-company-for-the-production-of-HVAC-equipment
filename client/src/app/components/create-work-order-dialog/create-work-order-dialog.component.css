@@ -47,17 +47,13 @@
     background-color: black;
     color: white;
     width: 100%;
-    margin-top: 10px;
-    height: 100%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    min-height: 40px
 }
 
 .add-btn:hover {
     cursor: pointer;
-}
-
-.btn-div {
-    background-color: 'red';
-    height: 10%;
 }
 
 .full-width {
@@ -75,21 +71,19 @@
 .device-select {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 1vh;
     justify-content: space-between;
 }
 
 .cooling-chamber-model {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: inline-block;
 }
 
 .cooling-chamber-model-element {
     margin-left: 1vh;
     margin-right: 1vh;
-    width: 100px;
+    width: 80px;
 }
 
 .air-chamber-model {
@@ -99,7 +93,7 @@
 .air-chamber-model-element {
     margin-left: 1vh;
     margin-right: 1vh;
-    width: 120px;
+    width: 100px;
 }
 
 .air-chamber-model-num {

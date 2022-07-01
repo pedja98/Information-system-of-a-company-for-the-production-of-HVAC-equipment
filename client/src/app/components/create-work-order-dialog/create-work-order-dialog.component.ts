@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from 'src/app/services/order/order.service';
+import { whitespaceValidator } from 'src/app/validators/whitespace.validator';
 import { devices, deviceWidth, deviceLength, deviceHeight, coolingChamberModels, airChamberModels, recuperators } from '../../metadata/metadata'
 @Component({
   selector: 'app-create-work-order-dialog',
@@ -26,10 +27,10 @@ export class CreateWorkOrderDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateWorkOrderDialogComponent>
   ) {
     this.form = this.formBuilder.group({
-      'companyName': ['', Validators.required],
-      'companyCountry': ['', Validators.required],
-      'companyCity': ['', Validators.required],
-      'companyAddress': ['', Validators.required],
+      'companyName': ['', [Validators.required, whitespaceValidator]],
+      'companyCountry': ['', [Validators.required, whitespaceValidator]],
+      'companyCity': ['', [Validators.required, whitespaceValidator]],
+      'companyAddress': ['', [Validators.required, whitespaceValidator]],
       'device': ['', Validators.required],
       'width': ['1.2'],
       'height': ['2.1'],
@@ -71,7 +72,7 @@ export class CreateWorkOrderDialogComponent implements OnInit {
         mufflers: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['mufflers'].value,
       }
       this._order.createOrder(data).subscribe(res => {
-        if(res.success) {
+        if (res.success) {
           this.dialogRef.close({ msg: 'updated' })
         }
       })

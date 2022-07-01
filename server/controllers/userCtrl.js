@@ -53,22 +53,20 @@ const login = async (req, res) => {
     }
 }
 
-const getById = (req, res) => {
-    User.findByPk(req.params.id, {
-        include: [{
-            model: User_Activity,
-            as: 'activities',
-            required: true
-        }],
-    })
-        .then((result) => {
-            res.json(result)
+const getById = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id, {
+            include: [{
+                model: User_Activity,
+                as: 'activities',
+            }],
         })
-        .catch(err => {
-            res.json({
-                "err": err
-            })
+        res.json(user)
+    } catch (err) {
+        res.json({
+            err: err.message
         })
+    }
 
 }
 
@@ -82,12 +80,12 @@ const updateById = async (req, res) => {
                 }
             }
         })
-        
-        if(emailOwner) {
-           res.json({faild: 'mail'})
-           return
+
+        if (emailOwner) {
+            res.json({ faild: 'mail' })
+            return
         }
-        
+
         User.update({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
