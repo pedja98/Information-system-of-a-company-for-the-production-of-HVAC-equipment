@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from 'src/app/services/order/order.service';
-import { whitespaceValidator } from 'src/app/validators/whitespace.validator';
+import { endsWithwhitespaceValidator, startsWithwhitespaceValidator, whitespaceValidator } from 'src/app/validators/whitespace.validator';
 import { devices, deviceWidth, deviceLength, deviceHeight, coolingChamberModels, airChamberModels, recuperators } from '../../metadata/metadata'
 @Component({
   selector: 'app-create-work-order-dialog',
@@ -27,10 +27,10 @@ export class CreateWorkOrderDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateWorkOrderDialogComponent>
   ) {
     this.form = this.formBuilder.group({
-      'companyName': ['', [Validators.required, whitespaceValidator]],
-      'companyCountry': ['', [Validators.required, whitespaceValidator]],
-      'companyCity': ['', [Validators.required, whitespaceValidator]],
-      'companyAddress': ['', [Validators.required, whitespaceValidator]],
+      'companyName': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
+      'companyCountry': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
+      'companyCity': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
+      'companyAddress': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
       'device': ['', Validators.required],
       'width': ['1.2'],
       'height': ['2.1'],

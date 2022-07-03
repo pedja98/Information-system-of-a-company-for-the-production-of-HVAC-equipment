@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { userTypes } from 'src/app/metadata/metadata';
 import { UserService } from 'src/app/services/user/user.service';
+import { endsWithwhitespaceValidator, startsWithwhitespaceValidator, whitespaceValidator } from 'src/app/validators/whitespace.validator';
 
 @Component({
   selector: 'app-edit-user-dialog',
@@ -24,8 +25,8 @@ export class EditUserDialogComponent implements OnInit {
     let dateStr = new Date(this.data.user.dateOfBirth).toISOString()
     dateStr = dateStr.substring(0, dateStr.indexOf('T'));
     this.form = this.FormBuilder.group({
-      'firstName': [data.user.firstName, Validators.required],
-      'lastName': [data.user.lastName, Validators.required],
+      'firstName': [data.user.firstName, [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
+      'lastName': [data.user.lastName, [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
       'email': [data.user.email, [Validators.required, Validators.email]],
       'type': [data.user.type, Validators.required],
       'dateOfBirth': [dateStr, Validators.required],

@@ -10,6 +10,15 @@
             <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['required']">
                 Polje je obavezno
             </mat-error>
+            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['required']">
+                Polje ne sme da se sastoji isključivo od blanko znaka
+            </mat-error>
+            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['starts-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space']">
+                Ime ne sme početi sa blanko znakom
+            </mat-error>
+            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['ends-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['starts-with-white-space']">
+                Ime se ne sme završiti sa blanko znakom
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Prezime</mat-label>
@@ -17,6 +26,15 @@
             <mat-icon matSuffix>people</mat-icon>
             <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['required']">
                 Polje je obavezno
+            </mat-error>
+            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['required']">
+                Polje ne sme da se sastoji isključivo od blanko znaka
+            </mat-error>
+            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['starts-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space']">
+                Prezime ne sme početi sa blanko znakom
+            </mat-error>
+            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['ends-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['starts-with-white-space']">
+                Prezime se ne sme završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">

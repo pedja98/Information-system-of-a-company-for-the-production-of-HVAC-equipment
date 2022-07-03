@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
-import { whitespaceValidator } from 'src/app/validators/whitespace.validator';
+import { endsWithwhitespaceValidator, startsWithwhitespaceValidator, whitespaceValidator } from 'src/app/validators/whitespace.validator';
 import { userTypes } from '../../metadata/metadata'
 
 @Component({
@@ -21,8 +21,8 @@ export class AddUserDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<AddUserDialogComponent>
   ) {
     this.form = this.formBuilder.group({
-      'firstName': ['', [Validators.required, whitespaceValidator]],
-      'lastName': ['', [Validators.required, whitespaceValidator]],
+      'firstName': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
+      'lastName': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
       'email': ['', [Validators.required, Validators.email]],
       'type': ['', Validators.required],
       'dateOfBirth': ['', Validators.required]
