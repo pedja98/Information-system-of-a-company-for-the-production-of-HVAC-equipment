@@ -1,0 +1,22 @@
+.card {
+    width: 400px;
+    height: 250px;
+    margin-top: 5vh;
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-group button {
+    color: #fff;
+    height: 40px;
+    background-color: #000;
+    width: 23%;
+}
+
+button:hover {
+    cursor: pointer;
+}

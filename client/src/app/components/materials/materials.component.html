@@ -1,0 +1,16 @@
+<div class="content">
+    <mat-grid-list cols="3" rowHeight="300px" class="mat-gallery">
+        <mat-grid-tile *ngFor="let material of materials; let i = index;">
+            <mat-card class="card">
+                <p><b>Broj artikla: </b> {{material.itemNumber}}</p>
+                <p><b>Naziv: </b> {{material.name}}</p>
+                <p><b>Šifra proizvodjača: </b> {{material.supplierCode}}</p>
+                <p><b>Proizvodjačev br. artikla: </b> {{material.supplierItemNumber}}</p>
+                <p><b>Kolicina: </b>{{material?.stock.count}} {{material.stock.unit}}</p>
+                <div class="btn-group">
+                    <button (click)="need(i)">Trebovanje</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

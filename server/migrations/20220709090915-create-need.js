@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Orders', {
+    await queryInterface.createTable('Needs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      stockeeperId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
@@ -17,25 +17,31 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'SET NULL'
       },
-      dateOfRealisation: {
-        allowNull: true,
-        type: Sequelize.DATE
+      count: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
-      companyName: {
+      materialId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Materials',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      status: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      companyAddress: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      companyCity: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      companyCountry: {
-        allowNull: false,
-        type: Sequelize.STRING
+      productionWorkerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,
@@ -48,6 +54,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('Needs');
   }
 };

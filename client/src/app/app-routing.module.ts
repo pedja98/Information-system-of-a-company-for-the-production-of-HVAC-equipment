@@ -4,6 +4,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LoginComponent } from './components/login/login.component';
+import { MaterialsComponent } from './components/materials/materials.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductionManagerComponent } from './components/production-manager/production-manager.component';
@@ -53,7 +54,7 @@ const routes: Routes = [
   {
     path: "storekeeper", component: StorekeeperComponent, canActivate: [StorekeeperGuard],
     children: [
-      { path: "", component: PurchaseOrdersComponent },
+      { path: "", component: MaterialsComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
     ]

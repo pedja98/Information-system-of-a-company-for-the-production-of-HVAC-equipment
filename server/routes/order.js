@@ -6,8 +6,8 @@ const {
 
 orders.post("/", tokenVerify, orderCtrl.createOrder)
 
-orders.get("/work-order", tokenVerify, orderCtrl.getWorkOrders)
+orders.get("/", tokenVerify, orderCtrl.getOrders)
 
-orders.get("/work-order/:id", tokenVerify, orderCtrl.getWorkOrder)
+orders.get("/:id", tokenVerify, orderCtrl.getOrder)
 
 module.exports = orders

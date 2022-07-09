@@ -31,6 +31,8 @@ import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-o
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { CreateWorkOrderDialogComponent } from './components/create-work-order-dialog/create-work-order-dialog.component';
 import { WorkOrderDetailsComponent } from './components/work-order-details/work-order-details.component';
+import { MaterialsComponent } from './components/materials/materials.component';
+import { NeedingDialogComponent } from './components/needing-dialog/needing-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { WorkOrderDetailsComponent } from './components/work-order-details/work-
     PurchaseOrdersComponent,
     UserDetailsComponent,
     CreateWorkOrderDialogComponent,
-    WorkOrderDetailsComponent
+    WorkOrderDetailsComponent,
+    MaterialsComponent,
+    NeedingDialogComponent
   ],
   imports: [
     BrowserModule,

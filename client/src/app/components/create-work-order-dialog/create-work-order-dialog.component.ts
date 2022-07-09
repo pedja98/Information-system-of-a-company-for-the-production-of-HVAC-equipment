@@ -57,7 +57,6 @@ export class CreateWorkOrderDialogComponent implements OnInit {
         companyCountry: this.form.controls['companyCountry'].value,
         companyCity: this.form.controls['companyCity'].value,
         companyAddress: this.form.controls['companyAddress'].value,
-        type: 'work-order',
         device: this.form.controls['device'].value,
         width: this.form.controls['device'].value === 'air-chamber' ? null : this.form.controls['width'].value,
         height: this.form.controls['device'].value === 'air-chamber' ? null : this.form.controls['height'].value,

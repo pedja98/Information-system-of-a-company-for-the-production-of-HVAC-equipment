@@ -31,7 +31,7 @@
 <header *ngIf="user?.type == 'storekeeper'">
     <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/storekeeper/']">
     <div class="btn-group">
-        <button mat-button [routerLink]="['/storekeeper/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/storekeeper/']">Materijali</button>
         <button mat-button [routerLink]="['/storekeeper/my-profile']">Moj Profil</button>
         <button mat-button [routerLink]="['/storekeeper/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>

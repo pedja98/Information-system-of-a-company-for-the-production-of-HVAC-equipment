@@ -6,6 +6,7 @@ const Order = require('./order')
 const Ordered_Device = require('./ordered_device')
 const Material = require('./material')
 const Stock = require('./stock')
+const Need = require('./need')
 
 const fs = require('fs');
 const path = require('path');
@@ -47,6 +48,7 @@ db.Order = Order(db.sequelize, db.Sequelize)
 db.Ordered_Device = Ordered_Device(db.sequelize, db.Sequelize)
 db.Material = Material(db.sequelize, db.Sequelize)
 db.Stock = Stock(db.sequelize, db.Sequelize)
+db.Need = Need(db.sequelize, db.Sequelize)
 
 db.User.hasMany(db.User_Activity, { as: 'activities', foreignKey: 'userId' });
 db.User_Activity.belongsTo(db.User, { as: 'user', foreignKey: 'id' });
@@ -59,5 +61,14 @@ db.Ordered_Device.belongsTo(db.Order, { as: 'order', foreignKey: 'id' });
 
 db.Material.hasOne(db.Stock, { as: 'stock', foreignKey: 'id' })
 db.Stock.belongsTo(db.Material, { as: 'material', foreignKey: 'id' })
+
+db.User.hasMany(db.Need, { as: 'stockeeper-needs', foreignKey: 'id' })
+db.Need.belongsTo(db.User, { as: 'stockkeeper', foreignKey: 'stockeeperId' })
+
+db.User.hasMany(db.Need, { as: 'worker-needs', foreignKey: 'id' })
+db.Need.belongsTo(db.User, { as: 'worker', foreignKey: 'productionWorkerId' })
+
+db.Material.hasMany(db.Need, { as: 'needs', foreignKey: 'id' })
+db.Need.belongsTo(db.Material, { as: 'material', foreignKey: 'materialId' })
 
 module.exports = db;

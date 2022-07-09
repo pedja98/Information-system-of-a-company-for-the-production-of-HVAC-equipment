@@ -14,10 +14,10 @@ export class OrderService {
   }
 
   getWorkOrders() {
-    return this._http.get<any>(`${environment.apiUrl}/api/orders/work-order`)
+    return this._http.get<any>(`${environment.apiUrl}/api/orders/`)
   }
 
   getWorkOrder(id: string) {
-    return this._http.get<any>(`${environment.apiUrl}/api/orders/work-order/${id}`)
+    return this._http.get<any>(`${environment.apiUrl}/api/orders/${id}`)
   }
 }

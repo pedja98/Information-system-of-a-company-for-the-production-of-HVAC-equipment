@@ -142,7 +142,7 @@ module.exports = {
     },
     {
       id: 5,
-      unit: 'M',
+      unit: 'm',
       count: 1000,
       capacity: 1000,
       createdAt: new Date(),
@@ -150,7 +150,7 @@ module.exports = {
     },
     {
       id: 6,
-      unit: 'M',
+      unit: 'm',
       count: 1000,
       capacity: 1000,
       createdAt: new Date(),
@@ -158,7 +158,7 @@ module.exports = {
     },
     {
       id: 7,
-      unit: 'M',
+      unit: 'm',
       count: 1000,
       capacity: 1000,
       createdAt: new Date(),
@@ -166,7 +166,7 @@ module.exports = {
     },
     {
       id: 8,
-      unit: 'M',
+      unit: 'm',
       count: 1000,
       capacity: 1000,
       createdAt: new Date(),
@@ -211,7 +211,7 @@ module.exports = {
       capacity: 250,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
+    },
   ])
   },
 

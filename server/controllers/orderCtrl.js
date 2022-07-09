@@ -14,7 +14,6 @@ const createOrder = async (req, res) => {
         })
         Order.create({
             userId: user.id,
-            type: req.body.type,
             dateOfRealisation: null,
             companyName: req.body.companyName,
             companyAddress: req.body.companyAddress,
@@ -49,7 +48,7 @@ const createOrder = async (req, res) => {
     }
 }
 
-const getWorkOrders = async (req, res) => {
+const getOrders = async (req, res) => {
     try {
         const orders = await Order.findAll({
             attributes: ['id', 'companyName', 'createdAt'],
@@ -64,12 +63,8 @@ const getWorkOrders = async (req, res) => {
                 attributes: ['firstName', 'lastName'],
             }
             ],
-            where: {
-                type: "work-order"
-            }
         })
         res.json(orders)
-
     } catch (err) {
         res.json({
             "err": err
@@ -77,7 +72,7 @@ const getWorkOrders = async (req, res) => {
     }
 }
 
-const getWorkOrder = async (req, res) => {
+const getOrder = async (req, res) => {
     try {
         const orders = await Order.findByPk(req.params.id, {
             attributes: [
@@ -128,6 +123,6 @@ const getWorkOrder = async (req, res) => {
 
 module.exports = {
     createOrder,
-    getWorkOrders,
-    getWorkOrder
+    getOrders,
+    getOrder
 }
