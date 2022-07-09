@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialService } from 'src/app/services/material.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.component';
+import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-materials',
@@ -11,15 +13,26 @@ import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.compone
 export class MaterialsComponent implements OnInit {
 
   materials: any[] = [];
+  materialsDisplad: any[] = [];
+  form: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private _material: MaterialService,
     private _dialog: MatDialog,
-  ) { }
+  ) { 
+    this.form = this.formBuilder.group({
+      'itemNumber': [''],
+      'name': [''],
+      'supplierCode': [''],
+      'supplierItemNumber': [''],
+    })
+  }
 
   ngOnInit(): void {
     this._material.getMaterials().subscribe(res => {
       this.materials = res
+      this.materialsDisplad = this.materials
     })
   }
 
@@ -37,11 +50,22 @@ export class MaterialsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res.msg == 'updated') {
-        this._material.getMaterials().subscribe(res => {
-          this.materials = res
+        this._material.getMaterials().subscribe(materials => {
+          this.materials = materials
+          this.materialsDisplad = this.materials
+          const dialogConfig = new MatDialogConfig()
+          dialogConfig.width = '320px'
+          dialogConfig.height = '150px'
+          dialogConfig.data = {
+            msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value}`
+          }
+          this._dialog.open(DialogMsgComponent, dialogConfig)
         })
       }
     })
   }
 
+  searchByItemNumber() {
+    
+  }
 }

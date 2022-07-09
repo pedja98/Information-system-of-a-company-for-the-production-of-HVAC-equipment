@@ -32,7 +32,6 @@
     flex-direction: column;
 }
 
-
 ::ng-deep .mat-focused .mat-form-field-label {
     color: black !important;
 }

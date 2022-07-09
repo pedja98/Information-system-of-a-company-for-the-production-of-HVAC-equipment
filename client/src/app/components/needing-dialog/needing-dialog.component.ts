@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialService } from 'src/app/services/material.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 
 @Component({
   selector: 'app-needing-dialog',
@@ -20,7 +21,24 @@ export class NeedingDialogComponent implements OnInit {
   ) { }
 
   updateStock() {
-    if (this.value <= 0 || this.value>this.data.count) {
+    if (this.value <= 0) {
+      const dialogConfig = new MatDialogConfig()
+      dialogConfig.width = '320px'
+      dialogConfig.height = '150px'
+      dialogConfig.data = {
+        msg: `Vrednost ne sme biti negativna`
+      }
+      this._dialog.open(DialogMsgComponent, dialogConfig)
+      return;
+    }
+    if (this.value > this.data.count) {
+      const dialogConfig = new MatDialogConfig()
+      dialogConfig.width = '320px'
+      dialogConfig.height = '150px'
+      dialogConfig.data = {
+        msg: `Vrednost je veca od stanja u magacinu`
+      }
+      this._dialog.open(DialogMsgComponent, dialogConfig)
       return;
     }
     const dialogConfig = new MatDialogConfig()
@@ -33,8 +51,8 @@ export class NeedingDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res.data == 'confirm') {
-        this._material.updateMaterialStock(this.data.id, this.value ,(this.data.count - this.value)).subscribe(res => {
-          this.dialogRef.close({ msg: 'updated' })
+        this._material.updateMaterialStock(this.data.id, this.value, (this.data.count - this.value)).subscribe(res => {
+          this.dialogRef.close({ msg: 'updated', value: this.value })
         })
       }
     })

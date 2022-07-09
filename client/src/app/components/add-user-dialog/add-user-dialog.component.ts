@@ -16,7 +16,8 @@ export class AddUserDialogComponent implements OnInit {
   resMsg: string = ""
   readonly userTypes = userTypes
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private _user: UserService,
     private dialogRef: MatDialogRef<AddUserDialogComponent>
   ) {
