@@ -3,7 +3,7 @@ import { MaterialService } from 'src/app/services/material.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.component';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { itemCount } from 'src/app/metadata/metadata';
 
 @Component({
   selector: 'app-materials',
@@ -13,26 +13,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class MaterialsComponent implements OnInit {
 
   materials: any[] = [];
-  materialsDisplad: any[] = [];
-  form: FormGroup;
+  itemNumber: string = ""
+  name: string = ""
+  supplierCode: string = ""
+  supplierItemNumber: string = ""
+  cnt = 0
 
+  readonly itemCount = itemCount
+  
   constructor(
-    private formBuilder: FormBuilder,
     private _material: MaterialService,
     private _dialog: MatDialog,
-  ) { 
-    this.form = this.formBuilder.group({
-      'itemNumber': [''],
-      'name': [''],
-      'supplierCode': [''],
-      'supplierItemNumber': [''],
-    })
-  }
+  ) { }
 
   ngOnInit(): void {
     this._material.getMaterials().subscribe(res => {
       this.materials = res
-      this.materialsDisplad = this.materials
     })
   }
 
@@ -52,7 +48,6 @@ export class MaterialsComponent implements OnInit {
       if (res.msg == 'updated') {
         this._material.getMaterials().subscribe(materials => {
           this.materials = materials
-          this.materialsDisplad = this.materials
           const dialogConfig = new MatDialogConfig()
           dialogConfig.width = '320px'
           dialogConfig.height = '150px'
@@ -65,7 +60,4 @@ export class MaterialsComponent implements OnInit {
     })
   }
 
-  searchByItemNumber() {
-    
-  }
 }

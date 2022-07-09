@@ -33,6 +33,11 @@ import { CreateWorkOrderDialogComponent } from './components/create-work-order-d
 import { WorkOrderDetailsComponent } from './components/work-order-details/work-order-details.component';
 import { MaterialsComponent } from './components/materials/materials.component';
 import { NeedingDialogComponent } from './components/needing-dialog/needing-dialog.component';
+import { ItemNumberPipe } from './pipes/item-number/item-number.pipe';
+import { NamePipe } from './pipes/name/name.pipe';
+import { SupplierCodePipe } from './pipes/supplier-code/supplier-code.pipe';
+import { SupplierItemNumberPipe } from './pipes/supplier-item-number/supplier-item-number.pipe';
+import { ItemCountPipe } from './pipes/item-count/item-count.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,12 @@ import { NeedingDialogComponent } from './components/needing-dialog/needing-dial
     CreateWorkOrderDialogComponent,
     WorkOrderDetailsComponent,
     MaterialsComponent,
-    NeedingDialogComponent
+    NeedingDialogComponent,
+    ItemNumberPipe,
+    NamePipe,
+    SupplierCodePipe,
+    SupplierItemNumberPipe,
+    ItemCountPipe
   ],
   imports: [
     BrowserModule,

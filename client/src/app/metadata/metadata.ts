@@ -79,3 +79,11 @@ export const recuperators: any[] = [
     { value: '1d', label: 'Dijagonalni' },
     { value: '1r', label: 'Rotacioni' },
 ]
+
+export const itemCount: any[] = [
+    { value: '5', label: 'ništa' },
+    { value: '1', label: '0-200' },
+    { value: '2', label: '200-500' },
+    { value: '3', label: '500-1000' },
+    { value: '4', label: 'preko 1000' }
+]
