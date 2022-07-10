@@ -81,9 +81,22 @@ export const recuperators: any[] = [
 ]
 
 export const itemCount: any[] = [
-    { value: '5', label: 'ništa' },
+    { value: '5', label: 'Ništa' },
     { value: '1', label: '0-200' },
     { value: '2', label: '200-500' },
     { value: '3', label: '500-1000' },
     { value: '4', label: 'preko 1000' }
+]
+
+export const pipeDevices: any[] = [
+    { value: '', label: 'Ništa' },
+    { value: 'air-chamber', label: 'Klima komora' },
+    { value: 'cooling-chamber', label: 'Rashladna komora' },
+]
+
+export const orderStatuses: any[] = [
+    { value: '', label: 'Ništa' },
+    { value: 'ORDER_CREATED', label: 'Nalog je napravljen' },
+    { value: 'START_OF_PRODUCTION', label: 'Početak proizvodnje' },
+    { value: 'END_OF_PRODUCTION', label: 'Kraj proizvodnje' },
 ]

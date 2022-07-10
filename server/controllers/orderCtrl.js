@@ -51,6 +51,9 @@ const createOrder = async (req, res) => {
 const getOrders = async (req, res) => {
     try {
         const orders = await Order.findAll({
+            order: [
+                ['id', 'DESC'],
+            ],
             attributes: ['id', 'companyName', 'createdAt'],
             include: [{
                 model: Ordered_Device,
@@ -121,8 +124,39 @@ const getOrder = async (req, res) => {
     }
 }
 
+const changeStatus = async (req, res) => {
+    try {
+        if(req.body.status === 'END_OF_PRODUCTION') {
+            await Order.update({
+                dateOfRealisation: Date.now(),
+            }, {
+                where: {
+                    id: req.params.id,
+                }
+            })
+        }
+        const ordered_device = await Ordered_Device.update({
+            status: req.body.status
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        })
+        
+        res.json({
+            success: ordered_device[0],
+        })
+
+    } catch (err) {
+        res.json({
+            "err": err
+        })
+    }
+}
+
 module.exports = {
     createOrder,
     getOrders,
-    getOrder
+    getOrder,
+    changeStatus
 }

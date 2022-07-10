@@ -20,4 +20,8 @@ export class OrderService {
   getWorkOrder(id: string) {
     return this._http.get<any>(`${environment.apiUrl}/api/orders/${id}`)
   }
+
+  changeStatus(id: number, status: string) {
+    return this._http.put<any>(`${environment.apiUrl}/api/orders/${id}`, { status: status })
+  }
 }

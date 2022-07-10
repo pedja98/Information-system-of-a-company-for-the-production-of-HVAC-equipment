@@ -33,11 +33,15 @@ import { CreateWorkOrderDialogComponent } from './components/create-work-order-d
 import { WorkOrderDetailsComponent } from './components/work-order-details/work-order-details.component';
 import { MaterialsComponent } from './components/materials/materials.component';
 import { NeedingDialogComponent } from './components/needing-dialog/needing-dialog.component';
-import { ItemNumberPipe } from './pipes/item-number/item-number.pipe';
-import { NamePipe } from './pipes/name/name.pipe';
-import { SupplierCodePipe } from './pipes/supplier-code/supplier-code.pipe';
-import { SupplierItemNumberPipe } from './pipes/supplier-item-number/supplier-item-number.pipe';
-import { ItemCountPipe } from './pipes/item-count/item-count.pipe';
+import { ItemNumberPipe } from './pipes/materials/item-number/item-number.pipe';
+import { NamePipe } from './pipes/materials/name/name.pipe';
+import { SupplierCodePipe } from './pipes/materials/supplier-code/supplier-code.pipe';
+import { SupplierItemNumberPipe } from './pipes/materials/supplier-item-number/supplier-item-number.pipe';
+import { ItemCountPipe } from './pipes/materials/item-count/item-count.pipe';
+import { CompanyNamePipe } from './pipes/orders/company-name/company-name.pipe';
+import { FullnamePipe } from './pipes/orders/fullname/fullname.pipe';
+import { DevicePipe } from './pipes/orders/device/device.pipe';
+import { StatusPipe } from './pipes/orders/status/status.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +74,11 @@ import { ItemCountPipe } from './pipes/item-count/item-count.pipe';
     NamePipe,
     SupplierCodePipe,
     SupplierItemNumberPipe,
-    ItemCountPipe
+    ItemCountPipe,
+    CompanyNamePipe,
+    FullnamePipe,
+    DevicePipe,
+    StatusPipe
   ],
   imports: [
     BrowserModule,

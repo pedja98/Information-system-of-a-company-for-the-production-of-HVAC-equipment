@@ -10,4 +10,6 @@ orders.get("/", tokenVerify, orderCtrl.getOrders)
 
 orders.get("/:id", tokenVerify, orderCtrl.getOrder)
 
+orders.put("/:id", tokenVerify, orderCtrl.changeStatus)
+
 module.exports = orders

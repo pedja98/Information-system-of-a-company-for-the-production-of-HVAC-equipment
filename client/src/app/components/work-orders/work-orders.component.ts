@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { orderStatuses, pipeDevices } from 'src/app/metadata/metadata';
 import { OrderService } from 'src/app/services/order/order.service';
 import { CreateWorkOrderDialogComponent } from '../create-work-order-dialog/create-work-order-dialog.component';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
@@ -12,13 +13,23 @@ import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 })
 export class WorkOrdersComponent implements OnInit {
 
-  orders: any[] = [];
+  orders: any[] = []
+  type: string = ''
+  companyName: string = ''
+  readonly devices = pipeDevices
+  readonly orderStatuses = orderStatuses
+  fullname: string = ''
+  device: string = ''
+  status: string = ''
 
   constructor(
     private _dialog: MatDialog,
     private _order: OrderService,
     private _router: Router
-  ) { }
+  ) {
+    let user = JSON.parse(localStorage.getItem('user') || '{}')
+    this.type = user.type;
+  }
 
   ngOnInit(): void {
     this._order.getWorkOrders().subscribe((res) => {
@@ -56,8 +67,42 @@ export class WorkOrdersComponent implements OnInit {
     })
   }
 
-  orderDetails(i : number) {
-    this._router.navigate(["/production-manager/order/" + this.orders[i].id])
-  }  
+  orderDetails(i: number) {
+    if (this.type === 'production-worker') {
+      this._router.navigate(["/production-worker/order/" + this.orders[i].id])
+    }
+    else if (this.type === 'production-manager') {
+      this._router.navigate(["/production-manager/order/" + this.orders[i].id])
+    }
+  }
+
+  startOfProduction(i: number) {
+    this._order.changeStatus(this.orders[i].id, "START_OF_PRODUCTION").subscribe(res => {
+      if (res.success) {
+        this._order.getWorkOrders().subscribe((res) => {
+          if (res.err) {
+            alert(res.err);
+            return;
+          }
+          this.orders = res
+        })
+      }
+    })
+  }
+
+  endOfProduction(i: number) {
+    this._order.changeStatus(this.orders[i].id, "END_OF_PRODUCTION").subscribe(res => {
+      if (res.success) {
+        this._order.getWorkOrders().subscribe((res) => {
+          if (res.err) {
+            alert(res.err);
+            return;
+          }
+          this.orders = res
+        })
+      }
+    })
+  }
+
 
 }

@@ -15,7 +15,7 @@
             <h3 *ngIf="user.type == 'head-of-procurement'"><b>Tip:</b> Šef prodaje</h3>
             <h3 *ngIf="user.type == 'admin'"><b>Tip:</b> Admin</h3>
             <h3 *ngIf="user.type == 'storekeeper'"><b>Tip:</b> Magacioner</h3>
-            <h3 *ngIf="user.type == 'production-worker'"><b>Tip:</b> Proiyvodni radnik</h3>
+            <h3 *ngIf="user.type == 'production-worker'"><b>Tip:</b> Proizvodni radnik</h3>
             <h3 *ngIf="user.type == 'production-manager'"><b>Tip:</b> Šef proizvodnje</h3>
             <h3><b>Datum rodjenja:</b> {{user?.dateOfBirth | date: 'dd/MM/yyyy'}}</h3>
             <h3><b>Nalog kreiran:</b> {{user?.createdAt | date: 'dd/MM/yyyy'}}</h3>

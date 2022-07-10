@@ -48,13 +48,23 @@
                 {{order?.dateOfRealisation | date: 'dd/MM/yyyy'}}
             </td>
         </tr>
+        <tr *ngIf="order?.dateOfRealisation==null">
+            <th>
+                Datum realizacije
+            </th>
+            <td>
+                Nije još realizovano
+            </td>
+        </tr>
         <tr>
             <th>
                 Status
             </th>
-            <td>
-                {{order?.device.status}}
-            </td>
+            <ng-container [ngSwitch]="order?.device.status">
+                <td *ngSwitchCase="'ORDER_CREATED'">NALOG JE NAPRAVLJEN</td>
+                <td *ngSwitchCase="'START_OF_PRODUCTION'">POČETAK PROIZVODNJE</td>
+                <td *ngSwitchDefault>KRAJ PROIZVODNJE</td>
+            </ng-container>
         </tr>
         <ng-container *ngIf="order?.device.device=='air-chamber'; else coolingChamber">
             <tr>
@@ -148,7 +158,7 @@
                     </td>
                 </ng-container>
             </tr>
-            
+
         </ng-container>
 
         <ng-template #coolingChamber>

@@ -48,6 +48,7 @@ const routes: Routes = [
       { path: "", component: WorkOrdersComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
+      { path: "order/:id", component: WorkOrderDetailsComponent }
     ]
   },
 
