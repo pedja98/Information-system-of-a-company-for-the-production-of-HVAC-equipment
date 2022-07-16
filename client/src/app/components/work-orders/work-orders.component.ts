@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FetchOrdersDto } from 'src/app/dto/fetchOrdersDto';
 import { orderStatuses, pipeDevices } from 'src/app/metadata/metadata';
 import { OrderService } from 'src/app/services/order/order.service';
 import { CreateWorkOrderDialogComponent } from '../create-work-order-dialog/create-work-order-dialog.component';
@@ -13,7 +14,7 @@ import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 })
 export class WorkOrdersComponent implements OnInit {
 
-  orders: any[] = []
+  orders: FetchOrdersDto[] = []
   type: string = ''
   companyName: string = ''
   readonly devices = pipeDevices
@@ -21,6 +22,8 @@ export class WorkOrdersComponent implements OnInit {
   fullname: string = ''
   device: string = ''
   status: string = ''
+  dateStart:Date = new Date('')
+  dateEnd:Date = new Date('')
 
   constructor(
     private _dialog: MatDialog,
@@ -103,6 +106,4 @@ export class WorkOrdersComponent implements OnInit {
       }
     })
   }
-
-
 }

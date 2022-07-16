@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FetchOrdersDto } from 'src/app/dto/fetchOrdersDto';
 
 @Pipe({
   name: 'status'
 })
 export class StatusPipe implements PipeTransform {
 
-  transform(orders: any[], status: string): any {
+  transform(orders: FetchOrdersDto[], status: string): any {
     if (!orders || !status) {
       return orders
     }

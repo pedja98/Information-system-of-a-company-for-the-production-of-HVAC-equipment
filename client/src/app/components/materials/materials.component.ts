@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.component';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 import { itemCount } from 'src/app/metadata/metadata';
+import { FetchMaterialsDto } from 'src/app/dto/fetchMaterialsDto';
 
 @Component({
   selector: 'app-materials',
@@ -12,7 +13,7 @@ import { itemCount } from 'src/app/metadata/metadata';
 })
 export class MaterialsComponent implements OnInit {
 
-  materials: any[] = [];
+  materials: FetchMaterialsDto[] = [];
   itemNumber: string = ""
   name: string = ""
   supplierCode: string = ""
@@ -52,7 +53,7 @@ export class MaterialsComponent implements OnInit {
           dialogConfig.width = '320px'
           dialogConfig.height = '150px'
           dialogConfig.data = {
-            msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value}`
+            msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value} ${this.materials[i].stock.unit}`,
           }
           this._dialog.open(DialogMsgComponent, dialogConfig)
         })

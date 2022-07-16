@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FetchUserDto } from 'src/app/dto/fetchUserDto';
 import { UserService } from 'src/app/services/user/user.service';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 import { EditMyProfileDialogComponent } from '../edit-my-profile-dialog/edit-my-profile-dialog.component';
@@ -12,7 +13,7 @@ import { EditMyProfileDialogComponent } from '../edit-my-profile-dialog/edit-my-
 export class MyProfileComponent implements OnInit {
 
   errMsg: string = ""
-  user: any = null
+  user = {} as FetchUserDto
 
   constructor(private _user: UserService, private _dialog: MatDialog) { }
 

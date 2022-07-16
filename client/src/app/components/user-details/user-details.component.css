@@ -2,22 +2,23 @@
     padding-left: 2%;
 }
 
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 img {
     height: 200px;
     width: 200px;
 }
 
-.content {
-    height: 83.6vh;
-    width: 100%;
-}
-
 .card {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     max-width: 550px;
-
+    margin-left: 10%;
 }
 
 .left {
@@ -55,12 +56,12 @@ table, td, th {
 
 table {
     width: 80%;
-    border-collapse: collapse;
+    margin-bottom: 1%;
 }
 
 .table-div {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
     margin-top: 20px;
 }

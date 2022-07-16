@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FetchUsersDto } from 'src/app/dto/fetchUsersDto';
 import { UserService } from 'src/app/services/user/user.service';
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -20,7 +21,7 @@ export class AllUsersComponent implements OnInit {
     private _router: Router
   ) { }
 
-  users: any[] = [];
+  users: FetchUsersDto[] = [];
 
   addUser() {
     const dialogConfig = new MatDialogConfig()
@@ -101,7 +102,6 @@ export class AllUsersComponent implements OnInit {
   }
 
   editUser(i: number) {
-
     this._user.getUserForEdit(this.users[i].id).subscribe(res => {
       const dialogConfig = new MatDialogConfig()
       dialogConfig.width = '450px'
@@ -135,6 +135,7 @@ export class AllUsersComponent implements OnInit {
   ngOnInit(): void {
     this._user.getUsers().subscribe(res => {
       this.users = res;
+      console.log(this.users)
     })
   }
 

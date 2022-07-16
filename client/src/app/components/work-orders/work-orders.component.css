@@ -52,7 +52,8 @@ button:hover {
 }
 
 .field {
-    margin-left: 1vw;
+    margin-left: 0.5vw;
+    width: 120px;
 }
 
 .inputs {

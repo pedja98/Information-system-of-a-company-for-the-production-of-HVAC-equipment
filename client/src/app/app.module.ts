@@ -42,6 +42,7 @@ import { CompanyNamePipe } from './pipes/orders/company-name/company-name.pipe';
 import { FullnamePipe } from './pipes/orders/fullname/fullname.pipe';
 import { DevicePipe } from './pipes/orders/device/device.pipe';
 import { StatusPipe } from './pipes/orders/status/status.pipe';
+import { OrderDatePipe } from './pipes/orders/order-date/order-date.pipe';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { StatusPipe } from './pipes/orders/status/status.pipe';
     CompanyNamePipe,
     FullnamePipe,
     DevicePipe,
-    StatusPipe
+    StatusPipe,
+    OrderDatePipe
   ],
   imports: [
     BrowserModule,
