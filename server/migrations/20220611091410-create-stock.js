@@ -13,10 +13,6 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      unit: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       count: {
         allowNull: false,
         type: Sequelize.INTEGER

@@ -28,9 +28,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    itemNumber: {
+    unit: {
       allowNull: false,
       type: DataTypes.STRING
+    },
+    itemNumber: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      unique: true
     },
     supplierItemNumber: {
       allowNull: false,

@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    unit: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
     count: {
       allowNull: false,
       type: DataTypes.INTEGER

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MaterialService } from 'src/app/services/material.service';
+import { MaterialService } from 'src/app/services/material/material.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 
@@ -21,12 +21,22 @@ export class NeedingDialogComponent implements OnInit {
   ) { }
 
   updateStock() {
-    if (this.value <= 0) {
+    if (this.value < 0) {
       const dialogConfig = new MatDialogConfig()
       dialogConfig.width = '320px'
       dialogConfig.height = '150px'
       dialogConfig.data = {
         msg: `Vrednost ne sme biti negativna`
+      }
+      this._dialog.open(DialogMsgComponent, dialogConfig)
+      return;
+    }
+    if (this.value === 0) {
+      const dialogConfig = new MatDialogConfig()
+      dialogConfig.width = '320px'
+      dialogConfig.height = '150px'
+      dialogConfig.data = {
+        msg: `Vrednost ne sme biti nula`
       }
       this._dialog.open(DialogMsgComponent, dialogConfig)
       return;

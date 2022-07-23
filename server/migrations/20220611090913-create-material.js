@@ -14,13 +14,18 @@ module.exports = {
       },
       itemNumber: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       supplierCode: {
         allowNull: false,
         type: Sequelize.STRING
       },
       supplierItemNumber: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      unit: {
         allowNull: false,
         type: Sequelize.STRING
       },

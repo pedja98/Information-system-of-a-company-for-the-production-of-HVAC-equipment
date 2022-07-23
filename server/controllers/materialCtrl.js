@@ -9,11 +9,11 @@ const getMaterials = async (req, res) => {
     try {
         const materials = await Material.findAll(
             {
-                attributes: ['id', 'name', 'itemNumber', 'supplierCode', 'supplierItemNumber'],
+                attributes: ['id', 'name', 'itemNumber', 'supplierCode', 'supplierItemNumber', 'unit'],
                 include: [{
                     model: Stock,
                     as: 'stock',
-                    attributes: ['unit', 'count', 'capacity'],
+                    attributes: ['count', 'capacity'],
                     required: true
                 }]
             }

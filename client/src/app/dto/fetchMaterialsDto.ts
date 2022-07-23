@@ -4,9 +4,9 @@ export interface FetchMaterialsDto {
     name: string
     supplierCode: string
     supplierItemNumber: string
+    unit: string
     stock: {
         capacity: number
         count: number
-        unit: string
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MaterialService } from 'src/app/services/material.service';
+import { MaterialService } from 'src/app/services/material/material.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.component';
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
@@ -39,7 +39,7 @@ export class MaterialsComponent implements OnInit {
     dialogConfig.height = '150px'
     dialogConfig.data = {
       id: this.materials[i].id,
-      unit: this.materials[i].stock.unit,
+      unit: this.materials[i].unit,
       count: this.materials[i].stock.count,
       itemNumber: this.materials[i].itemNumber
     }
@@ -53,7 +53,7 @@ export class MaterialsComponent implements OnInit {
           dialogConfig.width = '320px'
           dialogConfig.height = '150px'
           dialogConfig.data = {
-            msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value} ${this.materials[i].stock.unit}`,
+            msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value} ${this.materials[i].unit}`,
           }
           this._dialog.open(DialogMsgComponent, dialogConfig)
         })
