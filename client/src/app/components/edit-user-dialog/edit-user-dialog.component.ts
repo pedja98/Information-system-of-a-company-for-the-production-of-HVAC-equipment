@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EditUserDto } from 'src/app/dto/editUserDto';
 import { userTypes } from 'src/app/metadata/metadata';
 import { UserService } from 'src/app/services/user/user.service';
 import { endsWithwhitespaceValidator, startsWithwhitespaceValidator, whitespaceValidator } from 'src/app/validators/whitespace.validator';
@@ -14,7 +15,7 @@ export class EditUserDialogComponent implements OnInit {
 
   form: FormGroup;
   resMsg = ""
-
+  userOriginalValue: EditUserDto | null;
   readonly userTypes = userTypes
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,
@@ -22,6 +23,7 @@ export class EditUserDialogComponent implements OnInit {
     private _user: UserService,
     private dialogRef: MatDialogRef<EditUserDialogComponent>
   ) {
+    this.userOriginalValue = data.user
     let dateStr = new Date(this.data.user.dateOfBirth).toISOString()
     dateStr = dateStr.substring(0, dateStr.indexOf('T'));
     this.form = this.FormBuilder.group({
@@ -31,7 +33,6 @@ export class EditUserDialogComponent implements OnInit {
       'type': [data.user.type, Validators.required],
       'dateOfBirth': [dateStr, Validators.required],
     })
-
   }
 
   onChange(): void {
@@ -43,6 +44,14 @@ export class EditUserDialogComponent implements OnInit {
   change() {
     this.resMsg = ""
     if (this.form.valid) {
+      if (this.form.value['firstName'] === this.userOriginalValue?.firstName
+        && this.form.value['lastName'] === this.userOriginalValue?.lastName
+        && this.form.value['email'] === this.userOriginalValue?.email
+        && this.form.value['type'] === this.userOriginalValue?.type
+        && String(this.userOriginalValue?.dateOfBirth).includes(this.form.value['dateOfBirth'])
+      ) {
+        return
+      }
       this._user.editUser(this.form.value, this.data.user.id).subscribe(res => {
         this.resMsg = res.faild
         if (res.success) {

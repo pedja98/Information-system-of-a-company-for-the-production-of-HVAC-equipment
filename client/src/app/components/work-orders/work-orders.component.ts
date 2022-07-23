@@ -22,8 +22,8 @@ export class WorkOrdersComponent implements OnInit {
   fullname: string = ''
   device: string = ''
   status: string = ''
-  dateStart:Date = new Date('')
-  dateEnd:Date = new Date('')
+  dateStart: Date = new Date('')
+  dateEnd: Date = new Date('')
 
   constructor(
     private _dialog: MatDialog,

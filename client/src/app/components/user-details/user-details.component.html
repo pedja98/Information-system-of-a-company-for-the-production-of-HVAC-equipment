@@ -4,20 +4,20 @@
 <div class='content'>
     <mat-card class="card">
         <div class="left">
-            <img *ngIf='user?.pic == null' src="../assets/img/picture.png" alt="profile pic">
-            <img *ngIf='user?.pic != null' [src]="user?.pic" alt="profile pic">
+            <img *ngIf='user.pic == null' src="../assets/img/picture.png" alt="profile pic">
+            <img *ngIf='user.pic != null' [src]="user.pic" alt="profile pic">
         </div>
         <div class="right">
-            <h3><b>Ime:</b> {{user?.firstName}}</h3>
-            <h3><b>Prezime:</b> {{user?.lastName}}</h3>
-            <h3><b>Email:</b> {{user?.email}}</h3>
+            <h3><b>Ime:</b> {{user.firstName}}</h3>
+            <h3><b>Prezime:</b> {{user.lastName}}</h3>
+            <h3><b>Email:</b> {{user.email}}</h3>
             <h3 *ngIf="user.type == 'head-of-procurement'"><b>Tip:</b> Šef prodaje</h3>
             <h3 *ngIf="user.type == 'admin'"><b>Tip:</b> Admin</h3>
-            <h3 *ngIf="user.type == 'storekeeper'"><b>Tip:</b> Magacioner</h3>
+            <h3 *ngIf="user.type == 'storekkeeper'"><b>Tip:</b> Magacioner</h3>
             <h3 *ngIf="user.type == 'production-worker'"><b>Tip:</b> Proizvodni radnik</h3>
             <h3 *ngIf="user.type == 'production-manager'"><b>Tip:</b> Šef proizvodnje</h3>
-            <h3><b>Datum rodjenja:</b> {{user?.dateOfBirth | date: 'dd/MM/yyyy'}}</h3>
-            <h3><b>Nalog kreiran:</b> {{user?.createdAt | date: 'dd/MM/yyyy'}}</h3>
+            <h3><b>Datum rodjenja:</b> {{user.dateOfBirth | date: 'dd/MM/yyyy'}}</h3>
+            <h3><b>Nalog kreiran:</b> {{user.createdAt | date: 'dd/MM/yyyy'}}</h3>
         </div>
     </mat-card>
 
@@ -32,7 +32,7 @@
                 </th>
             </tr>
 
-            <tr *ngFor="let activity of user?.activities">
+            <tr *ngFor="let activity of user.activities">
                 <td>
                     {{activity.logedIn | date: 'dd/MM/yyyy, h:mm'}}
                 </td>

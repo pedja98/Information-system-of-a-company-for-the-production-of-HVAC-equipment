@@ -1,4 +1,4 @@
-export interface FetchMaterialsDto {
+export interface FetchNeedsDto {
     id: number
     count: number
     status: string
@@ -12,7 +12,7 @@ export interface FetchMaterialsDto {
     stockkeeper: {
         firstName: string
         lastName: string
-    } | null
+    }
     worker: {
         firstName: string
         lastName: string

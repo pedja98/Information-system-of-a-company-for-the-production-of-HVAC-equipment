@@ -1,5 +1,5 @@
 .content {
-    height:auto;
+    height: auto;
 }
 
 .add-btn {
@@ -38,7 +38,7 @@
 .btn-group {
     width: 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .btn-group button {

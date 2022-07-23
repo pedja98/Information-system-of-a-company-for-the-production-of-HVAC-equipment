@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChange() : void {
-    if(this.resMsg != '') {
+  onChange(): void {
+    if (this.resMsg != '') {
       this.resMsg = ''
     }
   }
@@ -38,31 +38,31 @@ export class LoginComponent implements OnInit {
       this._user.login(this.form.value).subscribe((res) => {
         this.errMsg = res.err
         this.resMsg = res.msg
-        if(res.token) {
+        if (res.token) {
           localStorage.setItem('user', JSON.stringify({
             token: res.token,
             type: res.type
           }))
-          if(res.type === 'admin') {
+          if (res.type === 'admin') {
             this._router.navigate(['/admin'])
           }
 
-          if(res.type === 'production-manager') {
+          if (res.type === 'production-manager') {
             this._router.navigate(['/production-manager'])
           }
 
-          if(res.type === 'production-worker') {
+          if (res.type === 'production-worker') {
             this._router.navigate(['/production-worker'])
           }
 
-          if(res.type === 'storekeeper') {
-            this._router.navigate(['/storekeeper'])
+          if (res.type === 'storekkeeper') {
+            this._router.navigate(['/storekkeeper'])
           }
 
-          if(res.type === 'head-of-procurement') {
+          if (res.type === 'head-of-procurement') {
             this._router.navigate(['/head-of-procurement'])
           }
-         
+
         }
       })
     }

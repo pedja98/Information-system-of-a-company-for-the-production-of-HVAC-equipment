@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-
+import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +8,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}')
-    if(user.type == 'admin') {
+    if (user.type == 'admin') {
       return true;
     }
     this._router.navigate(["*"])

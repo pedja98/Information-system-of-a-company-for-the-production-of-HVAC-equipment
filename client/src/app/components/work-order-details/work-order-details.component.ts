@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FetchOrderDetailsDto } from 'src/app/dto/fetchOrderDetailsDto';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -9,19 +10,20 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class WorkOrderDetailsComponent implements OnInit {
 
-  order: any = null;
+  order: FetchOrderDetailsDto | null
 
   constructor(
     private _route: ActivatedRoute,
     private _order: OrderService,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
+    this.order = null
     let id = this._route.snapshot.paramMap.get('id') || '';
-
     this._order.getWorkOrder(id).subscribe(res => {
       this.order = res
     })
+  }
+
+  ngOnInit(): void {
   }
 
 }

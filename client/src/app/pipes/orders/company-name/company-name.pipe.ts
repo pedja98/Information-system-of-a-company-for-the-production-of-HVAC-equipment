@@ -6,8 +6,8 @@ import { FetchOrdersDto } from 'src/app/dto/fetchOrdersDto';
 })
 export class CompanyNamePipe implements PipeTransform {
 
-  transform(orders: FetchOrdersDto[], companyName:string): any {
-    if(!orders || !companyName) {
+  transform(orders: FetchOrdersDto[], companyName: string): any {
+    if (!orders || !companyName) {
       return orders
     }
     return orders.filter(order => order.companyName.toLowerCase().includes(companyName.toLowerCase()))

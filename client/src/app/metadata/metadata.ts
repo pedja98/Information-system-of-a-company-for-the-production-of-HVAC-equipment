@@ -1,6 +1,6 @@
 export const userTypes: any[] = [
     { value: 'admin', label: 'Admin' },
-    { value: 'storekeeper', label: 'Magacinski radnik' },
+    { value: 'storekkeeper', label: 'Magacinski radnik' },
     { value: 'production-worker', label: 'Proizvodni radnik' },
     { value: 'production-manager', label: 'Šef proizvodnje' },
     { value: 'head-of-procurement', label: 'Šef nabavke' },
@@ -99,4 +99,10 @@ export const orderStatuses: any[] = [
     { value: 'ORDER_CREATED', label: 'Nalog je napravljen' },
     { value: 'START_OF_PRODUCTION', label: 'Početak proizvodnje' },
     { value: 'END_OF_PRODUCTION', label: 'Kraj proizvodnje' },
+]
+
+export const needStatuses: any[] = [
+    { value: '', label: 'Ništa' },
+    { value: 'SENT', label: 'Poslato' },
+    { value: 'RECEIVED', label: 'Preuzeto' },
 ]

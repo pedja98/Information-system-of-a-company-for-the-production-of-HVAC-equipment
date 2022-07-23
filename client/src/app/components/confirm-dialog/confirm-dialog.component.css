@@ -31,13 +31,13 @@
 }
 
 .confirm-btn {
-    background-color: #000;
-    color: #fff;
-    height: 35px;
-    width: 120px;
-    float: right;
+  background-color: #000;
+  color: #fff;
+  height: 35px;
+  width: 120px;
+  float: right;
 }
 
 .confirm-btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }

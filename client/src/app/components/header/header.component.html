@@ -28,12 +28,13 @@
     </div>
 </header>
 
-<header *ngIf="user?.type == 'storekeeper'">
-    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/storekeeper/']">
+<header *ngIf="user?.type == 'storekkeeper'">
+    <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/storekkeeper/']">
     <div class="btn-group">
-        <button mat-button [routerLink]="['/storekeeper/']">Materijali</button>
-        <button mat-button [routerLink]="['/storekeeper/my-profile']">Moj Profil</button>
-        <button mat-button [routerLink]="['/storekeeper/change-password']">Promeni lozinku</button>
+        <button mat-button [routerLink]="['/storekkeeper/']">Materijali</button>
+        <button mat-button [routerLink]="['/storekkeeper/needs']">Trebovanje</button>
+        <button mat-button [routerLink]="['/storekkeeper/my-profile']">Moj Profil</button>
+        <button mat-button [routerLink]="['/storekkeeper/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>
     </div>
 </header>
@@ -42,6 +43,7 @@
     <img src="../assets/img/banner.png" alt="banner png" [routerLink]="['/production-worker/']">
     <div class="btn-group">
         <button mat-button [routerLink]="['/production-worker/']">Svi nalozi</button>
+        <button mat-button [routerLink]="['/production-worker/needs']">Trebovanje</button>
         <button mat-button [routerLink]="['/production-worker/my-profile']">Moj Profil</button>
         <button mat-button [routerLink]="['/production-worker/change-password']">Promeni lozinku</button>
         <button mat-button (click)="logOut()">Izlogujte se</button>

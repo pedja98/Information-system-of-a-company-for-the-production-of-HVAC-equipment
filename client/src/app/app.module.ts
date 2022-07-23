@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 import { HeadOfProcurementComponent } from './components/head-of-procurement/head-of-procurement.component';
 import { ProductionManagerComponent } from './components/production-manager/production-manager.component';
-import { StorekeeperComponent } from './components/storekeeper/storekeeper.component';
+import { StorekeeperComponent } from './components/storekkeeper/storekeeper.component';
 import { ProductionWorkerComponent } from './components/production-worker/production-worker.component';
 import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
 import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
@@ -44,7 +44,11 @@ import { DevicePipe } from './pipes/orders/device/device.pipe';
 import { StatusPipe } from './pipes/orders/status/status.pipe';
 import { OrderDatePipe } from './pipes/orders/order-date/order-date.pipe';
 import { NeedsComponent } from './components/needs/needs.component';
-
+import { NeedItemNumberPipe } from './pipes/needs/need-item-number/need-item-number.pipe';
+import { NeedMaterialNamePipe } from './pipes/needs/need-material-name/need-material-name.pipe';
+import { NeedStatusPipe } from './pipes/needs/need-status/need-status.pipe';
+import { NeedStokkeperFullnamePipe } from './pipes/needs/need-stokkeper-fullname/need-stokkeper-fullname.pipe';
+import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-worker-fullname.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +86,12 @@ import { NeedsComponent } from './components/needs/needs.component';
     DevicePipe,
     StatusPipe,
     OrderDatePipe,
-    NeedsComponent
+    NeedsComponent,
+    NeedItemNumberPipe,
+    NeedMaterialNamePipe,
+    NeedStatusPipe,
+    NeedStokkeperFullnamePipe,
+    NeedWorkerFullnamePipe,
   ],
   imports: [
     BrowserModule,

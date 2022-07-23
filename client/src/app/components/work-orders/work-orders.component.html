@@ -37,8 +37,7 @@
         <button *ngIf="type!=='production-worker'" class="add-btn" (click)="openDialog()">Napravi radni nalog</button>
     </div>
     <mat-grid-list cols="3" class="users-gallery">
-        <mat-grid-tile
-            *ngFor="let order of (orders | companyName:companyName
+        <mat-grid-tile *ngFor="let order of (orders | companyName:companyName
              | fullname:fullname 
              | device:device 
              | status:status

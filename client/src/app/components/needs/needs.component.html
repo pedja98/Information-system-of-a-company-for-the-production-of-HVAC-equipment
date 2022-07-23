@@ -1,1 +1,49 @@
-<p>needs works!</p>
+<div class="search">
+    <mat-form-field class="field">
+        <mat-label>Broj artikla</mat-label>
+        <input name="itemNumber" [(ngModel)]="itemNumber" autocomplete="off" type="text" name="itemNumber" matInput>
+    </mat-form-field>
+    <mat-form-field class="field">
+        <mat-label>Naziv</mat-label>
+        <input name="name" [(ngModel)]="name" autocomplete="off" type="text" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field class="field">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="status" name="status">
+            <mat-option *ngFor="let status of needStatuses" [value]="status.value">
+                {{status.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="field">
+        <mat-label>Poslao</mat-label>
+        <input name="name" [(ngModel)]="stockkeeperFullname" autocomplete="off" type="text" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field class="field">
+        <mat-label>Preuzeo</mat-label>
+        <input name="name" [(ngModel)]="workerFullname" autocomplete="off" type="text" name="name" matInput>
+    </mat-form-field>
+</div>
+<div class="content">
+    <mat-grid-list cols="3" rowHeight="400px" class="mat-gallery">
+        <mat-grid-tile
+            *ngFor=" let need of (needs | needItemNumber:itemNumber | needMaterialName:name | needStatus:status | needStokkeperFullname:stockkeeperFullname | needWorkerFullname:workerFullname) let i=index;">
+            <mat-card class="card" [ngStyle]="{'height':(user?.type==='production-worker')?'300px':'270px' }">
+                <p><b>Broj artikla: </b> {{need.material.itemNumber}}</p>
+                <p><b>Naziv: </b> {{need.material.name}}</p>
+                <p><b>Kolicina: </b>{{need.count}} {{need.material.unit}}</p>
+                <p *ngIf="need.status === 'SENT'"><b>Status: </b>POSLATO</p>
+                <p *ngIf="need.status === 'RECEIVED'"><b>Status: </b>PREUZETO</p>
+                <p><b>Poslao: </b>{{need.stockkeeper.firstName}} {{need.stockkeeper.lastName}}</p>
+                <p><b>Datum slanja: </b>{{need.createdAt | date: 'dd/MM/yyyy'}}</p>
+                <p *ngIf='need.worker !== null'><b>Preuzeo: </b>{{need.worker.firstName}} {{need.worker.lastName}}</p>
+                <p *ngIf='need.worker !== null'><b>Datum preuzimanja: </b>{{need.updatedAt | date: 'dd/MM/yyyy'}}</p>
+                <p *ngIf='need.worker === null'><b>Nije preuzeto</b></p>
+                <div class="btn-group">
+                    <button *ngIf="need.status === 'SENT' && user?.type==='production-worker'"
+                        (click)="receive(need.id)">Preuzmi</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

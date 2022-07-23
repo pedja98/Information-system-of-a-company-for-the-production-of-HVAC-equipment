@@ -9,30 +9,37 @@
             <mat-error *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['white-space'] && !form.controls['companyName'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['white-space'] && !form.controls['companyName'].errors['required']">
                 Polje ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['starts-with-white-space'] && !form.controls['companyName'].errors['required'] && !form.controls['companyName'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['starts-with-white-space'] && !form.controls['companyName'].errors['required'] && !form.controls['companyName'].errors['white-space']">
                 Ime kompanije ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['ends-with-white-space'] && !form.controls['companyName'].errors['required'] && !form.controls['companyName'].errors['white-space'] && !form.controls['companyName'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['companyName'].errors && form.controls['companyName'].errors['ends-with-white-space'] && !form.controls['companyName'].errors['required'] && !form.controls['companyName'].errors['white-space'] && !form.controls['companyName'].errors['starts-with-white-space']">
                 Ime kompanije ne sme se završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Drzava</mat-label>
-            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyCountry" value="">
+            <input autocomplete="off" type="text" name="companyCountry" matInput formControlName="companyCountry"
+                value="">
             <mat-error
                 *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['white-space'] && !form.controls['companyCountry'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['white-space'] && !form.controls['companyCountry'].errors['required']">
                 Polje ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['starts-with-white-space'] && !form.controls['companyCountry'].errors['required'] && !form.controls['companyCountry'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['starts-with-white-space'] && !form.controls['companyCountry'].errors['required'] && !form.controls['companyCountry'].errors['white-space']">
                 Ime države ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['ends-with-white-space'] && !form.controls['companyCountry'].errors['required'] && !form.controls['companyCountry'].errors['white-space'] && !form.controls['companyCountry'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['companyCountry'].errors && form.controls['companyCountry'].errors['ends-with-white-space'] && !form.controls['companyCountry'].errors['required'] && !form.controls['companyCountry'].errors['white-space'] && !form.controls['companyCountry'].errors['starts-with-white-space']">
                 Ime države ne sme se završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
@@ -42,13 +49,16 @@
             <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['white-space'] && !form.controls['companyCity'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['white-space'] && !form.controls['companyCity'].errors['required']">
                 Polje ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['starts-with-white-space'] && !form.controls['companyCity'].errors['required'] && !form.controls['companyCity'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['starts-with-white-space'] && !form.controls['companyCity'].errors['required'] && !form.controls['companyCity'].errors['white-space']">
                 Ime grada ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['ends-with-white-space'] && !form.controls['companyCity'].errors['required'] && !form.controls['companyCity'].errors['white-space'] && !form.controls['companyCity'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['companyCity'].errors && form.controls['companyCity'].errors['ends-with-white-space'] && !form.controls['companyCity'].errors['required'] && !form.controls['companyCity'].errors['white-space'] && !form.controls['companyCity'].errors['starts-with-white-space']">
                 Ime grada ne sme se završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
@@ -60,13 +70,16 @@
                 *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['white-space'] && !form.controls['companyAddress'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['white-space'] && !form.controls['companyAddress'].errors['required']">
                 Polje ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['starts-with-white-space'] && !form.controls['companyAddress'].errors['required'] && !form.controls['companyAddress'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['starts-with-white-space'] && !form.controls['companyAddress'].errors['required'] && !form.controls['companyAddress'].errors['white-space']">
                 Adresa ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['ends-with-white-space'] && !form.controls['companyAddress'].errors['required'] && !form.controls['companyAddress'].errors['white-space'] && !form.controls['companyAddress'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['companyAddress'].errors && form.controls['companyAddress'].errors['ends-with-white-space'] && !form.controls['companyAddress'].errors['required'] && !form.controls['companyAddress'].errors['white-space'] && !form.controls['companyAddress'].errors['starts-with-white-space']">
                 Adresa se ne sme završiti sa blanko znakom
             </mat-error>
         </mat-form-field>

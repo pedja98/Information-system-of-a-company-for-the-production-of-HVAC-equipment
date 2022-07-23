@@ -10,7 +10,8 @@
             <mat-card-content>
                 <mat-form-field class="full-width">
                     <mat-label [ngClass]="{error: resMsg == 'mail'}">Email</mat-label>
-                    <input autocomplete="off" type="email" (input)="onChange()" name="email" matInput value="" formControlName="email">
+                    <input autocomplete="off" type="email" (input)="onChange()" name="email" matInput value=""
+                        formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
                     <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['required']">
                         Polje je obavezno

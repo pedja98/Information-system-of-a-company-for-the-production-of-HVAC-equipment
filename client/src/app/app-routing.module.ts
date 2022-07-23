@@ -6,11 +6,12 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { LoginComponent } from './components/login/login.component';
 import { MaterialsComponent } from './components/materials/materials.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { NeedsComponent } from './components/needs/needs.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductionManagerComponent } from './components/production-manager/production-manager.component';
 import { ProductionWorkerComponent } from './components/production-worker/production-worker.component';
 import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
-import { StorekeeperComponent } from './components/storekeeper/storekeeper.component';
+import { StorekeeperComponent } from './components/storekkeeper/storekeeper.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { WorkOrderDetailsComponent } from './components/work-order-details/work-order-details.component';
 import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
     path: "production-worker", component: ProductionWorkerComponent, canActivate: [ProductionWorkerGuard],
     children: [
       { path: "", component: WorkOrdersComponent },
+      { path: "needs", component: NeedsComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
       { path: "order/:id", component: WorkOrderDetailsComponent }
@@ -53,9 +55,10 @@ const routes: Routes = [
   },
 
   {
-    path: "storekeeper", component: StorekeeperComponent, canActivate: [StorekeeperGuard],
+    path: "storekkeeper", component: StorekeeperComponent, canActivate: [StorekeeperGuard],
     children: [
       { path: "", component: MaterialsComponent },
+      { path: "needs", component: NeedsComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
     ]

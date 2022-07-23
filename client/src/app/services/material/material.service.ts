@@ -14,6 +14,6 @@ export class MaterialService {
   }
 
   updateMaterialStock(id: number, value: number, count: number) {
-    return this._http.put<any>(`${environment.apiUrl}/api/materials/${id}`, {value, count})
+    return this._http.put<any>(`${environment.apiUrl}/api/materials/${id}`, { value, count })
   }
 }

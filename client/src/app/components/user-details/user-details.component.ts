@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FetchUserDetailsDto } from 'src/app/dto/fetchUserDetails';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -8,11 +9,9 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  
   errMsg: string = ""
-  user:any = null
-  activities:any[] = [];
-  
+  user = {} as FetchUserDetailsDto
+
   constructor(private _route: ActivatedRoute, private _user: UserService,) { }
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +9,11 @@ export class HeadOfProcurementGuard implements CanActivate {
 
   canActivate(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}')
-    if(user.type == 'head-of-procurement') {
+    if (user.type == 'head-of-procurement') {
       return true;
     }
     this._router.navigate(["*"])
     return false;
   }
-  
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDto } from 'src/app/dto/userDto';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  user: any
+  user = {} as UserDto
   constructor(private _user: UserService, private _router: Router) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}')
   }

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -29,7 +29,7 @@ export class EditMyProfileDialogComponent implements OnInit {
   change() {
     if (this.form.valid) {
       this._user.updateMyProfile(this.form.value).subscribe(res => {
-        if(res.success) {
+        if (res.success) {
           this.dialogRef.close({ data: 'updated' })
         }
       })

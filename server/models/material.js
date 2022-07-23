@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Material extends Model {
     /**
@@ -12,46 +10,49 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  Material.init({
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+  }
+  Material.init(
+    {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      supplierCode: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      unit: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      itemNumber: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      supplierItemNumber: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
     },
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    supplierCode: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    unit: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    itemNumber: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      unique: true
-    },
-    supplierItemNumber: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
+    {
+      sequelize,
+      modelName: "Material",
     }
-  }, {
-    sequelize,
-    modelName: 'Material',
-  });
+  );
   return Material;
 };

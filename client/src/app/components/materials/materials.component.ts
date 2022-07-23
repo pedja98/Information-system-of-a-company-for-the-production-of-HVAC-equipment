@@ -21,7 +21,7 @@ export class MaterialsComponent implements OnInit {
   cnt = 0
 
   readonly itemCount = itemCount
-  
+
   constructor(
     private _material: MaterialService,
     private _dialog: MatDialog,

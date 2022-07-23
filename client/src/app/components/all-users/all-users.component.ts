@@ -112,6 +112,9 @@ export class AllUsersComponent implements OnInit {
       let dialogRef = this._dialog.open(EditUserDialogComponent, dialogConfig)
 
       dialogRef.afterClosed().subscribe(res => {
+        if (res === null || res === undefined) {
+          return
+        }
         if (res.msg == 'updated') {
           this._user.getUsers().subscribe(res => {
             this.users = res;
@@ -135,7 +138,6 @@ export class AllUsersComponent implements OnInit {
   ngOnInit(): void {
     this._user.getUsers().subscribe(res => {
       this.users = res;
-      console.log(this.users)
     })
   }
 

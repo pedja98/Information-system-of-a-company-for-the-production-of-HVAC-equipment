@@ -1,0 +1,45 @@
+.card {
+    width: 400px;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: auto;
+}
+
+.btn-group button {
+    color: #fff;
+    height: 40px;
+    background-color: #000;
+    width: 23%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.search {
+    display: flex;
+    margin-left: 5vh;
+}
+
+.field {
+    margin-left: 3vh;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: black !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: black !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: black !important;
+}

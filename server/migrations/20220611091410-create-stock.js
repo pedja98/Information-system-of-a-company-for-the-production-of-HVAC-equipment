@@ -1,37 +1,37 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Stocks', {
+    await queryInterface.createTable("Stocks", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Materials',
-          key: 'id'
+          model: "Materials",
+          key: "id",
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       count: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       capacity: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Stocks');
-  }
+    await queryInterface.dropTable("Stocks");
+  },
 };

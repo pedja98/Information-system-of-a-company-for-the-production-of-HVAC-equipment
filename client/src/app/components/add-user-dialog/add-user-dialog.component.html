@@ -11,13 +11,16 @@
             <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['required']">
                 Vrednost polja ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['starts-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['starts-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space']">
                 Ime ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['ends-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['firstName'].errors && form.controls['firstName'].errors['ends-with-white-space'] && !form.controls['firstName'].errors['required'] && !form.controls['firstName'].errors['white-space'] && !form.controls['firstName'].errors['starts-with-white-space']">
                 Ime se ne sme završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
@@ -28,13 +31,16 @@
             <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['required']">
                 Polje je obavezno
             </mat-error>
-            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['required']">
+            <mat-error
+                *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['required']">
                 Vrednost polja ne sme da se sastoji isključivo od blanko znaka
             </mat-error>
-            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['starts-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space']">
+            <mat-error
+                *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['starts-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space']">
                 Prezime ne sme početi sa blanko znakom
             </mat-error>
-            <mat-error *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['ends-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['starts-with-white-space']">
+            <mat-error
+                *ngIf="form.controls['lastName'].errors && form.controls['lastName'].errors['ends-with-white-space'] && !form.controls['lastName'].errors['required'] && !form.controls['lastName'].errors['white-space'] && !form.controls['lastName'].errors['starts-with-white-space']">
                 Prezime se ne sme završiti sa blanko znakom
             </mat-error>
         </mat-form-field>
@@ -49,7 +55,8 @@
             <mat-error *ngIf="form.controls['email'].errors && form.controls['email'].errors['email']">
                 Format koji ste uneli ne odgovara email-u
             </mat-error>
-            <mat-hint class="error" *ngIf="resMsg == 'mail'">Uneti e-mail je trenutno zauzeta. Molimo Vas unsite drugi</mat-hint>
+            <mat-hint class="error" *ngIf="resMsg == 'mail'">Uneti e-mail je trenutno zauzeta. Molimo Vas unsite drugi
+            </mat-hint>
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Datum rodjenja</mat-label>

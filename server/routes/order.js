@@ -1,15 +1,13 @@
-const orders = require('express').Router();
-const orderCtrl = require('../controllers/orderCtrl') 
-const {
-    tokenVerify
-} = require("../middleware/tokenVerify");
+const orders = require("express").Router();
+const orderCtrl = require("../controllers/orderCtrl");
+const { tokenVerify } = require("../middleware/tokenVerify");
 
-orders.post("/", tokenVerify, orderCtrl.createOrder)
+orders.post("/", tokenVerify, orderCtrl.createOrder);
 
-orders.get("/", tokenVerify, orderCtrl.getOrders)
+orders.get("/", tokenVerify, orderCtrl.getOrders);
 
-orders.get("/:id", tokenVerify, orderCtrl.getOrder)
+orders.get("/:id", tokenVerify, orderCtrl.getOrder);
 
-orders.put("/:id", tokenVerify, orderCtrl.changeStatus)
+orders.put("/:id", tokenVerify, orderCtrl.changeStatus);
 
-module.exports = orders
+module.exports = orders;

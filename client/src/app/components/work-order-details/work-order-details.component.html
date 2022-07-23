@@ -60,13 +60,13 @@
             <th>
                 Status
             </th>
-            <ng-container [ngSwitch]="order?.device.status">
+            <ng-container [ngSwitch]="order?.device?.status">
                 <td *ngSwitchCase="'ORDER_CREATED'">NALOG JE NAPRAVLJEN</td>
                 <td *ngSwitchCase="'START_OF_PRODUCTION'">POČETAK PROIZVODNJE</td>
                 <td *ngSwitchDefault>KRAJ PROIZVODNJE</td>
             </ng-container>
         </tr>
-        <ng-container *ngIf="order?.device.device=='air-chamber'; else coolingChamber">
+        <ng-container *ngIf="order?.device?.device=='air-chamber'; else coolingChamber">
             <tr>
                 <th>
                     Uredjaj
@@ -81,7 +81,7 @@
                     Model
                 </th>
                 <td>
-                    {{order?.device.model}}
+                    {{order?.device?.model}}
                 </td>
             </tr>
 
@@ -90,7 +90,7 @@
                     Broj ventilatora
                 </th>
                 <td>
-                    {{order?.device.fans}}
+                    {{order?.device?.fans}}
                 </td>
             </tr>
 
@@ -99,7 +99,7 @@
                     Broj filtera
                 </th>
                 <td>
-                    {{order?.device.filters}}
+                    {{order?.device?.filters}}
                 </td>
             </tr>
 
@@ -108,7 +108,7 @@
                     Broj hladnjaka
                 </th>
                 <td>
-                    {{order?.device.coolers}}
+                    {{order?.device?.coolers}}
                 </td>
             </tr>
 
@@ -117,7 +117,7 @@
                     Broj grejača
                 </th>
                 <td>
-                    {{order?.device.heaters}}
+                    {{order?.device?.heaters}}
                 </td>
             </tr>
 
@@ -126,7 +126,7 @@
                     Broj prigušivača
                 </th>
                 <td>
-                    {{order?.device.mufflers}}
+                    {{order?.device?.mufflers}}
                 </td>
             </tr>
 
@@ -134,10 +134,10 @@
                 <th>
                     Ovlaživač
                 </th>
-                <td *ngIf="order?.device.moisturizer">
+                <td *ngIf="order?.device?.moisturizer">
                     Ima
                 </td>
-                <td *ngIf="!order?.device.moisturizer">
+                <td *ngIf="!order?.device?.moisturizer">
                     Nema
                 </td>
             </tr>
@@ -146,7 +146,7 @@
                 <th>
                     Rekuperator
                 </th>
-                <ng-container [ngSwitch]="order?.device.recuperator">
+                <ng-container [ngSwitch]="order?.device?.recuperator">
                     <td *ngSwitchCase="'1r'">
                         Rotacioni
                     </td>
@@ -171,7 +171,7 @@
                 </td>
             </tr>
 
-            <ng-container *ngIf="order?.device.model=='zero'; else minus">
+            <ng-container *ngIf="order?.device?.model=='zero'; else minus">
                 <tr>
                     <th>
                         Model
@@ -196,7 +196,7 @@
                     Duzina
                 </th>
                 <td>
-                    {{order?.device.length}}
+                    {{order?.device?.length}}
                 </td>
             </tr>
 
@@ -205,7 +205,7 @@
                     Visina
                 </th>
                 <td>
-                    {{order?.device.height}}
+                    {{order?.device?.height}}
                 </td>
             </tr>
 
@@ -214,7 +214,7 @@
                     Širina
                 </th>
                 <td>
-                    {{order?.device.width}}
+                    {{order?.device?.width}}
                 </td>
             </tr>
         </ng-template>
