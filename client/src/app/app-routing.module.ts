@@ -68,6 +68,7 @@ const routes: Routes = [
     path: "head-of-procurement", component: StorekeeperComponent, canActivate: [HeadOfProcurementGuard],
     children: [
       { path: "", component: PurchaseOrdersComponent },
+      { path: "materials", component: MaterialsComponent },
       { path: "my-profile", component: MyProfileComponent },
       { path: "change-password", component: ChangePasswordComponent },
     ]

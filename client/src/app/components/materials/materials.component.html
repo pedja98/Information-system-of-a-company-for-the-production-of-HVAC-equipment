@@ -27,7 +27,7 @@
     </mat-form-field>
 </div>
 <div class="content">
-    <mat-grid-list cols="3" rowHeight="300px" class="mat-gallery">
+    <mat-grid-list cols="3" rowHeight="350px" class="mat-gallery">
         <mat-grid-tile
             *ngFor="let material of (materials | itemNumber:itemNumber | supplierCode:supplierCode | name:name | supplierItemNumber:supplierItemNumber | itemCount:cnt); let i = index;">
             <mat-card class="card">
@@ -36,6 +36,9 @@
                 <p><b>Šifra proizvodjača: </b> {{material.supplierCode}}</p>
                 <p><b>Proizvodjačev br. artikla: </b> {{material.supplierItemNumber}}</p>
                 <p><b>Kolicina: </b>{{material?.stock.count}} {{material.unit}}</p>
+                <p *ngIf="material?.stock.count<(material?.stock.capacity/5)" style="color:red">
+                    <b>NEOPHODNA NABAVKA</b>
+                </p>
                 <div class="btn-group">
                     <button (click)="need(i)">Trebovanje</button>
                 </div>
