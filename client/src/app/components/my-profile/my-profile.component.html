@@ -1,22 +1,38 @@
-<div class="err-msg" *ngIf="errMsg!= '' && errMsg != null">
-    <h2>{{errMsg}}</h2>
+<div class="err-msg" *ngIf="errMsg != '' && errMsg != null">
+  <h2>{{ errMsg }}</h2>
 </div>
 
-<div class='content'>
-    <mat-card class="card">
-        <form class="left">
-            <img *ngIf='user.pic == null' src="../assets/img/picture.png" alt="profile pic">
-            <img *ngIf='user.pic != null' [src]="user.pic" alt="profile pic">
-            <input type='file' id="getFile" style="display:none" accept="image/png, image/gif, image/jpeg"
-                (change)="setImg($event)" #fileInput>
-            <button class="change-btn" (click)="fileInput.click()">Promeni sliku</button>
-        </form>
-        <div class="right">
-            <h3><b>Ime:</b> {{user.firstName}}</h3>
-            <h3><b>Prezime:</b> {{user.lastName}}</h3>
-            <h3><b>Email:</b> {{user.email}}</h3>
-            <h3><b>Datum rodjenja:</b> {{user.dateOfBirth | date: 'dd/MM/yyyy'}}</h3>
-            <button class="change-btn" (click)="openEditDialog()">Izmeni informacije</button>
-        </div>
-    </mat-card>
+<div class="content">
+  <mat-card class="card">
+    <form class="left">
+      <img
+        *ngIf="user.pic == null"
+        src="../assets/img/picture.png"
+        alt="profile pic"
+      />
+      <img *ngIf="user.pic != null" [src]="user.pic" alt="profile pic" />
+      <input
+        type="file"
+        id="getFile"
+        style="display: none"
+        accept="image/png, image/gif, image/jpeg"
+        (change)="setImg($event)"
+        #fileInput
+      />
+      <button class="change-btn" (click)="fileInput.click()">
+        Promeni sliku
+      </button>
+    </form>
+    <div class="right">
+      <h3><b>Ime:</b> {{ user.firstName }}</h3>
+      <h3><b>Prezime:</b> {{ user.lastName }}</h3>
+      <h3><b>Email:</b> {{ user.email }}</h3>
+      <h3>
+        <b>Datum rodjenja:</b> {{ user.dateOfBirth | date: "dd/MM/yyyy" }}
+      </h3>
+      <button class="change-btn" (click)="openEditDialog()">
+        Izmeni informacije
+      </button>
+    </div>
+  </mat-card>
 </div>

@@ -1,82 +1,84 @@
 .err-msg {
-    padding-left: 2%;
+  padding-left: 2%;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 img {
-    height: 200px;
-    width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
 .card {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    max-width: 550px;
-    margin-left: 10%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  max-width: 550px;
+  margin-left: 10%;
 }
 
 .left {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .right {
-    display: flex;
-    flex-direction: column;
-    border-left: 1.5px solid rgb(173, 173, 173);
-    padding-left: 2vw;
-    margin-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  border-left: 1.5px solid rgb(173, 173, 173);
+  padding-left: 2vw;
+  margin-left: 3vw;
 }
 
 .change-btn {
-    background-color: black;
-    color: white;
-    height: 35px;
-    width: 180px;
-    margin-top: 15px;
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 180px;
+  margin-top: 15px;
 }
 
 .change-btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .right button {
-    margin-top: 19px;
+  margin-top: 19px;
 }
 
-table, td, th {
-    border: 1px solid;
+table,
+td,
+th {
+  border: 1px solid;
 }
 
 table {
-    width: 80%;
-    margin-bottom: 1%;
+  width: 80%;
+  margin-bottom: 1%;
 }
 
 .table-div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 td {
-    padding-left: 2.5vw;
+  padding-left: 2.5vw;
 }
 
 th {
-    background-color: #000;
-    color: #fff;
-    font-size: 15px;
+  background-color: #000;
+  color: #fff;
+  font-size: 15px;
 }
 
 .title {
-    margin-top: 15px;
-    font-size: 40px;
+  margin-top: 15px;
+  font-size: 40px;
 }

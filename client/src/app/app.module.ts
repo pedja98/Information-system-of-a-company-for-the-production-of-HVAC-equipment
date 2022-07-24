@@ -24,7 +24,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 import { HeadOfProcurementComponent } from './components/head-of-procurement/head-of-procurement.component';
 import { ProductionManagerComponent } from './components/production-manager/production-manager.component';
-import { StorekeeperComponent } from './components/storekkeeper/storekeeper.component';
+import { StockkeeperComponent } from './components/stockkeeper/stockkeeper.component';
 import { ProductionWorkerComponent } from './components/production-worker/production-worker.component';
 import { WorkOrdersComponent } from './components/work-orders/work-orders.component';
 import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
@@ -67,7 +67,7 @@ import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-
     EditUserDialogComponent,
     HeadOfProcurementComponent,
     ProductionManagerComponent,
-    StorekeeperComponent,
+    StockkeeperComponent,
     ProductionWorkerComponent,
     WorkOrdersComponent,
     PurchaseOrdersComponent,
@@ -100,9 +100,15 @@ import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

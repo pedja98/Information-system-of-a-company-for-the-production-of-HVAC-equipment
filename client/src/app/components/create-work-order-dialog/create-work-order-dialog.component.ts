@@ -2,24 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from 'src/app/services/order/order.service';
-import { endsWithwhitespaceValidator, startsWithwhitespaceValidator, whitespaceValidator } from 'src/app/validators/whitespace.validator';
-import { devices, deviceWidth, deviceLength, deviceHeight, coolingChamberModels, airChamberModels, recuperators } from '../../metadata/metadata'
+import {
+  endsWithwhitespaceValidator,
+  startsWithwhitespaceValidator,
+  whitespaceValidator,
+} from 'src/app/validators/whitespace.validator';
+import {
+  devices,
+  deviceWidth,
+  deviceLength,
+  deviceHeight,
+  coolingChamberModels,
+  airChamberModels,
+  recuperators,
+} from '../../metadata/metadata';
 @Component({
   selector: 'app-create-work-order-dialog',
   templateUrl: './create-work-order-dialog.component.html',
-  styleUrls: ['./create-work-order-dialog.component.css']
+  styleUrls: ['./create-work-order-dialog.component.css'],
 })
 export class CreateWorkOrderDialogComponent implements OnInit {
+  form: FormGroup;
 
-  form: FormGroup
-
-  readonly devices = devices
-  readonly deviceWidth = deviceWidth
-  readonly deviceLength = deviceLength
-  readonly deviceHeight = deviceHeight
-  readonly coolingChamberModels = coolingChamberModels
-  readonly airChamberModels = airChamberModels
-  readonly recuperators = recuperators
+  readonly devices = devices;
+  readonly deviceWidth = deviceWidth;
+  readonly deviceLength = deviceLength;
+  readonly deviceHeight = deviceHeight;
+  readonly coolingChamberModels = coolingChamberModels;
+  readonly airChamberModels = airChamberModels;
+  readonly recuperators = recuperators;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,28 +38,59 @@ export class CreateWorkOrderDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateWorkOrderDialogComponent>
   ) {
     this.form = this.formBuilder.group({
-      'companyName': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
-      'companyCountry': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
-      'companyCity': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
-      'companyAddress': ['', [Validators.required, whitespaceValidator, startsWithwhitespaceValidator, endsWithwhitespaceValidator]],
-      'device': ['', Validators.required],
-      'width': ['1.2'],
-      'height': ['2.1'],
-      'length': ['1.2'],
-      'model': ['zero'],
-      'type': ['K1'],
-      'fans': [1],
-      'filters': [0],
-      'coolers': [0],
-      'heaters': [0],
-      'moisturizer': [false],
-      'recuperator': [''],
-      'mufflers': [0]
-    })
+      companyName: [
+        '',
+        [
+          Validators.required,
+          whitespaceValidator,
+          startsWithwhitespaceValidator,
+          endsWithwhitespaceValidator,
+        ],
+      ],
+      companyCountry: [
+        '',
+        [
+          Validators.required,
+          whitespaceValidator,
+          startsWithwhitespaceValidator,
+          endsWithwhitespaceValidator,
+        ],
+      ],
+      companyCity: [
+        '',
+        [
+          Validators.required,
+          whitespaceValidator,
+          startsWithwhitespaceValidator,
+          endsWithwhitespaceValidator,
+        ],
+      ],
+      companyAddress: [
+        '',
+        [
+          Validators.required,
+          whitespaceValidator,
+          startsWithwhitespaceValidator,
+          endsWithwhitespaceValidator,
+        ],
+      ],
+      device: ['', Validators.required],
+      width: ['1.2'],
+      height: ['2.1'],
+      length: ['1.2'],
+      model: ['zero'],
+      type: ['K1'],
+      fans: [1],
+      filters: [0],
+      coolers: [0],
+      heaters: [0],
+      moisturizer: [false],
+      recuperator: [''],
+      mufflers: [0],
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   createOrder() {
     if (this.form.valid) {
@@ -58,23 +100,56 @@ export class CreateWorkOrderDialogComponent implements OnInit {
         companyCity: this.form.controls['companyCity'].value,
         companyAddress: this.form.controls['companyAddress'].value,
         device: this.form.controls['device'].value,
-        width: this.form.controls['device'].value === 'air-chamber' ? null : this.form.controls['width'].value,
-        height: this.form.controls['device'].value === 'air-chamber' ? null : this.form.controls['height'].value,
-        length: this.form.controls['device'].value === 'air-chamber' ? null : this.form.controls['length'].value,
-        model: this.form.controls['device'].value === 'air-chamber' ? this.form.controls['type'].value : this.form.controls['model'].value,
-        fans: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['fans'].value,
-        filters: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['filters'].value,
-        coolers: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['coolers'].value,
-        heaters: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['heaters'].value,
-        moisturizer: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['moisturizer'].value,
-        recuperator: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['recuperator'].value,
-        mufflers: this.form.controls['device'].value !== 'air-chamber' ? null : this.form.controls['mufflers'].value,
-      }
-      this._order.createOrder(data).subscribe(res => {
+        width:
+          this.form.controls['device'].value === 'air-chamber'
+            ? null
+            : this.form.controls['width'].value,
+        height:
+          this.form.controls['device'].value === 'air-chamber'
+            ? null
+            : this.form.controls['height'].value,
+        length:
+          this.form.controls['device'].value === 'air-chamber'
+            ? null
+            : this.form.controls['length'].value,
+        model:
+          this.form.controls['device'].value === 'air-chamber'
+            ? this.form.controls['type'].value
+            : this.form.controls['model'].value,
+        fans:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['fans'].value,
+        filters:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['filters'].value,
+        coolers:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['coolers'].value,
+        heaters:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['heaters'].value,
+        moisturizer:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['moisturizer'].value,
+        recuperator:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['recuperator'].value,
+        mufflers:
+          this.form.controls['device'].value !== 'air-chamber'
+            ? null
+            : this.form.controls['mufflers'].value,
+      };
+      this._order.createOrder(data).subscribe((res) => {
         if (res.success) {
-          this.dialogRef.close({ msg: 'updated' })
+          this.dialogRef.close({ msg: 'updated' });
         }
-      })
+      });
     }
   }
 }

@@ -20,11 +20,11 @@ const MaterialComponents = [
   MatDialogModule,
   MatSelectModule,
   MatGridListModule,
-  MatCheckboxModule
-]
+  MatCheckboxModule,
+];
 
 @NgModule({
   imports: [MaterialComponents],
-  exports: [MaterialComponents]
+  exports: [MaterialComponents],
 })
-export class MaterialModule { }
+export class MaterialModule {}

@@ -1,68 +1,132 @@
 <div class="content">
-    <div class="search-form">
-        <div class="inputs">
-            <mat-form-field class="field">
-                <mat-label>Ime kompanije</mat-label>
-                <input name="companyName" [(ngModel)]="companyName" autocomplete="off" type="text" matInput>
-            </mat-form-field>
-            <mat-form-field class="field">
-                <mat-label>Status</mat-label>
-                <mat-select [(ngModel)]="status" name="status">
-                    <mat-option *ngFor="let status of orderStatuses" [value]="status.value">
-                        {{status.label}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="field">
-                <mat-label>Uređaj</mat-label>
-                <mat-select [(ngModel)]="device" name="device">
-                    <mat-option *ngFor="let device of devices" [value]="device.value">
-                        {{device.label}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="field">
-                <mat-label>Kreirao</mat-label>
-                <input name="fullName" [(ngModel)]="fullname" autocomplete="off" type="text" matInput>
-            </mat-form-field>
-            <mat-form-field class="field">
-                <mat-label>Početni datum kreiranja</mat-label>
-                <input autocomplete="off" type="date" [(ngModel)]="dateStart" name="dateStart" matInput>
-            </mat-form-field>
-            <mat-form-field class="field">
-                <mat-label>Krajnji datum kreiranja</mat-label>
-                <input autocomplete="off" type="date" [(ngModel)]="dateEnd" name="dateEnd" matInput>
-            </mat-form-field>
-        </div>
-        <button *ngIf="type!=='production-worker'" class="add-btn" (click)="openDialog()">Napravi radni nalog</button>
+  <div class="search-form">
+    <div class="inputs">
+      <mat-form-field class="field">
+        <mat-label>Ime kompanije</mat-label>
+        <input
+          name="companyName"
+          [(ngModel)]="companyName"
+          autocomplete="off"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="status" name="status">
+          <mat-option
+            *ngFor="let status of orderStatuses"
+            [value]="status.value"
+          >
+            {{ status.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Uređaj</mat-label>
+        <mat-select [(ngModel)]="device" name="device">
+          <mat-option *ngFor="let device of devices" [value]="device.value">
+            {{ device.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Kreirao</mat-label>
+        <input
+          name="fullName"
+          [(ngModel)]="fullname"
+          autocomplete="off"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Početni datum kreiranja</mat-label>
+        <input
+          autocomplete="off"
+          type="date"
+          [(ngModel)]="dateStart"
+          name="dateStart"
+          matInput
+        />
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Krajnji datum kreiranja</mat-label>
+        <input
+          autocomplete="off"
+          type="date"
+          [(ngModel)]="dateEnd"
+          name="dateEnd"
+          matInput
+        />
+      </mat-form-field>
     </div>
-    <mat-grid-list cols="3" class="users-gallery">
-        <mat-grid-tile *ngFor="let order of (orders | companyName:companyName
-             | fullname:fullname 
-             | device:device 
-             | status:status
-             | orderDate: {dateStart:dateStart, dateEnd:dateEnd}
-             ); let id = index">
-            <mat-card class="card">
-                <h2><b>Ime kompanije:</b> {{order?.companyName}}</h2>
-                <h2><b>Datum kreiranja:</b> {{order?.createdAt | date: 'dd/MM/yyyy'}}</h2>
-                <ng-container [ngSwitch]="order?.device.status">
-                    <h2 *ngSwitchCase="'ORDER_CREATED'"><b>Status:</b> NALOG JE NAPRAVLJEN</h2>
-                    <h2 *ngSwitchCase="'START_OF_PRODUCTION'"><b>Status:</b> POČETAK PROIZVODNJE</h2>
-                    <h2 *ngSwitchDefault><b>Status:</b> KRAJ PROIZVODNJE</h2>
-                </ng-container>
-                <h2 *ngIf='order?.device.device == "air-chamber"'><b>Uredjaj:</b> Klima komora</h2>
-                <h2 *ngIf='order?.device.device == "cooling-chamber"'><b>Uredjaj:</b> Rashladna komora</h2>
-                <h2 *ngIf='order?.user != null'><b>Kreirao:</b> {{order?.user.firstName}} {{order?.user.lastName}}</h2>
-                <h2 *ngIf='order?.user == null'>Korisnik je obrisan</h2>
-                <div class="btn-group">
-                    <button (click)="orderDetails(id)">Detalji</button>
-                    <button *ngIf="type==='production-worker' && order?.device.status=== 'ORDER_CREATED'"
-                        (click)="startOfProduction(id)">Započni proizvodnju</button>
-                    <button *ngIf="type==='production-worker' && order?.device.status=== 'START_OF_PRODUCTION'"
-                        (click)="endOfProduction(id)">Završi proizvodnju</button>
-                </div>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <button
+      *ngIf="type !== 'production-worker'"
+      class="add-btn"
+      (click)="openDialog()"
+    >
+      Napravi radni nalog
+    </button>
+  </div>
+  <mat-grid-list cols="3" class="users-gallery">
+    <mat-grid-tile
+      *ngFor="
+        let order of orders
+          | companyName: companyName
+          | fullname: fullname
+          | device: device
+          | status: status
+          | orderDate: { dateStart: dateStart, dateEnd: dateEnd };
+        let id = index
+      "
+    >
+      <mat-card class="card">
+        <h2><b>Ime kompanije:</b> {{ order?.companyName }}</h2>
+        <h2>
+          <b>Datum kreiranja:</b> {{ order?.createdAt | date: "dd/MM/yyyy" }}
+        </h2>
+        <ng-container [ngSwitch]="order?.device.status">
+          <h2 *ngSwitchCase="'ORDER_CREATED'">
+            <b>Status:</b> NALOG JE NAPRAVLJEN
+          </h2>
+          <h2 *ngSwitchCase="'START_OF_PRODUCTION'">
+            <b>Status:</b> POČETAK PROIZVODNJE
+          </h2>
+          <h2 *ngSwitchDefault><b>Status:</b> KRAJ PROIZVODNJE</h2>
+        </ng-container>
+        <h2 *ngIf="order?.device.device == 'air-chamber'">
+          <b>Uredjaj:</b> Klima komora
+        </h2>
+        <h2 *ngIf="order?.device.device == 'cooling-chamber'">
+          <b>Uredjaj:</b> Rashladna komora
+        </h2>
+        <h2 *ngIf="order?.user != null">
+          <b>Kreirao:</b> {{ order?.user.firstName }} {{ order?.user.lastName }}
+        </h2>
+        <h2 *ngIf="order?.user == null">Korisnik je obrisan</h2>
+        <div class="btn-group">
+          <button (click)="orderDetails(id)">Detalji</button>
+          <button
+            *ngIf="
+              type === 'production-worker' &&
+              order?.device.status === 'ORDER_CREATED'
+            "
+            (click)="startOfProduction(id)"
+          >
+            Započni proizvodnju
+          </button>
+          <button
+            *ngIf="
+              type === 'production-worker' &&
+              order?.device.status === 'START_OF_PRODUCTION'
+            "
+            (click)="endOfProduction(id)"
+          >
+            Završi proizvodnju
+          </button>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

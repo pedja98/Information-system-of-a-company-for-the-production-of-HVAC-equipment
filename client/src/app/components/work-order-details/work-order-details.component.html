@@ -1,223 +1,157 @@
 <div>
-    <table>
-        <tr>
-            <th>
-                Ime kompanije
-            </th>
-            <td>
-                {{order?.companyName}}
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Država
-            </th>
-            <td>
-                {{order?.companyCountry}}
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Grad
-            </th>
-            <td>
-                {{order?.companyCity}}
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Adresa
-            </th>
-            <td>
-                {{order?.companyAddress}}
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Datum kreiranja naloga
-            </th>
-            <td>
-                {{order?.createdAt | date: 'dd/MM/yyyy'}}
-            </td>
-        </tr>
-        <tr *ngIf="order?.dateOfRealisation!=null">
-            <th>
-                Datum realizacije
-            </th>
-            <td>
-                {{order?.dateOfRealisation | date: 'dd/MM/yyyy'}}
-            </td>
-        </tr>
-        <tr *ngIf="order?.dateOfRealisation==null">
-            <th>
-                Datum realizacije
-            </th>
-            <td>
-                Nije još realizovano
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Status
-            </th>
-            <ng-container [ngSwitch]="order?.device?.status">
-                <td *ngSwitchCase="'ORDER_CREATED'">NALOG JE NAPRAVLJEN</td>
-                <td *ngSwitchCase="'START_OF_PRODUCTION'">POČETAK PROIZVODNJE</td>
-                <td *ngSwitchDefault>KRAJ PROIZVODNJE</td>
-            </ng-container>
-        </tr>
-        <ng-container *ngIf="order?.device?.device=='air-chamber'; else coolingChamber">
-            <tr>
-                <th>
-                    Uredjaj
-                </th>
-                <td>
-                    Klima komora
-                </td>
-            </tr>
+  <table>
+    <tr>
+      <th>Ime kompanije</th>
+      <td>
+        {{ order?.companyName }}
+      </td>
+    </tr>
+    <tr>
+      <th>Država</th>
+      <td>
+        {{ order?.companyCountry }}
+      </td>
+    </tr>
+    <tr>
+      <th>Grad</th>
+      <td>
+        {{ order?.companyCity }}
+      </td>
+    </tr>
+    <tr>
+      <th>Adresa</th>
+      <td>
+        {{ order?.companyAddress }}
+      </td>
+    </tr>
+    <tr>
+      <th>Datum kreiranja naloga</th>
+      <td>
+        {{ order?.createdAt | date: "dd/MM/yyyy" }}
+      </td>
+    </tr>
+    <tr *ngIf="order?.dateOfRealisation != null">
+      <th>Datum realizacije</th>
+      <td>
+        {{ order?.dateOfRealisation | date: "dd/MM/yyyy" }}
+      </td>
+    </tr>
+    <tr *ngIf="order?.dateOfRealisation == null">
+      <th>Datum realizacije</th>
+      <td>Nije još realizovano</td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <ng-container [ngSwitch]="order?.device?.status">
+        <td *ngSwitchCase="'ORDER_CREATED'">NALOG JE NAPRAVLJEN</td>
+        <td *ngSwitchCase="'START_OF_PRODUCTION'">POČETAK PROIZVODNJE</td>
+        <td *ngSwitchDefault>KRAJ PROIZVODNJE</td>
+      </ng-container>
+    </tr>
+    <ng-container
+      *ngIf="order?.device?.device == 'air-chamber'; else coolingChamber"
+    >
+      <tr>
+        <th>Uredjaj</th>
+        <td>Klima komora</td>
+      </tr>
 
-            <tr>
-                <th>
-                    Model
-                </th>
-                <td>
-                    {{order?.device?.model}}
-                </td>
-            </tr>
+      <tr>
+        <th>Model</th>
+        <td>
+          {{ order?.device?.model }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Broj ventilatora
-                </th>
-                <td>
-                    {{order?.device?.fans}}
-                </td>
-            </tr>
+      <tr>
+        <th>Broj ventilatora</th>
+        <td>
+          {{ order?.device?.fans }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Broj filtera
-                </th>
-                <td>
-                    {{order?.device?.filters}}
-                </td>
-            </tr>
+      <tr>
+        <th>Broj filtera</th>
+        <td>
+          {{ order?.device?.filters }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Broj hladnjaka
-                </th>
-                <td>
-                    {{order?.device?.coolers}}
-                </td>
-            </tr>
+      <tr>
+        <th>Broj hladnjaka</th>
+        <td>
+          {{ order?.device?.coolers }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Broj grejača
-                </th>
-                <td>
-                    {{order?.device?.heaters}}
-                </td>
-            </tr>
+      <tr>
+        <th>Broj grejača</th>
+        <td>
+          {{ order?.device?.heaters }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Broj prigušivača
-                </th>
-                <td>
-                    {{order?.device?.mufflers}}
-                </td>
-            </tr>
+      <tr>
+        <th>Broj prigušivača</th>
+        <td>
+          {{ order?.device?.mufflers }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Ovlaživač
-                </th>
-                <td *ngIf="order?.device?.moisturizer">
-                    Ima
-                </td>
-                <td *ngIf="!order?.device?.moisturizer">
-                    Nema
-                </td>
-            </tr>
+      <tr>
+        <th>Ovlaživač</th>
+        <td *ngIf="order?.device?.moisturizer">Ima</td>
+        <td *ngIf="!order?.device?.moisturizer">Nema</td>
+      </tr>
 
-            <tr>
-                <th>
-                    Rekuperator
-                </th>
-                <ng-container [ngSwitch]="order?.device?.recuperator">
-                    <td *ngSwitchCase="'1r'">
-                        Rotacioni
-                    </td>
-                    <td *ngSwitchCase="'1d'">
-                        Dijagonalni
-                    </td>
-                    <td *ngSwitchDefault>
-                        Nema
-                    </td>
-                </ng-container>
-            </tr>
-
+      <tr>
+        <th>Rekuperator</th>
+        <ng-container [ngSwitch]="order?.device?.recuperator">
+          <td *ngSwitchCase="'1r'">Rotacioni</td>
+          <td *ngSwitchCase="'1d'">Dijagonalni</td>
+          <td *ngSwitchDefault>Nema</td>
         </ng-container>
+      </tr>
+    </ng-container>
 
-        <ng-template #coolingChamber>
-            <tr>
-                <th>
-                    Uredjaj
-                </th>
-                <td>
-                    Rashladna komora
-                </td>
-            </tr>
+    <ng-template #coolingChamber>
+      <tr>
+        <th>Uredjaj</th>
+        <td>Rashladna komora</td>
+      </tr>
 
-            <ng-container *ngIf="order?.device?.model=='zero'; else minus">
-                <tr>
-                    <th>
-                        Model
-                    </th>
-                    <td>
-                        Nula
-                    </td>
-                </tr>
-            </ng-container>
-            <ng-template #minus>
-                <tr>
-                    <th>
-                        Model
-                    </th>
-                    <td>
-                        Minus
-                    </td>
-                </tr>
-            </ng-template>
-            <tr>
-                <th>
-                    Duzina
-                </th>
-                <td>
-                    {{order?.device?.length}}
-                </td>
-            </tr>
+      <ng-container *ngIf="order?.device?.model == 'zero'; else minus">
+        <tr>
+          <th>Model</th>
+          <td>Nula</td>
+        </tr>
+      </ng-container>
+      <ng-template #minus>
+        <tr>
+          <th>Model</th>
+          <td>Minus</td>
+        </tr>
+      </ng-template>
+      <tr>
+        <th>Duzina</th>
+        <td>
+          {{ order?.device?.length }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Visina
-                </th>
-                <td>
-                    {{order?.device?.height}}
-                </td>
-            </tr>
+      <tr>
+        <th>Visina</th>
+        <td>
+          {{ order?.device?.height }}
+        </td>
+      </tr>
 
-            <tr>
-                <th>
-                    Širina
-                </th>
-                <td>
-                    {{order?.device?.width}}
-                </td>
-            </tr>
-        </ng-template>
-
-    </table>
+      <tr>
+        <th>Širina</th>
+        <td>
+          {{ order?.device?.width }}
+        </td>
+      </tr>
+    </ng-template>
+  </table>
 </div>

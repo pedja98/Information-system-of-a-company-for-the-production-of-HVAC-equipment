@@ -1,59 +1,59 @@
 .header {
-    height: 20%;
-    display: flex;
-    flex-direction: row-reverse;
+  height: 20%;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .content {
-    height: 100%;
-    padding: 0;
+  height: 100%;
+  padding: 0;
 }
 
 .close-btn {
-    font-weight: bold;
-    font-size: 25px;
-    cursor: pointer;
-    background-color: #fff;
-    border: none;
-    color: #939ea8;
-    height: 5px;
-    margin-top: -17px;
-    margin-right: -12px;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  color: #939ea8;
+  height: 5px;
+  margin-top: -17px;
+  margin-right: -12px;
 }
 
 .close-btn:focus {
-    outline: none;
-    box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
 
 button {
-    color: #fff;
-    background-color: #000;
-    height: 40px;
-    width: 100px;
-    margin-left: 2px;
+  color: #fff;
+  background-color: #000;
+  height: 40px;
+  width: 100px;
+  margin-left: 2px;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .form {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .item-count {
-    height: 40px;
-    width: 250px;
-    text-align: center;
-    font-size: medium;
+  height: 40px;
+  width: 250px;
+  text-align: center;
+  font-size: medium;
 }
 
 label {
-    font-weight: bold;
-    font-size: x-large;
+  font-weight: bold;
+  font-size: x-large;
 }

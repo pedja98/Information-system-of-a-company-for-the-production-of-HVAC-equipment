@@ -5,60 +5,58 @@ import { NeedingDialogComponent } from '../needing-dialog/needing-dialog.compone
 import { DialogMsgComponent } from '../dialog-msg/dialog-msg.component';
 import { itemCount } from 'src/app/metadata/metadata';
 import { FetchMaterialsDto } from 'src/app/dto/fetchMaterialsDto';
+import { UserDto } from 'src/app/dto/userDto';
 
 @Component({
   selector: 'app-materials',
   templateUrl: './materials.component.html',
-  styleUrls: ['./materials.component.css']
+  styleUrls: ['./materials.component.css'],
 })
 export class MaterialsComponent implements OnInit {
-
   materials: FetchMaterialsDto[] = [];
-  itemNumber: string = ""
-  name: string = ""
-  supplierCode: string = ""
-  supplierItemNumber: string = ""
-  cnt = 0
+  itemNumber: string = '';
+  name: string = '';
+  supplierCode: string = '';
+  supplierItemNumber: string = '';
+  cnt = 0;
+  user = {} as UserDto;
+  readonly itemCount = itemCount;
 
-  readonly itemCount = itemCount
-
-  constructor(
-    private _material: MaterialService,
-    private _dialog: MatDialog,
-  ) { }
+  constructor(private _material: MaterialService, private _dialog: MatDialog) {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+  }
 
   ngOnInit(): void {
-    this._material.getMaterials().subscribe(res => {
-      this.materials = res
-    })
+    this._material.getMaterials().subscribe((res) => {
+      this.materials = res;
+    });
   }
 
   need(i: number): void {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '530px'
-    dialogConfig.height = '150px'
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '530px';
+    dialogConfig.height = '150px';
     dialogConfig.data = {
       id: this.materials[i].id,
       unit: this.materials[i].unit,
       count: this.materials[i].stock.count,
-      itemNumber: this.materials[i].itemNumber
-    }
-    let dialogRef = this._dialog.open(NeedingDialogComponent, dialogConfig)
+      itemNumber: this.materials[i].itemNumber,
+    };
+    let dialogRef = this._dialog.open(NeedingDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(res => {
+    dialogRef.afterClosed().subscribe((res) => {
       if (res.msg == 'updated') {
-        this._material.getMaterials().subscribe(materials => {
-          this.materials = materials
-          const dialogConfig = new MatDialogConfig()
-          dialogConfig.width = '320px'
-          dialogConfig.height = '150px'
+        this._material.getMaterials().subscribe((materials) => {
+          this.materials = materials;
+          const dialogConfig = new MatDialogConfig();
+          dialogConfig.width = '320px';
+          dialogConfig.height = '150px';
           dialogConfig.data = {
             msg: `Stanje artikala ${this.materials[i].itemNumber} umanjeno je za ${res.value} ${this.materials[i].unit}`,
-          }
-          this._dialog.open(DialogMsgComponent, dialogConfig)
-        })
+          };
+          this._dialog.open(DialogMsgComponent, dialogConfig);
+        });
       }
-    })
+    });
   }
-
 }
