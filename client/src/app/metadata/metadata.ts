@@ -106,3 +106,8 @@ export const needStatuses: any[] = [
   { value: 'SENT', label: 'Poslato' },
   { value: 'RECEIVED', label: 'Preuzeto' },
 ];
+
+export const procurement: any[] = [
+  { value: false, label: 'Svi' },
+  { value: true, label: 'Neophodna nabavka' },
+];

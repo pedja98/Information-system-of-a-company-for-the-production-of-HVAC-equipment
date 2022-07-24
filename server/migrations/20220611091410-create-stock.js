@@ -16,6 +16,7 @@ module.exports = {
       count: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       capacity: {
         allowNull: false,

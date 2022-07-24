@@ -34,15 +34,15 @@ const createMaterial = async (req, res) => {
         itemNumber: req.body.itemNumber,
         supplierCode: req.body.supplierCode,
         supplierItemNumber: req.body.supplierItemNumber,
-        stock: {},
+        unit: req.body.unit,
+        stock: {
+          capacity: req.body.capacity,
+        },
       },
       {
-        unit: req.body.unit,
-        count: req.body.count,
-        capacity: req.body.capacity,
+        include: ["stock"],
       }
     );
-
     res.json({
       success: true,
     });
@@ -84,8 +84,36 @@ const updateMaterialStock = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  //dopuniti zahtevima za nabavku
+  try {
+    const needCount = await Need.count({
+      where: {
+        materialId: req.params.id,
+        status: "SENT",
+      },
+    });
+    if (needCount > 0) {
+      res.json({
+        success: false,
+        msg: "need exist",
+      });
+      return;
+    }
+    const material = await Material.findByPk(req.params.id);
+    material.destroy();
+    res.json({
+      success: true,
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.json(err);
+  }
+};
+
 module.exports = {
   getMaterials,
   createMaterial,
   updateMaterialStock,
+  deleteById,
 };

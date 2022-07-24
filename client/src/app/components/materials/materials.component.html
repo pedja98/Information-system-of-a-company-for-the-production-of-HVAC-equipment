@@ -51,6 +51,21 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field class="field">
+    <mat-label>Neophodna nabavka</mat-label>
+    <mat-select name="procurement" [(ngModel)]="isProcurementNeeded">
+      <mat-option *ngFor="let item of procurement" [value]="item.value">
+        {{ item.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    *ngIf="user.type === 'head-of-procurement'"
+    class="add-btn"
+    (click)="addMaterial()"
+  >
+    Dodaj novi materijal
+  </button>
 </div>
 <div class="content">
   <mat-grid-list cols="3" rowHeight="350px" class="mat-gallery">
@@ -61,7 +76,8 @@
           | supplierCode: supplierCode
           | name: name
           | supplierItemNumber: supplierItemNumber
-          | itemCount: cnt;
+          | itemCount: cnt
+          | procurement: isProcurementNeeded;
         let i = index
       "
     >
@@ -72,7 +88,12 @@
         <p>
           <b>Proizvodjačev br. artikla: </b> {{ material.supplierItemNumber }}
         </p>
-        <p><b>Kolicina: </b>{{ material?.stock.count }} {{ material.unit }}</p>
+        <p>
+          <b>Kolicina: </b>{{ material?.stock.count }}/{{
+            material?.stock.capacity
+          }}
+          {{ material.unit }}
+        </p>
         <p
           *ngIf="material?.stock.count < material?.stock.capacity / 5"
           style="color: red"
@@ -83,8 +104,18 @@
           <button *ngIf="user.type === 'stockkeeper'" (click)="need(i)">
             Trebovanje
           </button>
-          <button *ngIf="user.type === 'head-of-procurement'">Nabavka</button>
-          <button *ngIf="user.type === 'head-of-procurement'">Ukloni</button>
+          <button
+            (click)="orderMaterial(i)"
+            *ngIf="user.type === 'head-of-procurement'"
+          >
+            Naruči
+          </button>
+          <button
+            (click)="deleteMaterial(i)"
+            *ngIf="user.type === 'head-of-procurement'"
+          >
+            Ukloni
+          </button>
         </div>
       </mat-card>
     </mat-grid-tile>

@@ -49,6 +49,8 @@ import { NeedMaterialNamePipe } from './pipes/needs/need-material-name/need-mate
 import { NeedStatusPipe } from './pipes/needs/need-status/need-status.pipe';
 import { NeedStokkeperFullnamePipe } from './pipes/needs/need-stokkeper-fullname/need-stokkeper-fullname.pipe';
 import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-worker-fullname.pipe';
+import { ProcurementPipe } from './pipes/materials/procurement/procurement.pipe';
+import { AddMaterialDialogComponent } from './components/add-material-dialog/add-material-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +94,8 @@ import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-
     NeedStatusPipe,
     NeedStokkeperFullnamePipe,
     NeedWorkerFullnamePipe,
+    ProcurementPipe,
+    AddMaterialDialogComponent,
   ],
   imports: [
     BrowserModule,

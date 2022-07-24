@@ -32,6 +32,7 @@ button:hover {
 
 .field {
   margin-left: 3vh;
+  width: 150px;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
@@ -44,4 +45,13 @@ button:hover {
 
 ::ng-deep.mat-form-field-ripple {
   background-color: black !important;
+}
+
+.add-btn {
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 100px;
+  margin-top: 1vh;
+  margin-left: 1vw;
 }

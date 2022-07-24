@@ -36,10 +36,7 @@ export class AllUsersComponent implements OnInit {
         dialogConfigMsg.data = {
           msg: 'Dodat je novi korisnik',
         };
-        let dialogRefMsg = this._dialog.open(
-          DialogMsgComponent,
-          dialogConfigMsg
-        );
+        this._dialog.open(DialogMsgComponent, dialogConfigMsg);
         this._user.getUsers().subscribe((res) => {
           this.users = res;
         });

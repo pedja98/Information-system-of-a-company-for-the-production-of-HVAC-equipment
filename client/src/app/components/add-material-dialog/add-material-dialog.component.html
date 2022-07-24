@@ -1,0 +1,287 @@
+<div class="add-user-dialog">
+  <div class="header">
+    <button mat-dialog-close class="close-btn">X</button>
+  </div>
+  <div class="content" [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Naziv materijala</mat-label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="name"
+        matInput
+        formControlName="name"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['name'].errors &&
+          form.controls['name'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['name'].errors &&
+          form.controls['name'].errors['white-space'] &&
+          !form.controls['name'].errors['required']
+        "
+      >
+        Vrednost polja ne sme da se sastoji isključivo od blanko znaka
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['name'].errors &&
+          form.controls['name'].errors['starts-with-white-space'] &&
+          !form.controls['name'].errors['required'] &&
+          !form.controls['name'].errors['white-space']
+        "
+      >
+        Naziv materijala ne sme početi sa blanko znakom
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['name'].errors &&
+          form.controls['name'].errors['ends-with-white-space'] &&
+          !form.controls['name'].errors['required'] &&
+          !form.controls['name'].errors['white-space'] &&
+          !form.controls['name'].errors['starts-with-white-space']
+        "
+      >
+        Naziv materijala se ne sme završiti sa blanko znakom
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Broj artikla</mat-label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="itemNumber"
+        matInput
+        formControlName="itemNumber"
+        (change)="onChange()"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['itemNumber'].errors &&
+          form.controls['itemNumber'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['itemNumber'].errors &&
+          form.controls['itemNumber'].errors['white-space'] &&
+          !form.controls['itemNumber'].errors['required']
+        "
+      >
+        Vrednost polja ne sme da se sastoji isključivo od blanko znaka
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['itemNumber'].errors &&
+          form.controls['itemNumber'].errors['starts-with-white-space'] &&
+          !form.controls['itemNumber'].errors['required'] &&
+          !form.controls['itemNumber'].errors['white-space']
+        "
+      >
+        Broj artikla ne sme početi sa blanko znakom
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['itemNumber'].errors &&
+          form.controls['itemNumber'].errors['ends-with-white-space'] &&
+          !form.controls['itemNumber'].errors['required'] &&
+          !form.controls['itemNumber'].errors['white-space'] &&
+          !form.controls['itemNumber'].errors['starts-with-white-space']
+        "
+      >
+        Broj artikla se ne sme završiti sa blanko znakom
+      </mat-error>
+      <mat-hint class="error" *ngIf="resMsg == 'itemNumber'"
+        >Već postoji artikal sa zadatim brojem</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Šifra proizvođača</mat-label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="supplierCode"
+        matInput
+        formControlName="supplierCode"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['supplierCode'].errors &&
+          form.controls['supplierCode'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierCode'].errors &&
+          form.controls['supplierCode'].errors['white-space'] &&
+          !form.controls['supplierCode'].errors['required']
+        "
+      >
+        Vrednost polja ne sme da se sastoji isključivo od blanko znaka
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierCode'].errors &&
+          form.controls['supplierCode'].errors['starts-with-white-space'] &&
+          !form.controls['supplierCode'].errors['required'] &&
+          !form.controls['supplierCode'].errors['white-space']
+        "
+      >
+        Šifra proizvodjača ne sme početi sa blanko znakom
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierCode'].errors &&
+          form.controls['supplierCode'].errors['ends-with-white-space'] &&
+          !form.controls['supplierCode'].errors['required'] &&
+          !form.controls['supplierCode'].errors['white-space'] &&
+          !form.controls['supplierCode'].errors['starts-with-white-space']
+        "
+      >
+        Šifra proizvodjača se ne sme završiti sa blanko znakom
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Proizvođačev br. artikla</mat-label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="supplierItemNumber"
+        matInput
+        formControlName="supplierItemNumber"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['supplierItemNumber'].errors &&
+          form.controls['supplierItemNumber'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierItemNumber'].errors &&
+          form.controls['supplierItemNumber'].errors['white-space'] &&
+          !form.controls['supplierItemNumber'].errors['required']
+        "
+      >
+        Vrednost polja ne sme da se sastoji isključivo od blanko znaka
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierItemNumber'].errors &&
+          form.controls['supplierItemNumber'].errors[
+            'starts-with-white-space'
+          ] &&
+          !form.controls['supplierItemNumber'].errors['required'] &&
+          !form.controls['supplierItemNumber'].errors['white-space']
+        "
+      >
+        Proizvođačev br. artikla ne sme početi sa blanko znakom
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['supplierItemNumber'].errors &&
+          form.controls['supplierItemNumber'].errors['ends-with-white-space'] &&
+          !form.controls['supplierItemNumber'].errors['required'] &&
+          !form.controls['supplierItemNumber'].errors['white-space'] &&
+          !form.controls['supplierItemNumber'].errors['starts-with-white-space']
+        "
+      >
+        Proizvođačev br. artikla se ne sme završiti sa blanko znakom
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Jedinica mere</mat-label>
+      <input
+        autocomplete="off"
+        type="text"
+        name="unit"
+        matInput
+        formControlName="unit"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['unit'].errors &&
+          form.controls['unit'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['unit'].errors &&
+          form.controls['unit'].errors['white-space'] &&
+          !form.controls['unit'].errors['required']
+        "
+      >
+        Vrednost polja ne sme da se sastoji isključivo od blanko znaka
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['unit'].errors &&
+          form.controls['unit'].errors['starts-with-white-space'] &&
+          !form.controls['unit'].errors['required'] &&
+          !form.controls['unit'].errors['white-space']
+        "
+      >
+        Jedinica mere ne sme početi sa blanko znakom
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['unit'].errors &&
+          form.controls['unit'].errors['ends-with-white-space'] &&
+          !form.controls['unit'].errors['required'] &&
+          !form.controls['unit'].errors['white-space'] &&
+          !form.controls['unit'].errors['starts-with-white-space']
+        "
+      >
+        Jedinica mere se ne sme završiti sa blanko znakom
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Kapacitet u skladištu</mat-label>
+      <input
+        autocomplete="off"
+        type="number"
+        name="capacity"
+        matInput
+        formControlName="capacity"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['capacity'].errors &&
+          form.controls['capacity'].errors['required']
+        "
+      >
+        Polje je obavezno
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.controls['capacity'].errors &&
+          form.controls['capacity'].errors['min']
+        "
+      >
+        Kapacitet mora biti pozitivan broj veći od 0
+      </mat-error>
+    </mat-form-field>
+    <button class="add-btn" (click)="addMaterial()">
+      Dodaj novi materijal
+    </button>
+  </div>
+</div>
