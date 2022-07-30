@@ -1,0 +1,21 @@
+<div class="content">
+  <div class="header">
+    <button mat-dialog-close class="close-btn">X</button>
+  </div>
+  <div class="form">
+    <form>
+      <label for="num">{{ data.itemNumber }}: </label>
+      <input
+        id="num"
+        class="item-count"
+        [(ngModel)]="value"
+        name="count"
+        ngModel
+        min="0"
+        max="{{ data.count }}"
+        type="number"
+      />
+      <button (click)="createPurchase()">Naruči</button>
+    </form>
+  </div>
+</div>

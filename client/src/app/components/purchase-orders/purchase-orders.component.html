@@ -1,1 +1,39 @@
-<p>purchase-orders works!</p>
+<div class="content">
+  <mat-grid-list cols="3" rowHeight="370px" class="mat-gallery">
+    <mat-grid-tile *ngFor="let purchase of purchases; let i = index">
+      <mat-card
+        class="card"
+        [ngStyle]="{
+          height: user.type === 'stockkeeper' ? '300px' : '270px'
+        }"
+      >
+        <p><b>Broj artikla: </b> {{ purchase.material.itemNumber }}</p>
+        <p><b>Šifra proizvodjača: </b> {{ purchase.material.supplierCode }}</p>
+        <p>
+          <b>Kolicina: </b>{{ purchase.amount }} {{ purchase.material.unit }}
+        </p>
+        <p *ngIf="purchase.status === 'REQUEST_SENT'">
+          <b>Status:</b> ZAHTEV JE POSLAT
+        </p>
+        <p>
+          <b>Podnosilac:</b> {{ purchase.head_of_procurement.firstName }}
+          {{ purchase.head_of_procurement.lastName }}
+        </p>
+        <p>
+          <b>Datum podnošenja:</b> {{ purchase.createdAt | date: "dd/MM/yyyy" }}
+        </p>
+        <p *ngIf="purchase.stockkeeper !== null">
+          <b>Preuzeo:</b> {{ purchase.stockkeeper.firstName }}
+          {{ purchase.stockkeeper.lastName }}
+        </p>
+        <p *ngIf="purchase.stockkeeper !== null">
+          <b>Datum preuzimanja:</b>
+          {{ purchase.updatedAt | date: "dd/MM/yyyy" }}
+        </p>
+        <div class="btn-group">
+          <button *ngIf="user.type === 'stockkeeper'">Preuzmi</button>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

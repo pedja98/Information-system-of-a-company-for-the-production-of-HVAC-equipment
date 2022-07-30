@@ -2,7 +2,7 @@ const material = require("express").Router();
 const materialCtrl = require("../controllers/materialCtrl");
 const { tokenVerify } = require("../middleware/tokenVerify");
 
-material.get("/", tokenVerify, materialCtrl.getMaterials);
+material.get("/", materialCtrl.getMaterials);
 
 material.post("/", tokenVerify, materialCtrl.createMaterial);
 

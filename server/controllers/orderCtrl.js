@@ -138,7 +138,7 @@ const changeStatus = async (req, res) => {
         }
       );
     }
-    const ordered_device = await Ordered_Device.update(
+    const orderedDevice = await Ordered_Device.update(
       {
         status: req.body.status,
       },
@@ -150,7 +150,7 @@ const changeStatus = async (req, res) => {
     );
 
     res.json({
-      success: ordered_device[0],
+      success: orderedDevice[0],
     });
   } catch (err) {
     res.json({

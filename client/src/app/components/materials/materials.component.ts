@@ -8,6 +8,7 @@ import { FetchMaterialsDto } from 'src/app/dto/fetchMaterialsDto';
 import { UserDto } from 'src/app/dto/userDto';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddMaterialDialogComponent } from '../add-material-dialog/add-material-dialog.component';
+import { CreatePurchaseDialogComponent } from '../create-purchase-dialog/create-purchase-dialog.component';
 
 @Component({
   selector: 'app-materials',
@@ -65,7 +66,7 @@ export class MaterialsComponent implements OnInit {
   }
 
   orderMaterial(i: number): void {
-    if (this.materials[i].stock.count === this.materials[i].stock.count) {
+    if (this.materials[i].stock.capacity === this.materials[i].stock.count) {
       const dialogConfigMsg = new MatDialogConfig();
       dialogConfigMsg.width = '320px';
       dialogConfigMsg.height = '150px';
@@ -75,7 +76,20 @@ export class MaterialsComponent implements OnInit {
       this._dialog.open(DialogMsgComponent, dialogConfigMsg);
       return;
     }
-    // TODO
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '600px';
+    dialogConfig.height = '150px';
+    dialogConfig.data = {
+      id: this.materials[i].id,
+      unit: this.materials[i].unit,
+      count: this.materials[i].stock.count,
+      capacity: this.materials[i].stock.capacity,
+      itemNumber: this.materials[i].itemNumber,
+    };
+    let dialogRef = this._dialog.open(
+      CreatePurchaseDialogComponent,
+      dialogConfig
+    );
   }
 
   deleteMaterial(i: number): void {
