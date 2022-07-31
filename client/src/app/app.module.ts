@@ -52,6 +52,10 @@ import { NeedWorkerFullnamePipe } from './pipes/needs/need-worker-fullname/need-
 import { ProcurementPipe } from './pipes/materials/procurement/procurement.pipe';
 import { AddMaterialDialogComponent } from './components/add-material-dialog/add-material-dialog.component';
 import { CreatePurchaseDialogComponent } from './components/create-purchase-dialog/create-purchase-dialog.component';
+import { PurchaseItemNumberPipe } from './pipes/purchase/purchase-item-number/purchase-item-number.pipe';
+import { PurchaseSupplierCodePipe } from './pipes/purchase/purchase-supplier-code/purchase-supplier-code.pipe';
+import { PurchaseItemCountPipe } from './pipes/purchase/purchase-item-count/purchase-item-count.pipe';
+import { PurchaseStatusPipe } from './pipes/purchase/purchase-status/purchase-status.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +102,10 @@ import { CreatePurchaseDialogComponent } from './components/create-purchase-dial
     ProcurementPipe,
     AddMaterialDialogComponent,
     CreatePurchaseDialogComponent,
+    PurchaseItemNumberPipe,
+    PurchaseSupplierCodePipe,
+    PurchaseItemCountPipe,
+    PurchaseStatusPipe,
   ],
   imports: [
     BrowserModule,

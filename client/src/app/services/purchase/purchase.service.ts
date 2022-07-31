@@ -15,4 +15,11 @@ export class PurchaseService {
   createPurchases(data: any) {
     return this._http.post<any>(`${environment.apiUrl}/api/purchases/`, data);
   }
+
+  receivePurchases(id: number) {
+    return this._http.put<any>(
+      `${environment.apiUrl}/api/purchases/${id}`,
+      null
+    );
+  }
 }

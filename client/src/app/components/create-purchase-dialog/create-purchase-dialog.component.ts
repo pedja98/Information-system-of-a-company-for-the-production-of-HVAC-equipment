@@ -60,7 +60,22 @@ export class CreatePurchaseDialogComponent implements OnInit {
         };
         this._purchase.createPurchases(data).subscribe((res) => {
           if (res.success) {
-            alert('YES');
+            this.dialogRef.close({ data: 'created' });
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.width = '320px';
+            dialogConfig.height = '150px';
+            dialogConfig.data = {
+              msg: `Kreiran nalog za nabavku materijala ${this.data.itemNumber}`,
+            };
+            this._dialog.open(DialogMsgComponent, dialogConfig);
+          } else {
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.width = '320px';
+            dialogConfig.height = '150px';
+            dialogConfig.data = {
+              msg: `Za materijal ${this.data.itemNumber} već postoji nalog za nabavku koji nije preuzet`,
+            };
+            this._dialog.open(DialogMsgComponent, dialogConfig);
           }
         });
       }

@@ -111,3 +111,9 @@ export const procurement: any[] = [
   { value: false, label: 'Svi' },
   { value: true, label: 'Neophodna nabavka' },
 ];
+
+export const purchasesStatuses: any[] = [
+  { value: '', label: 'Svi' },
+  { value: 'REQUEST_SENT', label: 'Zahtev je poslat' },
+  { value: 'MATERIAL_TAKEN', label: 'Materijal je preuzet' },
+];

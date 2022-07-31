@@ -81,6 +81,7 @@ const routes: Routes = [
     children: [
       { path: '', component: PurchaseOrdersComponent },
       { path: 'materials', component: MaterialsComponent },
+      { path: 'needs', component: NeedsComponent },
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'change-password', component: ChangePasswordComponent },
     ],

@@ -1,4 +1,4 @@
-const { Material, Stock, Need, User } = require("../models/index");
+const { Material, Stock, Need, User, Purchase } = require("../models/index");
 
 const getMaterials = async (req, res) => {
   try {
@@ -85,7 +85,6 @@ const updateMaterialStock = async (req, res) => {
 };
 
 const deleteById = async (req, res) => {
-  //dopuniti zahtevima za nabavku
   try {
     const needCount = await Need.count({
       where: {
@@ -97,6 +96,19 @@ const deleteById = async (req, res) => {
       res.json({
         success: false,
         msg: "need exist",
+      });
+      return;
+    }
+    const purchaseCnt = await Purchase.count({
+      where: {
+        status: "REQUEST_SENT",
+        materialId: req.body.materialId,
+      },
+    });
+    if (purchaseCnt > 0) {
+      res.json({
+        success: false,
+        msg: "purchase exist",
       });
       return;
     }

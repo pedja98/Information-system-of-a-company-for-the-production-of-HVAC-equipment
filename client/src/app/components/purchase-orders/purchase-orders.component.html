@@ -1,10 +1,58 @@
+<div class="search">
+  <mat-form-field class="field">
+    <mat-label>Broj artikla</mat-label>
+    <input
+      name="itemNumber"
+      [(ngModel)]="itemNumber"
+      autocomplete="off"
+      type="text"
+      matInput
+    />
+  </mat-form-field>
+  <mat-form-field class="field">
+    <mat-label>Šifra proizvođača</mat-label>
+    <input
+      name="supplierCode"
+      [(ngModel)]="supplierCode"
+      autocomplete="off"
+      type="text"
+      matInput
+    />
+  </mat-form-field>
+  <mat-form-field class="field">
+    <mat-label>Stanje</mat-label>
+    <mat-select name="cnt" [(ngModel)]="cnt">
+      <mat-option *ngFor="let item of itemCount" [value]="item.value">
+        {{ item.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Status</mat-label>
+    <mat-select name="cnt" [(ngModel)]="status">
+      <mat-option *ngFor="let item of purchasesStatuses" [value]="item.value">
+        {{ item.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div class="content">
   <mat-grid-list cols="3" rowHeight="370px" class="mat-gallery">
-    <mat-grid-tile *ngFor="let purchase of purchases; let i = index">
+    <mat-grid-tile
+      *ngFor="
+        let purchase of purchases
+          | purchaseItemNumber: itemNumber
+          | purchaseSupplierCode: supplierCode
+          | purchaseItemCount: cnt
+          | purchaseStatus: status;
+        let i = index
+      "
+    >
       <mat-card
         class="card"
         [ngStyle]="{
-          height: user.type === 'stockkeeper' ? '300px' : '270px'
+          height: user.type === 'stockkeeper' ? '330px' : '300px'
         }"
       >
         <p><b>Broj artikla: </b> {{ purchase.material.itemNumber }}</p>
@@ -14,6 +62,9 @@
         </p>
         <p *ngIf="purchase.status === 'REQUEST_SENT'">
           <b>Status:</b> ZAHTEV JE POSLAT
+        </p>
+        <p *ngIf="purchase.status === 'MATERIAL_TAKEN'">
+          <b>Status:</b> MATERIJAL JE PREUZET
         </p>
         <p>
           <b>Podnosilac:</b> {{ purchase.head_of_procurement.firstName }}
@@ -31,7 +82,14 @@
           {{ purchase.updatedAt | date: "dd/MM/yyyy" }}
         </p>
         <div class="btn-group">
-          <button *ngIf="user.type === 'stockkeeper'">Preuzmi</button>
+          <button
+            (click)="receivePurchase(i)"
+            *ngIf="
+              user.type === 'stockkeeper' && purchase.status === 'REQUEST_SENT'
+            "
+          >
+            Preuzmi
+          </button>
         </div>
       </mat-card>
     </mat-grid-tile>

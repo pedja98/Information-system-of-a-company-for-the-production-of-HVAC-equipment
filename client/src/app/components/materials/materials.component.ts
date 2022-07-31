@@ -9,6 +9,7 @@ import { UserDto } from 'src/app/dto/userDto';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddMaterialDialogComponent } from '../add-material-dialog/add-material-dialog.component';
 import { CreatePurchaseDialogComponent } from '../create-purchase-dialog/create-purchase-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-materials',
@@ -21,13 +22,17 @@ export class MaterialsComponent implements OnInit {
   name: string = '';
   supplierCode: string = '';
   supplierItemNumber: string = '';
-  cnt = 0;
-  isProcurementNeeded = false;
+  cnt: number = 0;
+  isProcurementNeeded: boolean = false;
   user = {} as UserDto;
   readonly itemCount = itemCount;
   readonly procurement = procurement;
 
-  constructor(private _material: MaterialService, private _dialog: MatDialog) {
+  constructor(
+    private _material: MaterialService,
+    private _dialog: MatDialog,
+    private _router: Router
+  ) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
@@ -90,6 +95,11 @@ export class MaterialsComponent implements OnInit {
       CreatePurchaseDialogComponent,
       dialogConfig
     );
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res.data === 'created') {
+        this._router.navigate(['/head-of-procurement/']);
+      }
+    });
   }
 
   deleteMaterial(i: number): void {
@@ -128,8 +138,12 @@ export class MaterialsComponent implements OnInit {
             const dialogConfigMsg = new MatDialogConfig();
             dialogConfigMsg.width = '320px';
             dialogConfigMsg.height = '150px';
+            const msg =
+              res.msg === 'need exist'
+                ? `Materijala ${this.materials[i].itemNumber} nije preuzet sa trebovanja`
+                : `Za materijala ${this.materials[i].itemNumber} postoji nalog za nabavku`;
             dialogConfigMsg.data = {
-              msg: `Materijala ${this.materials[i].itemNumber} nije preuzet sa trebovanja`,
+              msg: msg,
             };
             this._dialog.open(DialogMsgComponent, dialogConfigMsg);
             return;

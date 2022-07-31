@@ -4,6 +4,6 @@ const { tokenVerify } = require("../middleware/tokenVerify");
 
 purchase.get("/", tokenVerify, purchaseCtrl.getPurchases);
 purchase.post("/", tokenVerify, purchaseCtrl.createPurchase);
-purchase.post("/:id", tokenVerify, purchaseCtrl.changePurchasesStatus);
+purchase.put("/:id", tokenVerify, purchaseCtrl.changePurchasesStatus);
 
 module.exports = purchase;

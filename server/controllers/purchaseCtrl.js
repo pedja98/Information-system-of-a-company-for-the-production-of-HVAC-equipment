@@ -1,4 +1,4 @@
-const { User, Material, Purchase } = require("../models/index");
+const { User, Material, Purchase, Stock } = require("../models/index");
 
 const getPurchases = async (req, res) => {
   try {
@@ -22,6 +22,10 @@ const getPurchases = async (req, res) => {
           attributes: ["firstName", "lastName"],
         },
       ],
+      order: [
+        ["status", "DESC"],
+        ["createdAt", "ASC"],
+      ],
     });
     res.json(purchase);
   } catch (err) {
@@ -33,6 +37,17 @@ const getPurchases = async (req, res) => {
 
 const createPurchase = async (req, res) => {
   try {
+    const purchaseCnt = await Purchase.count({
+      where: {
+        status: "REQUEST_SENT",
+        materialId: req.body.materialId,
+      },
+    });
+    console.log(purchaseCnt);
+    if (purchaseCnt) {
+      res.json({ success: false });
+      return;
+    }
     const user = await User.findOne({
       attributes: ["id"],
       where: {
@@ -61,21 +76,19 @@ const changePurchasesStatus = async (req, res) => {
         email: req.email,
       },
     });
-    const purchase = await Purchase.update(
-      {
-        status: "MATERIAL_TAKEN",
-        stockkeeperId: user.id,
-      },
-      {
-        where: {
-          id: req.params.id,
-        },
-      }
-    );
+    let purchase = await Purchase.findByPk(req.params.id);
+    purchase.status = "MATERIAL_TAKEN";
+    purchase.stockkeeperId = user.id;
+    purchase.save();
+    console.log(purchase.materialId);
+    let stock = await Stock.findByPk(purchase.materialId);
+    stock.count += purchase.amount;
+    stock.save();
     res.json({
-      success: purchase[0],
+      success: true,
     });
   } catch (err) {
+    console.log(err);
     res.json({
       err: err,
     });
